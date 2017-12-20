@@ -1,6 +1,8 @@
 package com.kunlun.api.hystrix;
 
 import com.kunlun.api.service.WxOrderService;
+import com.kunlun.entity.OrderExt;
+import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import com.kunlun.wxentity.OrderCondition;
 import org.springframework.stereotype.Component;
@@ -18,5 +20,20 @@ public class WxOrderServiceHystrix implements WxOrderService {
     public PageResult findByCondition(OrderCondition orderCondition) {
 
         return new PageResult("ERROR", "订单列表故障");
+    }
+
+    @Override
+    public DataRet<String> refund(Long orderId, String wxCode) {
+        return new DataRet<>("ERROR", "退款故障");
+    }
+
+    @Override
+    public DataRet<OrderExt> findById(Long orderId) {
+        return new DataRet<>("ERROR", "订单详情故障");
+    }
+
+    @Override
+    public DataRet<String> confirmReceive(Long orderId) {
+        return new DataRet<>("ERROR", "确认收货故障");
     }
 }
