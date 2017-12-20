@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -47,12 +48,25 @@ public interface OrderService {
     @PostMapping("/backend/order/sendGood")
     DataRet<String> sendGood(@RequestBody OrderCondition orderCondition);
 
+
     /**
      * 修改订单
+     *
      * @param order
      * @return
      */
     @PostMapping("/backend/order/modify")
     DataRet<String> modify(@RequestBody Order order);
+
+
+    /**
+     * 查询订单详情
+     *
+     * @param orderId
+     * @param sellerId
+     * @return
+     */
+    @GetMapping("/findById")
+    DataRet<Order> findById(@RequestParam Long orderId, @RequestHeader Long sellerId);
 
 }
