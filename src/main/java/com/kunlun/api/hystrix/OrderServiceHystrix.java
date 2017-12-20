@@ -49,6 +49,18 @@ public class OrderServiceHystrix implements OrderService {
      */
     @Override
     public DataRet<String> modify(Order order) {
-        return new DataRet<>("ERROR","订单修改接口异常");
+        return new DataRet<>("ERROR", "订单修改接口异常");
+    }
+
+    /**
+     * 查询订单详情
+     *
+     * @param orderId
+     * @param sellerId
+     * @return
+     */
+    @Override
+    public DataRet<Order> findById(Long orderId, Long sellerId) {
+        return new DataRet<>("ERROR", "订单详情接口异常");
     }
 }
