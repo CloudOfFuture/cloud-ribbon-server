@@ -1,5 +1,6 @@
 server:
   port: 8762
+  context-path: /api/
 spring:
   application:
     name: cloud-ribbon-server
