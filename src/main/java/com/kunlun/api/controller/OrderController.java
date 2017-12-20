@@ -1,19 +1,17 @@
 package com.kunlun.api.controller;
 
-import com.kunlun.api.service.ROrderService;
+import com.kunlun.api.service.OrderService;
+import com.kunlun.entity.Order;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import com.kunlun.wxentity.OrderCondition;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Date;
 
 /**
  * @author by kunlun
@@ -26,7 +24,7 @@ public class OrderController {
 
 
     @Autowired
-    private ROrderService rOrderService;
+    private OrderService orderService;
 
 
     /**
@@ -49,7 +47,7 @@ public class OrderController {
                            @RequestParam(value = "search_key") String searchKey,
                            @RequestParam(value = "page_no") Integer pageNo,
                            @RequestParam(value = "page_size") Integer pageSize) {
-        return rOrderService.list(orderNo, phone, status, type, searchKey,pageNo,pageSize);
+        return orderService.list(orderNo, phone, status, type, searchKey, pageNo, pageSize);
     }
 
     /**
@@ -66,6 +64,17 @@ public class OrderController {
     @PostMapping("/sendGood")
     public DataRet<String> sendGood(@RequestBody OrderCondition orderCondition) {
 
+        return orderService.sendGood(orderCondition);
+    }
+
+    /**
+     * 修改订单
+     *
+     * @param order
+     * @return
+     */
+    @PostMapping("/modify")
+    public DataRet<String> modify(@RequestBody Order order) {
         return null;
     }
 }
