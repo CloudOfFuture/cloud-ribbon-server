@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(value = "cloud-service-order",fallback = IndexServiceHystrix.class)
 public interface IndexService {
 
-    @GetMapping("/index")
+    @GetMapping("/api/index/test")
     DataRet<String> index();
 
 }
