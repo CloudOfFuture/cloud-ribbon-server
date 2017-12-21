@@ -19,20 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "cloud-service-order", fallback = WxOrderServiceHystrix.class)
 public interface WxOrderService {
 
-    /**
-     * 订单列表
-     *
-     * @param pageNo   当前页
-     * @param pageSize 每页条数
-     * @param wxCode   微信code
-     * @param status   订单状态
-     * @return
-     */
-    @GetMapping("/wx/order/findByOpenid")
-    PageResult findByOpenid(@RequestParam(value = "page_no") Integer pageNo,
-                            @RequestParam(value = "page_size") Integer pageSize,
-                            @RequestParam(value = "wx_code") String wxCode,
-                            @RequestParam(value = "status") String status);
+
 
     /**
      * 退款
@@ -41,8 +28,10 @@ public interface WxOrderService {
      * @param wxCode
      * @return
      */
-    @PostMapping("/service/wx/order/refund")
-    DataRet<String> refund(@RequestParam(value = "order_id") Long orderId, @RequestParam(value = "wx_code") String wxCode);
+    @GetMapping("/wx/order/refund")
+    DataRet<String> refund(@RequestParam(value = "order_id") Long orderId,
+                           @RequestParam(value = "wx_code") String wxCode,
+                           @RequestParam(value = "refund_fee", required = false) Integer refundFee);
 
     /**
      * 查询订单详情
@@ -62,4 +51,10 @@ public interface WxOrderService {
     @PostMapping("/service/wx/order/confirmReceive")
     DataRet<String> confirmReceive(@RequestParam(value = "order_id") Long orderId);
 
+    @GetMapping("/findByOpenid")
+    PageResult findByOpenid(@RequestParam(value = "page_no") Integer pageNo,
+                                   @RequestParam(value = "page_size") Integer pageSize,
+                                   @RequestParam(value = "wx_code") String wxCode,
+                                   @RequestParam(value = "order_status", required = false) String orderStatus,
+                                   @RequestParam(value = "pay_type", required = false) String payType);
 }
