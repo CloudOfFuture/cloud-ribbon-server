@@ -67,6 +67,6 @@ public interface OrderService {
      * @return
      */
     @GetMapping("/findById")
-    DataRet<Order> findById(@RequestParam Long orderId, @RequestHeader Long sellerId);
+    DataRet<Order> findById(@RequestParam(value = "order_id") Long orderId, @RequestHeader(value = "seller_id") Long sellerId);
 
 }
