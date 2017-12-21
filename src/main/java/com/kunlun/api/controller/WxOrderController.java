@@ -21,27 +21,29 @@ import org.springframework.web.bind.annotation.RestController;
  * @created on 2017/12/20.
  */
 @RestController
-@RequestMapping("/api/wx/order")
+@RequestMapping("/wx/order")
 public class WxOrderController {
 
     @Autowired
     private WxOrderService wxOrderService;
 
     /**
-     * 我的订单列表
+     * 我的订单列表/   分类查询（订单状态/支付类型）
      *
-     * @param pageNo   当前页
-     * @param pageSize 每页条数
-     * @param wxCode   微信code
-     * @param status   订单状态
+     * @param pageNo      当前页
+     * @param pageSize    每条页数
+     * @param wxCode      微信code
+     * @param orderStatus 订单状态
+     * @param payType     支付类型
      * @return
      */
     @GetMapping("/findByOpenid")
     public PageResult findByOpenid(@RequestParam(value = "page_no") Integer pageNo,
                                    @RequestParam(value = "page_size") Integer pageSize,
                                    @RequestParam(value = "wx_code") String wxCode,
-                                   @RequestParam(value = "status") String status) {
-        return null;
+                                   @RequestParam(value = "order_status", required = false) String orderStatus,
+                                   @RequestParam(value = "pay_type", required = false) String payType) {
+        return wxOrderService.findByOpenid(pageNo, pageSize, wxCode, orderStatus, payType);
     }
 
     /**
@@ -49,9 +51,11 @@ public class WxOrderController {
      *
      * @return
      */
-    @PostMapping("/refund")
-    public DataRet<String> refund() {
-        return null;
+    @GetMapping("/refund")
+    public DataRet<String> refund(@RequestParam(value = "order_id") Long orderId,
+                                  @RequestParam(value = "wx_code") String wxCode,
+                                  @RequestParam(value = "refund_fee", required = false) Integer refundFee) {
+        return wxOrderService.refund(orderId, wxCode, refundFee);
     }
 
     /**
