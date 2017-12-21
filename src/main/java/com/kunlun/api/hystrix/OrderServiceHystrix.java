@@ -26,6 +26,7 @@ public class OrderServiceHystrix implements OrderService {
         return new DataRet<>("ERROR", "测试接口异常");
     }
 
+
     /**
      * @param orderNo   订单编号
      * @param phone     收货人手机号
