@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class IndexServiceHystrix implements IndexService {
 
+
+
     /**
      * 测试服务之间接口调用
      *
