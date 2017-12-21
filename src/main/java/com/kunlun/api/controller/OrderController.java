@@ -40,7 +40,7 @@ public class OrderController {
      * @param pageSize  每页条数
      * @return
      */
-    @GetMapping("/list")
+    @GetMapping("/findByCondition")
     public PageResult list(@RequestParam(value = "order_no") String orderNo,
                            @RequestParam(value = "phone") String phone,
                            @RequestParam(value = "status") String status,

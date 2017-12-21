@@ -20,13 +20,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface WxOrderService {
 
     /**
-     * 查询订单列表
+     * 订单列表
      *
-     * @param orderCondition
+     * @param pageNo   当前页
+     * @param pageSize 每页条数
+     * @param wxCode   微信code
+     * @param status   订单状态
      * @return
      */
-    @GetMapping("/service/wx/order/findByCondition")
-    PageResult findByCondition(@RequestBody OrderCondition orderCondition);
+    @GetMapping("/wx/order/findByOpenid")
+    PageResult findByOpenid(@RequestParam(value = "page_no") Integer pageNo,
+                            @RequestParam(value = "page_size") Integer pageSize,
+                            @RequestParam(value = "wx_code") String wxCode,
+                            @RequestParam(value = "status") String status);
 
     /**
      * 退款
