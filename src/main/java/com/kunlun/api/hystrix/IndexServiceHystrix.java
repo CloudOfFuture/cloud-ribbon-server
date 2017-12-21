@@ -11,8 +11,15 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class IndexServiceHystrix implements IndexService {
+
+    /**
+     * 测试服务之间接口调用
+     *
+     * @param orderId
+     * @return
+     */
     @Override
-    public DataRet<String> index() {
-        return new DataRet<>("ERROR", "负载均衡故障");
+    public DataRet<String> logTest(Long orderId) {
+        return new DataRet<>("ERROR", "日志接口调用异常");
     }
 }
