@@ -20,6 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "cloud-service-order", fallback = OrderServiceHystrix.class)
 public interface OrderService {
 
+
+    /**
+     * 测试
+     * @param orderId
+     * @return
+     */
+    @GetMapping("/index/log")
+    DataRet<String> test(@RequestParam(value = "order_id")Long orderId);
+
     /**
      * @param orderNo   订单编号
      * @param phone     收货人手机号

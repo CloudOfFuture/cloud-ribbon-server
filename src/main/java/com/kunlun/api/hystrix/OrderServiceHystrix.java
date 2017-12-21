@@ -16,6 +16,17 @@ import org.springframework.stereotype.Component;
 public class OrderServiceHystrix implements OrderService {
 
     /**
+     * 测试
+     *
+     * @param orderId
+     * @return
+     */
+    @Override
+    public DataRet<String> test(Long orderId) {
+        return new DataRet<>("ERROR", "测试接口异常");
+    }
+
+    /**
      * @param orderNo   订单编号
      * @param phone     收货人手机号
      * @param status    订单状态
