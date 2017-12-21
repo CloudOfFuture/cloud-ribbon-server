@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @created on 2017/12/20.
  */
 @RestController
-@RequestMapping("/api/wx/order")
+@RequestMapping("/wx/order")
 public class WxOrderController {
 
     @Autowired
@@ -51,9 +51,11 @@ public class WxOrderController {
      *
      * @return
      */
-    @PostMapping("/refund")
-    public DataRet<String> refund() {
-        return null;
+    @GetMapping("/refund")
+    public DataRet<String> refund(@RequestParam(value = "order_id") Long orderId,
+                                  @RequestParam(value = "wx_code") String wxCode,
+                                  @RequestParam(value = "refund_fee", required = false) Integer refundFee) {
+        return wxOrderService.refund(orderId, wxCode, refundFee);
     }
 
     /**

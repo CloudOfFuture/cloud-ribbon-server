@@ -18,7 +18,7 @@ public class WxOrderServiceHystrix implements WxOrderService {
 
 
     @Override
-    public DataRet<String> refund(Long orderId, String wxCode) {
+    public DataRet<String> refund(Long orderId, String wxCode, Integer refundFee) {
         return new DataRet<>("ERROR", "退款故障");
     }
 
