@@ -16,9 +16,9 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class WxOrderServiceHystrix implements WxOrderService {
-    @Override
-    public PageResult findByCondition(OrderCondition orderCondition) {
 
+    @Override
+    public PageResult findByOpenid(Integer pageNo, Integer pageSize, String wxCode, String status) {
         return new PageResult("ERROR", "订单列表故障");
     }
 
