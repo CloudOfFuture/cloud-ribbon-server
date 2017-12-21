@@ -64,7 +64,6 @@ public class OrderController {
      */
     @PostMapping("/sendGood")
     public DataRet<String> sendGood(@RequestBody OrderCondition orderCondition) {
-
         return orderService.sendGood(orderCondition);
     }
 
