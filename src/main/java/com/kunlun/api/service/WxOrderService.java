@@ -19,17 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "cloud-service-order", fallback = WxOrderServiceHystrix.class)
 public interface WxOrderService {
 
-    /**
-     * 我的订单列表
-     *
-     * @param pageNo
-     * @param pageSize
-     * @param wxCode
-     * @param orderStatus
-     * @param payType
-     * @return
-     */
-    PageResult findByOpenid(Integer pageNo, Integer pageSize, String wxCode, String orderStatus, String payType);
+
 
     /**
      * 退款
@@ -59,5 +49,5 @@ public interface WxOrderService {
     @PostMapping("/service/wx/order/confirmReceive")
     DataRet<String> confirmReceive(@RequestParam(value = "order_id") Long orderId);
 
-
+    PageResult findByOpenid(Integer pageNo, Integer pageSize, String wxCode, String orderStatus, String payType);
 }

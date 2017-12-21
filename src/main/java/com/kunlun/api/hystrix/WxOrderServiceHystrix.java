@@ -4,7 +4,6 @@ import com.kunlun.api.service.WxOrderService;
 import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
-import com.kunlun.wxentity.OrderCondition;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,20 +16,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class WxOrderServiceHystrix implements WxOrderService {
 
-    /**
-     * 我的订单列表
-     *
-     * @param pageNo
-     * @param pageSize
-     * @param wxCode
-     * @param orderStatus
-     * @param payType
-     * @return
-     */
-    @Override
-    public PageResult findByOpenid(Integer pageNo, Integer pageSize, String wxCode, String orderStatus, String payType) {
-        return null;
-    }
 
     @Override
     public DataRet<String> refund(Long orderId, String wxCode) {
@@ -45,5 +30,10 @@ public class WxOrderServiceHystrix implements WxOrderService {
     @Override
     public DataRet<String> confirmReceive(Long orderId) {
         return new DataRet<>("ERROR", "确认收货故障");
+    }
+
+    @Override
+    public PageResult findByOpenid(Integer pageNo, Integer pageSize, String wxCode, String orderStatus, String payType) {
+        return new PageResult("ERROR", "订单列表故障");
     }
 }
