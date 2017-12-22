@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @created on 2017/12/20.
  */
 @RestController
-@RequestMapping("/api/order")
+@RequestMapping("order")
 public class OrderController {
 
 

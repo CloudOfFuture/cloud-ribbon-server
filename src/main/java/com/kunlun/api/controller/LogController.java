@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @created on 2017/12/21.
  */
 @RestController
-@RequestMapping("api/log")
+@RequestMapping("log")
 public class LogController {
 
 
