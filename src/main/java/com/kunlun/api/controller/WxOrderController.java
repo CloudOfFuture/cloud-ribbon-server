@@ -61,12 +61,12 @@ public class WxOrderController {
     /**
      * 查询订单详情
      *
-     * @param orderId
+     * @param orderId 订单id
      * @return
      */
     @GetMapping("/findById")
-    public DataRet<OrderExt> findById(@RequestParam(value = "orderId") Long orderId) {
-        return null;
+    public DataRet<OrderExt> findById(@RequestParam(value = "order_id") Long orderId) {
+        return wxOrderService.findById(orderId);
     }
 
     @PostMapping("/estimate")

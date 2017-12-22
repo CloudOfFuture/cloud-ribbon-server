@@ -38,7 +38,7 @@ public interface WxOrderService {
      * @param orderId
      * @return
      */
-    @GetMapping("/service/wx/order/findById")
+    @GetMapping("/wx/order/findById")
     DataRet<OrderExt> findById(@RequestParam(value = "order_id") Long orderId);
 
     /**
@@ -47,7 +47,7 @@ public interface WxOrderService {
      * @param orderId
      * @return
      */
-    @PostMapping("/service/wx/order/confirmReceive")
+    @PostMapping("/wx/order/confirmReceive")
     DataRet<String> confirmReceive(@RequestParam(value = "order_id") Long orderId);
 
     /**
