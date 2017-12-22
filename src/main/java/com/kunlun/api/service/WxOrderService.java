@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface WxOrderService {
 
 
-
     /**
      * 退款
      *
@@ -51,10 +50,20 @@ public interface WxOrderService {
     @PostMapping("/service/wx/order/confirmReceive")
     DataRet<String> confirmReceive(@RequestParam(value = "order_id") Long orderId);
 
-    @GetMapping("/findByOpenid")
+    /**
+     * 我的订单列表/   分类查询（订单状态/支付类型）
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param wxCode
+     * @param orderStatus
+     * @param payType
+     * @return
+     */
+    @GetMapping("/wx/order/findByOpenid")
     PageResult findByOpenid(@RequestParam(value = "page_no") Integer pageNo,
-                                   @RequestParam(value = "page_size") Integer pageSize,
-                                   @RequestParam(value = "wx_code") String wxCode,
-                                   @RequestParam(value = "order_status", required = false) String orderStatus,
-                                   @RequestParam(value = "pay_type", required = false) String payType);
+                            @RequestParam(value = "page_size") Integer pageSize,
+                            @RequestParam(value = "wx_code") String wxCode,
+                            @RequestParam(value = "order_status", required = false) String orderStatus,
+                            @RequestParam(value = "pay_type", required = false) String payType);
 }
