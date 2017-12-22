@@ -1,6 +1,7 @@
 package com.kunlun.api.controller;
 
 import com.kunlun.api.service.WxOrderService;
+import com.kunlun.entity.Order;
 import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @created on 2017/12/20.
  */
 @RestController
-@RequestMapping("/wx/order")
+@RequestMapping("wx/order")
 public class WxOrderController {
 
     @Autowired
@@ -65,7 +66,7 @@ public class WxOrderController {
      * @return
      */
     @GetMapping("/findById")
-    public DataRet<OrderExt> findById(@RequestParam(value = "order_id") Long orderId) {
+    public DataRet<Order> findById(@RequestParam(value = "order_id") Long orderId) {
         return wxOrderService.findById(orderId);
     }
 

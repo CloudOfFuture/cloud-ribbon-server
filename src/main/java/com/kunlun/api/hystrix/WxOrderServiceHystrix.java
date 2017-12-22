@@ -1,6 +1,7 @@
 package com.kunlun.api.hystrix;
 
 import com.kunlun.api.service.WxOrderService;
+import com.kunlun.entity.Order;
 import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
@@ -51,7 +52,7 @@ public class WxOrderServiceHystrix implements WxOrderService {
      * @return
      */
     @Override
-    public DataRet<OrderExt> findById(Long orderId) {
+    public DataRet<Order> findById(Long orderId) {
         return new DataRet<>("ERROR", "查询订单详情故障");
     }
 }
