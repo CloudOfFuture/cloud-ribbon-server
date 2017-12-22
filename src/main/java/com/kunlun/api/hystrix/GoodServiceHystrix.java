@@ -13,8 +13,26 @@ import org.springframework.stereotype.Component;
 @Component
 public class GoodServiceHystrix implements GoodService {
 
+
+    /**
+     * 创建失败
+     *
+     * @param good
+     * @return
+     */
     @Override
     public DataRet<String> add(Good good) {
         return new DataRet<>("ERROR","创建失败");
+    }
+
+    /**
+     * 获取商品详情
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet<Good> findById(Long id) {
+        return new DataRet<>("ERROR","未找到");
     }
 }
