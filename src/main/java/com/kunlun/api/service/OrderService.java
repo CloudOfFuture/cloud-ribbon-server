@@ -23,11 +23,12 @@ public interface OrderService {
 
     /**
      * 测试
+     *
      * @param orderId
      * @return
      */
     @GetMapping("/index/log")
-    DataRet<String> test(@RequestParam(value = "order_id")Long orderId);
+    DataRet<String> test(@RequestParam(value = "order_id") Long orderId);
 
     /**
      * @param orderNo   订单编号

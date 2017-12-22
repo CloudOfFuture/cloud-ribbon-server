@@ -14,3 +14,10 @@ eureka:
 cloud-service-order:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+logging:
+  level:
+    com:
+      kunlun:
+        api:
+          service:
+            IndexService: debug
