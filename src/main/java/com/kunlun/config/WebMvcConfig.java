@@ -4,6 +4,8 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import feign.Logger;
+import feign.Request;
+import feign.Retryer;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +27,23 @@ import java.util.List;
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
-    Logger.Level feignLoggerLevel(){
+    Request.Options feignOptions() {
+        return new Request.Options(/***connectTimeoutMills***/1 * 1000,/***readTimeoutMills***/1 * 1000);
+    }
+
+
+    /**
+     * Feign  不使用重试机制
+     *
+     * @return
+     */
+    @Bean
+    Retryer feignRetryer() {
+        return Retryer.NEVER_RETRY;
+    }
+
+    @Bean
+    Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
     }
 
