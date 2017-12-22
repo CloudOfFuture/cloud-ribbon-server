@@ -61,7 +61,7 @@ public class WxOrderController {
     /**
      * 查询订单详情
      *
-     * @param orderId 订单id
+     * @param orderId
      * @return
      */
     @GetMapping("/findById")
@@ -69,19 +69,5 @@ public class WxOrderController {
         return wxOrderService.findById(orderId);
     }
 
-    @PostMapping("/estimate")
-    public DataRet<String> estimate() {
-        return null;
-    }
-
-    /**
-     * 确认收货
-     *
-     * @return
-     */
-    @PostMapping("/confirmReceive")
-    public DataRet<String> confirmReceive() {
-        return null;
-    }
 
 }
