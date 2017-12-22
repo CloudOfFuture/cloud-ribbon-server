@@ -1,6 +1,7 @@
 package com.kunlun.api.service;
 
 import com.kunlun.api.hystrix.WxOrderServiceHystrix;
+import com.kunlun.entity.Order;
 import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
@@ -57,5 +58,5 @@ public interface WxOrderService {
      * @return
      */
     @GetMapping("/wx/order/findById")
-    DataRet<OrderExt> findById(@RequestParam(value = "order_id") Long orderId);
+    DataRet<Order> findById(@RequestParam(value = "order_id") Long orderId);
 }

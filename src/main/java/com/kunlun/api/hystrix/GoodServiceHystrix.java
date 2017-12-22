@@ -62,4 +62,16 @@ public class GoodServiceHystrix implements GoodService {
                                       String isNew, String freight) {
         return new PageResult();
     }
+
+
+    /**
+     * 根据id删除
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet<String> deleteById(Long id) {
+        return new DataRet<>("ERROR","删除失败");
+    }
 }
