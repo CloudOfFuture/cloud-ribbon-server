@@ -65,23 +65,9 @@ public class WxOrderController {
      * @return
      */
     @GetMapping("/findById")
-    public DataRet<OrderExt> findById(@RequestParam(value = "orderId") Long orderId) {
-        return null;
+    public DataRet<OrderExt> findById(@RequestParam(value = "order_id") Long orderId) {
+        return wxOrderService.findById(orderId);
     }
 
-    @PostMapping("/estimate")
-    public DataRet<String> estimate() {
-        return null;
-    }
-
-    /**
-     * 确认收货
-     *
-     * @return
-     */
-    @PostMapping("/confirmReceive")
-    public DataRet<String> confirmReceive() {
-        return null;
-    }
 
 }

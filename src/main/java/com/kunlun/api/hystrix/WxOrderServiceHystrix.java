@@ -16,24 +16,42 @@ import org.springframework.stereotype.Component;
 @Component
 public class WxOrderServiceHystrix implements WxOrderService {
 
-
+    /**
+     * 退款
+     *
+     * @param orderId
+     * @param wxCode
+     * @param refundFee
+     * @return
+     */
     @Override
     public DataRet<String> refund(Long orderId, String wxCode, Integer refundFee) {
         return new DataRet<>("ERROR", "退款故障");
     }
 
-    @Override
-    public DataRet<OrderExt> findById(Long orderId) {
-        return new DataRet<>("ERROR", "订单详情故障");
-    }
-
-    @Override
-    public DataRet<String> confirmReceive(Long orderId) {
-        return new DataRet<>("ERROR", "确认收货故障");
-    }
-
+    /**
+     * 我的订单列表/   分类查询（订单状态/支付类型）
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param wxCode
+     * @param orderStatus
+     * @param payType
+     * @return
+     */
     @Override
     public PageResult findByOpenid(Integer pageNo, Integer pageSize, String wxCode, String orderStatus, String payType) {
         return new PageResult("ERROR", "订单列表故障");
+    }
+
+    /**
+     * 查询订单详情
+     *
+     * @param orderId
+     * @return
+     */
+    @Override
+    public DataRet<OrderExt> findById(Long orderId) {
+        return new DataRet<>("ERROR", "查询订单详情故障");
     }
 }
