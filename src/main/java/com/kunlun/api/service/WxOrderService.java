@@ -32,23 +32,6 @@ public interface WxOrderService {
                            @RequestParam(value = "wx_code") String wxCode,
                            @RequestParam(value = "refund_fee", required = false) Integer refundFee);
 
-    /**
-     * 查询订单详情
-     *
-     * @param orderId
-     * @return
-     */
-    @GetMapping("/service/wx/order/findById")
-    DataRet<OrderExt> findById(@RequestParam(value = "order_id") Long orderId);
-
-    /**
-     * 确认收货
-     *
-     * @param orderId
-     * @return
-     */
-    @PostMapping("/service/wx/order/confirmReceive")
-    DataRet<String> confirmReceive(@RequestParam(value = "order_id") Long orderId);
 
     /**
      * 我的订单列表/   分类查询（订单状态/支付类型）
@@ -66,4 +49,13 @@ public interface WxOrderService {
                             @RequestParam(value = "wx_code") String wxCode,
                             @RequestParam(value = "order_status", required = false) String orderStatus,
                             @RequestParam(value = "pay_type", required = false) String payType);
+
+    /**
+     * 查询订单详情
+     *
+     * @param orderId
+     * @return
+     */
+    @GetMapping("/wx/order/findById")
+    DataRet<OrderExt> findById(@RequestParam(value = "order_id") Long orderId);
 }

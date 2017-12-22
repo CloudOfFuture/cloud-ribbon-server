@@ -21,3 +21,9 @@ logging:
         api:
           service:
             IndexService: debug
+hystrix:
+  default:
+    execution:
+      isolation:
+        thread:
+          timeoutInMilliseconds: 5000  #命令超时时间 默认1000ms
