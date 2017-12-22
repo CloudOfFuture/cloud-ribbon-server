@@ -69,4 +69,14 @@ public interface GoodService {
                                @RequestParam(value = "hot",required = false) String hot,
                                @RequestParam(value = "is_new",required = false) String isNew,
                                @RequestParam(value = "freight",required = false) String freight);
+
+
+    /**
+     * 根据id删除商品
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/backstage/good/deleteById")
+    DataRet<String> deleteById(@RequestParam(value = "id") Long id);
 }
