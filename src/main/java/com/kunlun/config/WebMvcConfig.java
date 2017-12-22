@@ -39,6 +39,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Bean
     Retryer feignRetryer() {
+
         return Retryer.NEVER_RETRY;
     }
 
