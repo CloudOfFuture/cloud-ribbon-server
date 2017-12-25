@@ -1,6 +1,7 @@
 package com.kunlun.api.hystrix;
 
 import com.kunlun.api.service.LogService;
+import com.kunlun.entity.GoodLog;
 import com.kunlun.entity.OrderLog;
 import com.kunlun.result.DataRet;
 import org.springframework.stereotype.Component;
@@ -21,13 +22,13 @@ public class LogServiceHystrix implements LogService {
     /**
      * 创建商品日志失败回滚
      *
-     * @param goodName
-     * @param action
-     * @param goodId
+     * @param goodLog
      * @return
      */
     @Override
-    public DataRet<String> addGoodLog(String goodName, String action, Long goodId) {
+    public DataRet<String> addGoodLog(GoodLog goodLog) {
         return new  DataRet<>("ERROR","商品日志写入失败");
     }
+
+
 }
