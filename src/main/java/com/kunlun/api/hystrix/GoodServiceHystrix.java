@@ -1,5 +1,6 @@
 package com.kunlun.api.hystrix;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.service.GoodService;
 import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
@@ -7,6 +8,7 @@ import com.kunlun.result.PageResult;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author by hmy
@@ -74,4 +76,82 @@ public class GoodServiceHystrix implements GoodService {
     public DataRet<String> deleteById(Long id) {
         return new DataRet<>("ERROR","删除失败");
     }
+
+
+    /**
+     * 批量删除商品
+     *
+     * @param idList
+     * @return
+     */
+    @Override
+    public DataRet<String> deleteByIdList(List<Long> idList) {
+        return new DataRet<>("ERROR","批量删除失败");
+    }
+
+
+    /**
+     * 修改商品信息
+     *
+     * @param good
+     * @return
+     */
+    @Override
+    public DataRet<String> update(Good good) {
+        return new DataRet<>("ERROR","修改商品信息失败");
+    }
+
+
+    /**
+     * 商品上下架
+     *
+     * @param onSale
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet<String> updateSaleStatus(String onSale, Long id) {
+        return new DataRet<>("ERROR","商品上下架失败");
+    }
+
+
+    /**
+     * 商品批量上下架
+     *
+     * @param jsonObject
+     * @return
+     */
+    @Override
+    public DataRet<String> updateSaleList(JSONObject jsonObject) {
+        return new DataRet<>("ERROR","商品批量上下架失败");
+    }
+
+
+    /**
+     * 新建商品审核
+     *
+     * @param audit
+     * @param reason
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet<String> audit(String audit, String reason, Long id) {
+        return new DataRet<>("ERROR","审核失败");
+    }
+
+
+    /**
+     * 修改商品库存
+     *
+     * @param id
+     * @param count
+     * @return
+     */
+    @Override
+    public DataRet<String> updateStock(Long id, Integer count) {
+        return new DataRet<>("ERROR","修改库存失败");
+    }
+
+
 }

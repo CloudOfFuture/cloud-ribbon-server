@@ -1,5 +1,6 @@
 package com.kunlun.api.service;
 
+import com.kunlun.entity.GoodLog;
 import com.kunlun.entity.OrderLog;
 import com.kunlun.result.DataRet;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -21,13 +22,9 @@ public interface LogService {
     /**
      * 创建商品日志
      *
-     * @param goodName
-     * @param action
-     * @param goodId
+     * @param goodLog
      * @return
      */
     @PostMapping("/log/add/goodLog")
-    DataRet<String> addGoodLog(@RequestParam("goodName") String goodName,
-                               @RequestParam("action") String action,
-                               @RequestParam("goodId") Long goodId);
+    DataRet<String> addGoodLog(@RequestBody GoodLog goodLog);
 }
