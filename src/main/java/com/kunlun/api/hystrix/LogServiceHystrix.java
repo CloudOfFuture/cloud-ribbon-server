@@ -16,4 +16,18 @@ public class LogServiceHystrix implements LogService {
     public DataRet<String> addOrderLog(OrderLog orderLog) {
         return new DataRet<>("ERROR", "订单日志接口异常");
     }
+
+
+    /**
+     * 创建商品日志失败回滚
+     *
+     * @param goodName
+     * @param action
+     * @param goodId
+     * @return
+     */
+    @Override
+    public DataRet<String> addGoodLog(String goodName, String action, Long goodId) {
+        return new  DataRet<>("ERROR","商品日志写入失败");
+    }
 }
