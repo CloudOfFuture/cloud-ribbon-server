@@ -1,6 +1,7 @@
 package com.kunlun.api.client;
 
 import com.kunlun.api.hystrix.IndexClientHystrix;
+import com.kunlun.result.DataRet;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,5 +15,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface IndexClient {
 
     @GetMapping("/index/log")
-    void index(@RequestParam("orderNo") String orderNo);
+    DataRet<String> index(@RequestParam("orderNo") String orderNo);
 }

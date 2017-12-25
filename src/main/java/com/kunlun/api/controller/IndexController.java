@@ -26,8 +26,8 @@ public class IndexController {
 
 
     @GetMapping("/log")
-    public void log(@RequestParam("orderNo") String orderNo){
-        indexService.index(orderNo);
+    public DataRet<String> log(@RequestParam("orderNo") String orderNo){
+        return indexService.index(orderNo);
     }
 
 }

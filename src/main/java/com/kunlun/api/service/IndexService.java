@@ -1,6 +1,8 @@
 package com.kunlun.api.service;
 
 
+import com.kunlun.result.DataRet;
+
 /**
  * @author by kunlun
  * @version <0.1>
@@ -9,5 +11,5 @@ package com.kunlun.api.service;
 public interface IndexService {
 
 
-    void index(String orderNo);
+    DataRet<String> index(String orderNo);
 }

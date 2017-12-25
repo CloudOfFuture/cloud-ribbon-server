@@ -1,6 +1,7 @@
 package com.kunlun.api.hystrix;
 
 import com.kunlun.api.client.IndexClient;
+import com.kunlun.result.DataRet;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class IndexClientHystrix implements IndexClient {
     @Override
-    public void index(String orderNo) {
-        System.out.println("index接口异常");
+    public DataRet<String> index(String orderNo) {
+        return new DataRet<>("Index接口异常");
     }
 }
