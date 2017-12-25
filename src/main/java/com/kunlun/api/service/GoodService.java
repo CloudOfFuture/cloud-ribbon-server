@@ -4,6 +4,7 @@ import com.kunlun.api.hystrix.GoodServiceHystrix;
 import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
+import feign.RequestLine;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
