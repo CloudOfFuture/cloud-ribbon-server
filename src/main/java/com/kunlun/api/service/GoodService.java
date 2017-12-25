@@ -114,15 +114,15 @@ public interface GoodService {
                                      @RequestParam(value = "id") Long id);
 
 
-    /**
-     * 商品批量上下架
-     *
-     * @param onSale
-     * @param goodIdList
-     * @return
-     */
-    @PostMapping("/backstage/good/updateSaleList")
-    DataRet<String> updateSaleList(String onSale, List<Long> goodIdList);
+//    /**
+//     * 商品批量上下架
+//     *
+//     * @param onSale
+//     * @param goodIdList
+//     * @return
+//     */
+//    @PostMapping("/backstage/good/updateSaleList")
+//    DataRet<String> updateSaleList(@RequestBody String onSale, List<Long> goodIdList);
 
 
     /**
