@@ -2,11 +2,13 @@ package com.kunlun.api.hystrix;
 
 import com.kunlun.api.service.DeliveryService;
 import com.kunlun.result.DataRet;
+import org.springframework.stereotype.Component;
 
 /**
  * @author by hws
  * @created on 2017/12/25.
  */
+@Component
 public class DeliveryServiceHystrix implements DeliveryService{
 
 
