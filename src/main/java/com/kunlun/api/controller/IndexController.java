@@ -24,6 +24,7 @@ public class IndexController {
     @Autowired
     private IndexService indexService;
 
+
     @GetMapping("/log")
     public void log(@RequestParam("orderNo") String orderNo){
         indexService.index(orderNo);
