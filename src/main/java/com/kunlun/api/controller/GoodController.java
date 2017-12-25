@@ -137,9 +137,7 @@ public class GoodController {
      */
     @PostMapping("/updateSaleList")
     public DataRet<String> updateSaleList(@RequestBody JSONObject jsonObject){
-        String onSale=jsonObject.getString("onSale");
-        List<Long>goodIdList=jsonObject.getJSONArray("goodIdList").toJavaList(Long.class);
-        return goodService.updateSaleList(onSale,goodIdList);
+        return goodService.updateSaleList(jsonObject);
     }
 
     /**

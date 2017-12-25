@@ -1,5 +1,6 @@
 package com.kunlun.api.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.hystrix.GoodServiceHystrix;
 import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
@@ -117,12 +118,11 @@ public interface GoodService {
     /**
      * 商品批量上下架
      *
-     * @param onSale
-     * @param goodIdList
+     * @param jsonObject
      * @return
      */
     @PostMapping("/backstage/good/updateSaleList")
-    DataRet<String> updateSaleList(String onSale, List<Long> goodIdList);
+    DataRet<String> updateSaleList(@RequestBody JSONObject jsonObject);
 
 
     /**
