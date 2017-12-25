@@ -3,6 +3,7 @@ package com.kunlun.api.service.impl;
 import com.codingapi.tx.annotation.TxTransaction;
 import com.kunlun.api.client.IndexClient;
 import com.kunlun.api.service.IndexService;
+import com.kunlun.result.DataRet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,11 +20,13 @@ public class IndexServiceImpl implements IndexService {
     @Autowired
     private IndexClient indexClient;
 
+
     @TxTransaction
     @Transactional
     @Override
-    public void index(String orderNo) {
-        indexClient.index(orderNo);
+    public DataRet<String> index(String orderNo) {
+
+        return indexClient.index(orderNo);
     }
 
 }
