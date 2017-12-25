@@ -19,11 +19,11 @@ public interface WxGoodService {
     /**
      * 商品详情
      *
-     * @param goodId Long
+     * @param id Long
      * @return Good
      */
     @GetMapping("wx/good/findById")
-    DataRet findById(@RequestParam("goodId") Long goodId);
+    DataRet findById(@RequestParam("id") Long id);
 
     /**
      * 查询商品评价列表
@@ -34,9 +34,9 @@ public interface WxGoodService {
      * @return List
      */
     @GetMapping("wx/good/findEstimateList")
-    PageResult findEstimateList(@RequestParam("pageNo") Integer pageNo,
-                                @RequestParam("pageSize") Integer pageSize,
-                                @RequestParam("goodId") Long goodId);
+    PageResult findEstimateList(@RequestParam(value = "pageNo") Integer pageNo,
+                                @RequestParam(value = "pageSize") Integer pageSize,
+                                @RequestParam(value = "goodId") Long goodId);
 
     /**
      * 商品搜索
