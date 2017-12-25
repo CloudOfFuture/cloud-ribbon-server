@@ -1,5 +1,6 @@
 package com.kunlun.api.hystrix;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.service.GoodService;
 import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
@@ -114,17 +115,16 @@ public class GoodServiceHystrix implements GoodService {
     }
 
 
-//    /**
-//     * 商品批量上下架
-//     *
-//     * @param onSale
-//     * @param goodIdList
-//     * @return
-//     */
-//    @Override
-//    public DataRet<String> updateSaleList(String onSale, List<Long> goodIdList) {
-//        return new DataRet<>("ERROR","商品批量上下架失败");
-//    }
+    /**
+     * 商品批量上下架
+     *
+     * @param jsonObject
+     * @return
+     */
+    @Override
+    public DataRet<String> updateSaleList(JSONObject jsonObject) {
+        return new DataRet<>("ERROR","商品批量上下架失败");
+    }
 
 
     /**
