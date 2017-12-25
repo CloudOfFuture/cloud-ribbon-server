@@ -1,6 +1,7 @@
 package com.kunlun.api.client;
 
 import com.kunlun.api.hystrix.IndexClientHystrix;
+import com.kunlun.config.FeignConfiguration;
 import com.kunlun.result.DataRet;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @version <0.1>
  * @created on 2017/12/25.
  */
-@FeignClient(value = "cloud-service-order", fallback = IndexClientHystrix.class)
+@FeignClient(value = "cloud-service-order", configuration = FeignConfiguration.class, fallback = IndexClientHystrix.class)
 public interface IndexClient {
 
     @GetMapping("/index/log")
