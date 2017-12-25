@@ -18,34 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @created on 2017/12/19.
  */
 @RestController
-@RequestMapping("/ribbon")
+@RequestMapping("/index")
 public class IndexController {
 
     @Autowired
     private IndexService indexService;
 
-    @Autowired
-    private OrderService orderService;
-
-
-    @GetMapping("/test")
-    public DataRet<String> test(@RequestParam(value = "order_id") Long orderId) {
-        return orderService.test(orderId);
-    }
-
-    @PostMapping("/test/post")
-    public DataRet<String> testPost(@RequestBody Order order) {
-        return indexService.testPost(order);
-    }
-
-    /**
-     * 测试服务接口之间调用
-     *
-     * @param orderId
-     * @return
-     */
     @GetMapping("/log")
-    public DataRet<String> logTest(@RequestParam(value = "order_id") Long orderId) {
-        return indexService.logTest(orderId);
+    public void log(@RequestParam("orderNo") String orderNo){
+        indexService.index(orderNo);
     }
+
 }

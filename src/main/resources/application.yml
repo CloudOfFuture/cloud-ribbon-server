@@ -7,16 +7,26 @@ spring:
   zipkin:
     base-url: http://localhost:9411
     enabled: true
-#  boot:
-#    admin:
-#      url: http://localhost:8080
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://101.37.35.73:3306/mall?useSSL=false
+    username: hcon
+    password: hconuser
+    driver-class-name: com.mysql.jdbc.Driver
+    initialSize: 5
+    minIdle: 1
+    maxActive: 20
+    maxWait: 5000
+    filters: stat,wall
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
 eureka:
   client:
     service-url:
-      defaultZoone: http://localhost:8761/eureka/
-cloud-service-order:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+      defaultZone: http://localhost:8761/eureka/
+ribbon:
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+  MaxAutoRetriesNextServer: 0
 logging:
   level:
     com:
@@ -30,3 +40,6 @@ hystrix:
       isolation:
         thread:
           timeoutInMilliseconds: 5000  #命令超时时间 默认1000ms
+tm:
+  manager:
+    url: http://localhost:8899/tx/manager/
