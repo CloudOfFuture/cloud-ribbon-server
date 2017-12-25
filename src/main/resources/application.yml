@@ -7,9 +7,9 @@ spring:
   zipkin:
     base-url: http://localhost:9411
     enabled: true
-  boot:
-    admin:
-      url: http://localhost:8080
+#  boot:
+#    admin:
+#      url: http://localhost:8080
 eureka:
   client:
     service-url:
