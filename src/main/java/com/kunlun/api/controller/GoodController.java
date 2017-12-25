@@ -1,5 +1,6 @@
 package com.kunlun.api.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.service.GoodService;
 import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author by hmy
@@ -63,17 +65,17 @@ public class GoodController {
      * @return
      */
     @GetMapping("/findByCondition")
-    public PageResult findByCondition(@RequestParam(value = "page_no") Integer pageNo,
-                                      @RequestParam(value = "page_size") Integer pageSize,
-                                      @RequestParam(value = "search_key",required = false) String searchKey,
-                                      @RequestParam(value = "good_no",required = false) String goodNo,
-                                      @RequestParam(value = "start_date",required = false) Date startDate,
-                                      @RequestParam(value = "end_date",required = false) Date endDate,
-                                      @RequestParam(value = "brand_id",required = false) Long brandId,
-                                      @RequestParam(value = "on_sale",required = false) String onSale,
-                                      @RequestParam(value = "category_id",required = false) Long categoryId,
+    public PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
+                                      @RequestParam(value = "pageSize") Integer pageSize,
+                                      @RequestParam(value = "searchKey",required = false) String searchKey,
+                                      @RequestParam(value = "goodNo",required = false) String goodNo,
+                                      @RequestParam(value = "startDate",required = false) Date startDate,
+                                      @RequestParam(value = "endDate",required = false) Date endDate,
+                                      @RequestParam(value = "brandId",required = false) Long brandId,
+                                      @RequestParam(value = "onSale",required = false) String onSale,
+                                      @RequestParam(value = "categoryId",required = false) Long categoryId,
                                       @RequestParam(value = "hot",required = false) String hot,
-                                      @RequestParam(value = "is_new",required = false) String isNew,
+                                      @RequestParam(value = "isNew",required = false) String isNew,
                                       @RequestParam(value = "freight",required = false) String freight) {
         return goodService.findByCondition(pageNo, pageSize, searchKey, goodNo, startDate, endDate,
                 brandId, onSale, categoryId, hot, isNew, freight);
@@ -88,5 +90,83 @@ public class GoodController {
     @PostMapping("/deleteById")
     public DataRet<String> deleteById(@RequestParam(value = "id") Long id){
         return goodService.deleteById(id);
+    }
+
+    /**
+     * 批量删除
+     *
+     * @param object
+     * @return
+     */
+    @PostMapping("/deleteByIdList")
+    public DataRet<String> deleteByIdList(@RequestBody JSONObject object){
+        List<Long> idList=object.getJSONArray("idList").toJavaList(Long.class);
+        return goodService.deleteByIdList(idList);
+    }
+
+    /**
+     * 修改商品
+     *
+     * @param good
+     * @return
+     */
+    @PostMapping("/update")
+    public DataRet<String> update(@RequestBody Good good){
+        //TODO 图片
+        return goodService.update(good);
+    }
+
+    /**
+     * 商品上下架
+     *
+     * @param onSale
+     * @param id
+     * @return
+     */
+    @GetMapping("/updateSaleStatus")
+    public DataRet<String> updateSaleStatus(@RequestParam(value = "onSale") String onSale,
+                                            @RequestParam(value = "id") Long id){
+        return goodService.updateSaleStatus(onSale,id);
+    }
+
+    /**
+     * 商品批量上下
+     *
+     * @param jsonObject
+     * @return
+     */
+    @PostMapping("/updateSaleList")
+    public DataRet<String> updateSaleList(@RequestBody JSONObject jsonObject){
+        String onSale=jsonObject.getString("onSale");
+        List<Long>goodIdList=jsonObject.getJSONArray("goodIdList").toJavaList(Long.class);
+        return goodService.updateSaleList(onSale,goodIdList);
+    }
+
+    /**
+     * 新建商品审核
+     *
+     * @param audit
+     * @param reason
+     * @param id
+     * @return
+     */
+    @PostMapping("/audit")
+    public DataRet<String> audit(@RequestParam(value = "audit") String audit,
+                                 @RequestParam(value = "reason") String reason,
+                                 @RequestParam(value = "id") Long id){
+        return goodService.audit(audit,reason,id);
+    }
+
+    /**
+     * 修改商品库存
+     *
+     * @param id
+     * @param count
+     * @return
+     */
+    @PostMapping("/updateStock")
+    public DataRet<String> update(@RequestParam(value = "id") Long id,
+                                  @RequestParam(value = "count") Integer count){
+        return goodService.updateStock(id,count);
     }
 }
