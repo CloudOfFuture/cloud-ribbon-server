@@ -1,6 +1,7 @@
 package com.kunlun.api.service;
 
 import com.kunlun.entity.GoodLog;
+import com.kunlun.entity.Logistics;
 import com.kunlun.entity.OrderLog;
 import com.kunlun.result.DataRet;
 import org.springframework.cloud.netflix.feign.FeignClient;

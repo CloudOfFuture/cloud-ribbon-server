@@ -1,6 +1,7 @@
 package com.kunlun.api.controller;
 
 import com.kunlun.api.service.DeliveryService;
+import com.kunlun.entity.Delivery;
 import com.kunlun.result.DataRet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,20 +20,24 @@ public class DeliveryController {
     private DeliveryService deliveryService;
 
     /**
-     * 根据id查找收获详情
+     * 根据id查找收货地址
+     *
      * @param id
      * @return
      */
     @GetMapping("findById")
-    private DataRet findById(@RequestParam(value = "id") Long id){
+    private DataRet<Delivery> findById(@RequestParam(value = "id") Long id) {
         return deliveryService.findById(id);
     }
 
     /**
      * 根据id校验收获地址
+     *
      * @param id
      * @return
      */
     @GetMapping("check")
-    private String check(@RequestParam(value = "id") Long id){ return deliveryService.check(id);}
+    private String check(@RequestParam(value = "id") Long id) {
+        return deliveryService.check(id);
+    }
 }
