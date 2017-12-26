@@ -51,7 +51,7 @@ public interface SellerClient {
      * @param store
      * @return
      */
-    @PostMapping("/seller/update")
+    @PostMapping("/seller/modify")
     DataRet<String> update(@RequestBody Store store);
 
     /**
@@ -89,5 +89,6 @@ public interface SellerClient {
      */
     @PostMapping("/seller/audit")
     DataRet<String> audit(@RequestParam(value = "audit") String audit,
-                          @RequestParam(value = "id") String reason, Long id);
+                          @RequestParam(value = "reason",required = false) String reason,
+                          @RequestParam(value = "id") Long id);
 }

@@ -1,6 +1,7 @@
 package com.kunlun.api.service;
 
-import com.kunlun.api.hystrix.WxGoodServiceHystrix;
+import com.kunlun.api.hystrix.WxGoodClientHystrix;
+import com.kunlun.entity.GoodSnapshot;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 17-12-22下午4:52
  * @desc
  */
-@FeignClient(value = "cloud-service-good", fallback = WxGoodServiceHystrix.class)
 public interface WxGoodService {
 
     /**
@@ -22,8 +22,7 @@ public interface WxGoodService {
      * @param id Long
      * @return Good
      */
-    @GetMapping("wx/good/findById")
-    DataRet findById(@RequestParam("id") Long id);
+    DataRet findById(Long id);
 
     /**
      * 查询商品评价列表
@@ -33,10 +32,9 @@ public interface WxGoodService {
      * @param goodId   Long
      * @return List
      */
-    @GetMapping("wx/good/findEstimateList")
-    PageResult findEstimateList(@RequestParam(value = "pageNo") Integer pageNo,
-                                @RequestParam(value = "pageSize") Integer pageSize,
-                                @RequestParam(value = "goodId") Long goodId);
+    PageResult findEstimateList(Integer pageNo,
+                                Integer pageSize,
+                                 Long goodId);
 
     /**
      * 商品搜索
@@ -47,12 +45,9 @@ public interface WxGoodService {
      * @param searchKey  String
      * @return List
      */
-    @GetMapping("wx/good/findByCondition")
-    PageResult findByCondition(@RequestParam("pageNo") Integer pageNo,
-                               @RequestParam("pageSize") Integer pageSize,
-                               @RequestParam(value = "categoryId", required = false) Long categoryId,
-                               @RequestParam(value = "searchKey", required = false)
-                                       String searchKey);
+    PageResult findByCondition(Integer pageNo,
+                               Integer pageSize,
+                               Long categoryId, String searchKey);
 
     /**
      * 获取商品快照详情
@@ -60,6 +55,8 @@ public interface WxGoodService {
      * @param orderId Long
      * @return DataRet
      */
-    @GetMapping("wx/good/findGoodSnapshot")
-    DataRet findGoodSnapshot(@RequestParam("orderId") Long orderId);
+    DataRet findGoodSnapshot(Long orderId);
+
+
+
 }

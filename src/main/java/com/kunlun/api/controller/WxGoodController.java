@@ -1,13 +1,11 @@
 package com.kunlun.api.controller;
 
 import com.kunlun.api.service.WxGoodService;
+import com.kunlun.entity.GoodSnapshot;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author JackSpeed
@@ -79,5 +77,6 @@ public class WxGoodController {
     public DataRet findGoodSnapshot(@RequestParam(value = "orderId") Long orderId) {
         return wxGoodService.findGoodSnapshot(orderId);
     }
+
 
 }

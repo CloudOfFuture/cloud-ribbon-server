@@ -2,6 +2,7 @@ package com.kunlun.api.service.impl;
 
 import com.kunlun.api.client.DeliveryClient;
 import com.kunlun.api.service.DeliveryService;
+import com.kunlun.entity.Delivery;
 import com.kunlun.result.DataRet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class DeliveryServiceImpl implements DeliveryService {
      * @return
      */
     @Override
-    public DataRet findById(Long id) {
+    public DataRet<Delivery> findById(Long id) {
         return deliveryClient.findById(id);
     }
 
