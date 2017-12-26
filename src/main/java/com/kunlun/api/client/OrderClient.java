@@ -1,6 +1,6 @@
 package com.kunlun.api.client;
 
-import com.kunlun.api.hystrix.OrderServiceHystrix;
+import com.kunlun.api.hystrix.OrderClientHystrix;
 import com.kunlun.entity.Order;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @version <0.1>
  * @created on 2017/12/25.
  */
-@FeignClient(value = "cloud-service-order", fallback = OrderServiceHystrix.class)
+@FeignClient(value = "cloud-service-order", fallback = OrderClientHystrix.class)
 public interface OrderClient {
 
 

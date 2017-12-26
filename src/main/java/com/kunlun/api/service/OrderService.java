@@ -1,16 +1,9 @@
 package com.kunlun.api.service;
 
-import com.kunlun.api.hystrix.OrderServiceHystrix;
 import com.kunlun.entity.Order;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import com.kunlun.wxentity.OrderCondition;
-import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author by kunlun
