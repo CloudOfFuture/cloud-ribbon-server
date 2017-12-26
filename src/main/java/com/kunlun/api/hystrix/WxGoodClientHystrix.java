@@ -59,14 +59,5 @@ public class WxGoodClientHystrix implements WxGoodClient{
         return new DataRet<>("not_found", "暂无数据");
     }
 
-    /**
-     * 新增商品快照
-     *
-     * @param goodSnapshot
-     * @return
-     */
-    @Override
-    public String addGoodSnapShot(GoodSnapshot goodSnapshot) {
-        return "新增商品快照出错";
-    }
+
 }
