@@ -1,7 +1,7 @@
 package com.kunlun.api.hystrix;
 
 import com.alibaba.fastjson.JSONObject;
-import com.kunlun.api.service.GoodService;
+import com.kunlun.api.client.GoodClient;
 import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
@@ -16,7 +16,7 @@ import java.util.List;
  * @created on 2017-12-21.
  */
 @Component
-public class GoodServiceHystrix implements GoodService {
+public class GoodServiceHystrix implements GoodClient {
 
 
     /**

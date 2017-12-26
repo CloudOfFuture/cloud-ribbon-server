@@ -1,10 +1,12 @@
 package com.kunlun.api.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.kunlun.api.client.GoodClient;
 import com.kunlun.api.service.GoodService;
 import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -17,6 +19,11 @@ import java.util.List;
  */
 @Service
 public class GoodServiceImpl implements GoodService {
+
+
+    @Autowired
+    private GoodClient goodClient;
+
     /**
      * 商品创建
      *
@@ -25,7 +32,7 @@ public class GoodServiceImpl implements GoodService {
      */
     @Override
     public DataRet<String> add(Good good) {
-        return null;
+        return goodClient.add(good);
     }
 
     /**
@@ -36,7 +43,7 @@ public class GoodServiceImpl implements GoodService {
      */
     @Override
     public DataRet<Good> findById(Long id) {
-        return null;
+        return goodClient.findById(id);
     }
 
     /**
@@ -57,8 +64,10 @@ public class GoodServiceImpl implements GoodService {
      * @return
      */
     @Override
-    public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey, String goodNo, Date startDate, Date endDate, Long brandId, String onSale, Long categoryId, String hot, String isNew, String freight) {
-        return null;
+    public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey, String goodNo,
+                                      Date startDate, Date endDate, Long brandId, String onSale, Long categoryId,
+                                      String hot, String isNew, String freight) {
+        return goodClient.findByCondition(pageNo,pageSize,searchKey,goodNo,startDate,endDate,brandId,onSale,categoryId,hot,isNew,freight);
     }
 
     /**
@@ -69,7 +78,7 @@ public class GoodServiceImpl implements GoodService {
      */
     @Override
     public DataRet<String> deleteById(Long id) {
-        return null;
+        return goodClient.deleteById(id);
     }
 
     /**
@@ -80,7 +89,7 @@ public class GoodServiceImpl implements GoodService {
      */
     @Override
     public DataRet<String> deleteByIdList(List<Long> idList) {
-        return null;
+        return goodClient.deleteByIdList(idList);
     }
 
     /**
@@ -91,7 +100,7 @@ public class GoodServiceImpl implements GoodService {
      */
     @Override
     public DataRet<String> update(Good good) {
-        return null;
+        return goodClient.update(good);
     }
 
     /**
@@ -103,7 +112,7 @@ public class GoodServiceImpl implements GoodService {
      */
     @Override
     public DataRet<String> updateSaleStatus(String onSale, Long id) {
-        return null;
+        return goodClient.updateSaleStatus(onSale,id);
     }
 
     /**
@@ -114,7 +123,7 @@ public class GoodServiceImpl implements GoodService {
      */
     @Override
     public DataRet<String> updateSaleList(JSONObject jsonObject) {
-        return null;
+        return goodClient.updateSaleList(jsonObject);
     }
 
     /**
@@ -127,7 +136,7 @@ public class GoodServiceImpl implements GoodService {
      */
     @Override
     public DataRet<String> audit(String audit, String reason, Long id) {
-        return null;
+        return goodClient.audit(audit,reason,id);
     }
 
     /**
@@ -139,6 +148,6 @@ public class GoodServiceImpl implements GoodService {
      */
     @Override
     public DataRet<String> updateStock(Long id, Integer count) {
-        return null;
+        return updateStock(id,count);
     }
 }
