@@ -89,5 +89,6 @@ public interface SellerClient {
      */
     @PostMapping("/seller/audit")
     DataRet<String> audit(@RequestParam(value = "audit") String audit,
-                          @RequestParam(value = "id") String reason, Long id);
+                          @RequestParam(value = "reason",required = false) String reason,
+                          @RequestParam(value = "id") Long id);
 }
