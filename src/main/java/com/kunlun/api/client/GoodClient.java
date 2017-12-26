@@ -1,7 +1,7 @@
 package com.kunlun.api.client;
 
 import com.alibaba.fastjson.JSONObject;
-import com.kunlun.api.hystrix.GoodServiceHystrix;
+import com.kunlun.api.hystrix.GoodClientHystrix;
 import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
@@ -19,7 +19,7 @@ import java.util.List;
  * @version <0.1>
  * @created on 2017/12/26.
  */
-@FeignClient(value = "cloud-service-good",fallback = GoodServiceHystrix.class)
+@FeignClient(value = "cloud-service-good",fallback = GoodClientHystrix.class)
 public interface GoodClient {
 
 

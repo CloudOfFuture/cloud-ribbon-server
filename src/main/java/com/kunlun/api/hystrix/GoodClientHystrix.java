@@ -1,7 +1,7 @@
 package com.kunlun.api.hystrix;
 
 import com.alibaba.fastjson.JSONObject;
-import com.kunlun.api.service.GoodService;
+import com.kunlun.api.client.GoodClient;
 import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
@@ -11,23 +11,20 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author by hmy
- * @version <0.1>
- * @created on 2017-12-21.
+ * @author by hws
+ * @created on 2017/12/26.
  */
 @Component
-public class GoodServiceHystrix implements GoodService {
-
-
+public class GoodClientHystrix implements GoodClient {
     /**
-     * 创建失败
+     * 商品创建失败
      *
      * @param good
      * @return
      */
     @Override
     public DataRet<String> add(Good good) {
-        return new DataRet<>("ERROR","创建失败");
+            return new DataRet<>("ERROR","创建失败");
     }
 
     /**
@@ -59,15 +56,12 @@ public class GoodServiceHystrix implements GoodService {
      * @return
      */
     @Override
-    public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey, String goodNo, Date startDate,
-                                      Date endDate, Long brandId, String onSale, Long categoryId, String hot,
-                                      String isNew, String freight) {
+    public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey, String goodNo, Date startDate, Date endDate, Long brandId, String onSale, Long categoryId, String hot, String isNew, String freight) {
         return new PageResult();
     }
 
-
     /**
-     * 根据id删除
+     * 根据id删除商品
      *
      * @param id
      * @return
@@ -77,9 +71,8 @@ public class GoodServiceHystrix implements GoodService {
         return new DataRet<>("ERROR","删除失败");
     }
 
-
     /**
-     * 批量删除商品
+     * 批量删除
      *
      * @param idList
      * @return
@@ -88,7 +81,6 @@ public class GoodServiceHystrix implements GoodService {
     public DataRet<String> deleteByIdList(List<Long> idList) {
         return new DataRet<>("ERROR","批量删除失败");
     }
-
 
     /**
      * 修改商品信息
@@ -100,7 +92,6 @@ public class GoodServiceHystrix implements GoodService {
     public DataRet<String> update(Good good) {
         return new DataRet<>("ERROR","修改商品信息失败");
     }
-
 
     /**
      * 商品上下架
@@ -114,7 +105,6 @@ public class GoodServiceHystrix implements GoodService {
         return new DataRet<>("ERROR","商品上下架失败");
     }
 
-
     /**
      * 商品批量上下架
      *
@@ -125,7 +115,6 @@ public class GoodServiceHystrix implements GoodService {
     public DataRet<String> updateSaleList(JSONObject jsonObject) {
         return new DataRet<>("ERROR","商品批量上下架失败");
     }
-
 
     /**
      * 新建商品审核
@@ -140,7 +129,6 @@ public class GoodServiceHystrix implements GoodService {
         return new DataRet<>("ERROR","审核失败");
     }
 
-
     /**
      * 修改商品库存
      *
@@ -152,6 +140,4 @@ public class GoodServiceHystrix implements GoodService {
     public DataRet<String> updateStock(Long id, Integer count) {
         return new DataRet<>("ERROR","修改库存失败");
     }
-
-
 }
