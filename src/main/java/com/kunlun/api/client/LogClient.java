@@ -1,20 +1,20 @@
-package com.kunlun.api.service;
+package com.kunlun.api.client;
 
+import com.kunlun.api.hystrix.LogServiceHystrix;
 import com.kunlun.entity.GoodLog;
 import com.kunlun.entity.OrderLog;
 import com.kunlun.result.DataRet;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author by kunlun
  * @version <0.1>
- * @created on 2017/12/21.
+ * @created on 2017/12/26.
  */
-
-public interface LogService {
+@FeignClient(value = "cloud-service-log", fallback = LogServiceHystrix.class)
+public interface LogClient {
 
     @PostMapping("")
     DataRet<String> addOrderLog(@RequestBody OrderLog orderLog);

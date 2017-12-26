@@ -73,21 +73,21 @@
 			<artifactId>cloud-base</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>com.codingapi</groupId>
-			<artifactId>tx-client</artifactId>
-			<version>4.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.codingapi</groupId>
-			<artifactId>tx-plugins-db</artifactId>
-			<version>4.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.codingapi</groupId>
-			<artifactId>transaction-springcloud</artifactId>
-			<version>4.0.1</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>com.codingapi</groupId>-->
+			<!--<artifactId>tx-client</artifactId>-->
+			<!--<version>4.0.1</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>com.codingapi</groupId>-->
+			<!--<artifactId>tx-plugins-db</artifactId>-->
+			<!--<version>4.0.1</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>com.codingapi</groupId>-->
+			<!--<artifactId>transaction-springcloud</artifactId>-->
+			<!--<version>4.0.1</version>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>

@@ -20,7 +20,6 @@ import java.util.List;
  * @version <0.1>
  * @created on 2017-12-21.
  */
-@FeignClient(value = "cloud-service-good",fallback = GoodServiceHystrix.class)
 public interface GoodService {
 
 
@@ -30,8 +29,7 @@ public interface GoodService {
      * @param good
      * @return
      */
-    @PostMapping("/backstage/good/add")
-    DataRet<String> add(@RequestBody Good good);
+    DataRet<String> add(Good good);
 
     /**
      * 获取商品详情
@@ -39,8 +37,7 @@ public interface GoodService {
      * @param id
      * @return
      */
-    @GetMapping("/backstage/good/findById")
-    DataRet<Good> findById(@RequestParam(value = "id") Long id);
+    DataRet<Good> findById(Long id);
 
     /**
      * 分页查询
@@ -59,19 +56,18 @@ public interface GoodService {
      * @param freight
      * @return
      */
-    @GetMapping("/backstage/good/findByCondition")
-    PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
-                               @RequestParam(value = "pageSize") Integer pageSize,
-                               @RequestParam(value = "searchKey",required = false) String searchKey,
-                               @RequestParam(value = "goodNo",required = false) String goodNo,
-                               @RequestParam(value = "startDate",required = false) Date startDate,
-                               @RequestParam(value = "endDate",required = false) Date endDate,
-                               @RequestParam(value = "brandId",required = false) Long brandId,
-                               @RequestParam(value = "onSale",required = false) String onSale,
-                               @RequestParam(value = "categoryId",required = false) Long categoryId,
-                               @RequestParam(value = "hot",required = false) String hot,
-                               @RequestParam(value = "isNew",required = false) String isNew,
-                               @RequestParam(value = "freight",required = false) String freight);
+    PageResult findByCondition(Integer pageNo,
+                               Integer pageSize,
+                               String searchKey,
+                               String goodNo,
+                               Date startDate,
+                               Date endDate,
+                               Long brandId,
+                               String onSale,
+                               Long categoryId,
+                               String hot,
+                               String isNew,
+                               String freight);
 
 
     /**
@@ -80,8 +76,7 @@ public interface GoodService {
      * @param id
      * @return
      */
-    @PostMapping("/backstage/good/deleteById")
-    DataRet<String> deleteById(@RequestParam(value = "id") Long id);
+    DataRet<String> deleteById(Long id);
 
     /**
      * 批量删除
@@ -89,8 +84,7 @@ public interface GoodService {
      * @param idList
      * @return
      */
-    @PostMapping("/backstage/good/deleteByIdList")
-    DataRet<String> deleteByIdList(@RequestBody List<Long> idList);
+    DataRet<String> deleteByIdList(List<Long> idList);
 
 
     /**
@@ -99,8 +93,7 @@ public interface GoodService {
      * @param good
      * @return
      */
-    @PostMapping("/backstage/good/update")
-    DataRet<String> update(@RequestBody Good good);
+    DataRet<String> update(Good good);
 
 
     /**
@@ -110,9 +103,7 @@ public interface GoodService {
      * @param id
      * @return
      */
-    @GetMapping("/backstage/good/updateSaleStatus")
-    DataRet<String> updateSaleStatus(@RequestParam(value = "onSale") String onSale,
-                                     @RequestParam(value = "id") Long id);
+    DataRet<String> updateSaleStatus(String onSale, Long id);
 
 
     /**
@@ -121,8 +112,7 @@ public interface GoodService {
      * @param jsonObject
      * @return
      */
-    @PostMapping("/backstage/good/updateSaleList")
-    DataRet<String> updateSaleList(@RequestBody JSONObject jsonObject);
+    DataRet<String> updateSaleList(JSONObject jsonObject);
 
 
     /**
@@ -133,10 +123,7 @@ public interface GoodService {
      * @param id
      * @return
      */
-    @PostMapping("/backstage/good/audit")
-    DataRet<String> audit(@RequestParam(value = "audit") String audit,
-                          @RequestParam(value = "reason") String reason,
-                          @RequestParam(value = "id") Long id);
+    DataRet<String> audit(String audit, String reason, Long id);
 
 
     /**
@@ -146,7 +133,5 @@ public interface GoodService {
      * @param count
      * @return
      */
-    @PostMapping("/backstage/good/updateStock")
-    DataRet<String> updateStock(@RequestParam(value = "id") Long id,
-                                @RequestParam(value = "count") Integer count);
+    DataRet<String> updateStock(Long id, Integer count);
 }

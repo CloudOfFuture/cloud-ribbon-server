@@ -1,6 +1,5 @@
 package com.kunlun.api.service.impl;
 
-import com.codingapi.tx.annotation.TxTransaction;
 import com.kunlun.api.client.IndexClient;
 import com.kunlun.api.service.IndexService;
 import com.kunlun.result.DataRet;
@@ -21,7 +20,7 @@ public class IndexServiceImpl implements IndexService {
     private IndexClient indexClient;
 
 
-    @TxTransaction
+
     @Transactional
     @Override
     public DataRet<String> index(String orderNo) {

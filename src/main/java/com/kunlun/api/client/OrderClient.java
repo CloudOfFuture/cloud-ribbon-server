@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface OrderClient {
 
 
-
     /**
      * 测试
      *
@@ -29,9 +28,11 @@ public interface OrderClient {
      * @return
      */
     @GetMapping("/index/log")
-    DataRet<String> test(@RequestParam(value = "order_id") Long orderId);
+    DataRet<String> test(@RequestParam("orderId") Long orderId);
 
     /**
+     * 订单列表
+     *
      * @param orderNo   订单编号
      * @param phone     收货人手机号
      * @param status    订单状态
@@ -42,13 +43,13 @@ public interface OrderClient {
      * @return
      */
     @GetMapping("/backend/order/findByCondition")
-    PageResult list(@RequestParam(value = "order_no") String orderNo,
-                    @RequestParam(value = "phone") String phone,
-                    @RequestParam(value = "status") String status,
-                    @RequestParam(value = "type") String type,
-                    @RequestParam(value = "search_key") String searchKey,
-                    @RequestParam(value = "page_no") Integer pageNo,
-                    @RequestParam(value = "page_size") Integer pageSize);
+    PageResult list(@RequestParam("orderNo") String orderNo,
+                    @RequestParam("phone") String phone,
+                    @RequestParam("status") String status,
+                    @RequestParam("type") String type,
+                    @RequestParam("searchKey") String searchKey,
+                    @RequestParam("pageNo") Integer pageNo,
+                    @RequestParam("pageSize") Integer pageSize);
 
     /**
      * 发货
@@ -78,6 +79,6 @@ public interface OrderClient {
      * @return
      */
     @GetMapping("/findById")
-    DataRet<Order> findById(@RequestParam(value = "order_id") Long orderId, @RequestHeader(value = "seller_id") Long sellerId);
+    DataRet<Order> findById(@RequestParam("orderId") Long orderId, @RequestHeader("sellerId") Long sellerId);
 
 }
