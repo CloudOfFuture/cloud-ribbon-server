@@ -51,7 +51,7 @@ public interface SellerClient {
      * @param store
      * @return
      */
-    @PostMapping("/seller/update")
+    @PostMapping("/seller/modify")
     DataRet<String> update(@RequestBody Store store);
 
     /**
