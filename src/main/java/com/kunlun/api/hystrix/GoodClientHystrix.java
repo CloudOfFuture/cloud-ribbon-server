@@ -17,8 +17,6 @@ import java.util.List;
  */
 @Component
 public class GoodClientHystrix implements GoodClient {
-
-
     /**
      * 创建失败
      *
