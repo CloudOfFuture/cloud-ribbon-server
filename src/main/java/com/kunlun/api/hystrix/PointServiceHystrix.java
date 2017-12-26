@@ -10,8 +10,15 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class PointServiceHystrix implements PointService {
+
+    /**
+     * 积分校验
+     * @param pointValue
+     * @param openid
+     * @return
+     */
     @Override
     public String checkPoint(Integer pointValue, String openid) {
-        return null;
+        return "积分无效";
     }
 }
