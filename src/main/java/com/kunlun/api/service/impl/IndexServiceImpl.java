@@ -20,6 +20,7 @@ public class IndexServiceImpl implements IndexService {
     private IndexClient indexClient;
 
 
+
     @Transactional
     @Override
     public DataRet<String> index(String orderNo) {
