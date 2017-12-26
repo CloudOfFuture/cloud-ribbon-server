@@ -4,11 +4,10 @@ import com.kunlun.api.hystrix.FileClientHystrix;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.annotation.MultipartConfig;
 import java.io.IOException;
 
 /**
@@ -27,11 +26,10 @@ public interface FileClient {
      * @param jsonContent String
      * @param file        MultipartFile
      * @return DataRet
-     * @throws IOException e
      */
     @PostMapping("/file/uploadImage")
     DataRet uploadImage(@RequestParam("file") MultipartFile file,
-                        @RequestParam("jsonContent") String jsonContent) throws IOException;
+                        @RequestParam("jsonContent") String jsonContent);
 
     /**
      * 图片删除

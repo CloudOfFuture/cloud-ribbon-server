@@ -1,15 +1,9 @@
 package com.kunlun.api.service;
 
-import com.kunlun.api.hystrix.FileClientHystrix;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
-import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 
 /**
  * @author JackSpeed
@@ -26,9 +20,8 @@ public interface FileService {
      * @param jsonContent String
      * @param file        MultipartFile
      * @return DataRet
-     * @throws IOException e
      */
-    DataRet uploadImage(MultipartFile file, String jsonContent) throws IOException;
+    DataRet uploadImage(MultipartFile file, String jsonContent);
 
     /**
      * 图片删除

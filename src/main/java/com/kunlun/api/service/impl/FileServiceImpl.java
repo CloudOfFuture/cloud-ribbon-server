@@ -24,7 +24,7 @@ public class FileServiceImpl implements FileService {
     private FileClient fileClient;
 
     @Override
-    public DataRet uploadImage(MultipartFile file, String jsonContent) throws IOException {
+    public DataRet uploadImage(MultipartFile file, String jsonContent)   {
         if (file == null || StringUtils.isEmpty(jsonContent)) {
             return new DataRet("param_error", "参数有误");
         }
