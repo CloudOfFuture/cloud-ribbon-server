@@ -41,7 +41,7 @@ public class OrderController {
      * @return
      */
     @GetMapping("/findByCondition")
-    public PageResult list(@RequestParam(value = "order_no") String orderNo,
+    public PageResult list(@RequestParam(value = "orderNo") String orderNo,
                            @RequestParam(value = "phone") String phone,
                            @RequestParam(value = "status") String status,
                            @RequestParam(value = "type") String type,

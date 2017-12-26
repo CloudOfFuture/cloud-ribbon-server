@@ -16,7 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface LogService {
 
-    @PostMapping("")
+    /**
+     * 创建订单日志
+     *
+     * @param orderLog
+     * @return
+     */
     DataRet<String> addOrderLog(@RequestBody OrderLog orderLog);
 
     /**
@@ -25,6 +30,5 @@ public interface LogService {
      * @param goodLog
      * @return
      */
-    @PostMapping("/log/add/goodLog")
     DataRet<String> addGoodLog(@RequestBody GoodLog goodLog);
 }
