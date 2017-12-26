@@ -16,13 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 public interface LogService {
 
-    /**
-     * 创建订单日志
-     *
-     * @param orderLog
-     * @return
-     */
-    DataRet<String> addOrderLog(@RequestBody OrderLog orderLog);
+    DataRet<String> addOrderLog(OrderLog orderLog);
 
     /**
      * 创建商品日志
@@ -30,5 +24,14 @@ public interface LogService {
      * @param goodLog
      * @return
      */
-    DataRet<String> addGoodLog(@RequestBody GoodLog goodLog);
+    DataRet<String> addGoodLog(GoodLog goodLog);
+
+
+    /**
+     * 创建 日志
+     *
+     * @param logistics
+     * @return
+     */
+    DataRet<String> addLogisticLog(Logistics logistics);
 }

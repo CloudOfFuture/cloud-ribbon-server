@@ -1,7 +1,6 @@
 package com.kunlun.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.codingapi.tx.datasource.relational.LCNTransactionDataSource;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
