@@ -81,4 +81,22 @@ public interface OrderClient {
     @GetMapping("/findById")
     DataRet<Order> findById(@RequestParam("orderId") Long orderId, @RequestHeader("sellerId") Long sellerId);
 
+    /**
+     * 查询Order对象
+     *
+     * @param orderId
+     * @param sellerId
+     * @return
+     */
+    @GetMapping("/findByIdForOrder")
+    Order findByIdForOrder(@RequestParam("orderId") Long orderId, @RequestHeader("sellerId") Long sellerId);
+
+    /**
+     * 修改订单信息
+     *
+     * @param order
+     * @return
+     */
+    @PostMapping("/refund")
+    DataRet<String> refund(@RequestBody Order order);
 }

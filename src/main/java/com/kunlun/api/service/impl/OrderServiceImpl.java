@@ -6,6 +6,7 @@ import com.kunlun.api.service.OrderService;
 import com.kunlun.entity.Logistics;
 import com.kunlun.entity.Order;
 import com.kunlun.entity.OrderLog;
+import com.kunlun.enums.CommonEnum;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import com.kunlun.wxentity.OrderCondition;
@@ -120,6 +121,38 @@ public class OrderServiceImpl implements OrderService {
         return orderClient.findById(orderId, sellerId);
     }
 
+    /**
+     * 退款
+     *
+     * @param orderId
+     * @param flag      AGREE   REFUSE
+     * @param remark
+     * @param refundFee
+     * @return
+     */
+    @Override
+    public DataRet<String> refund(Long orderId, String flag, String remark, Integer refundFee, Long sellerId) {
+        Order order = orderClient.findByIdForOrder(orderId, sellerId);
+        if (null == order) {
+            return new DataRet<>("ERROR", "订单不存在");
+        }
+        Order postOrder;
+        //退款
+        if (CommonEnum.REFUSE.getCode().equals(flag)) {
+            postOrder = constructOrder(orderId, CommonEnum.REFUND_FAIL.getCode(), 0, remark);
+        } else {
+            postOrder = constructOrder(orderId, CommonEnum.REFUND_SUCCESS.getCode(), refundFee, remark);
+        }
+        DataRet<String> refundRet = orderClient.refund(postOrder);
+        if (!refundRet.isSuccess()) {
+            return refundRet;
+        }
+        //创建待退款日志
+        logClient.addOrderLog(orderLog(order.getId(), order.getOrderNo(), "等待退款"));
+        // TODO  定时任务 退款待处理  库存回退 积分返还
+        return new DataRet<>("退款成功");
+    }
+
 
     /**
      * 组装 发货信息
@@ -153,5 +186,23 @@ public class OrderServiceImpl implements OrderService {
         orderLog.setOrderNo(orderNo);
         orderLog.setAction(action);
         return orderLog;
+    }
+
+    /**
+     * 组装退款订单对象
+     *
+     * @param orderId
+     * @param status
+     * @param refundFee
+     * @param remark
+     * @return
+     */
+    private Order constructOrder(Long orderId, String status, Integer refundFee, String remark) {
+        Order order = new Order();
+        order.setId(orderId);
+        order.setOrderStatus(status);
+        order.setRefundFee(refundFee);
+        order.setRemark(remark);
+        return order;
     }
 }
