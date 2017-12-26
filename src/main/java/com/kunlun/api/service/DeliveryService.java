@@ -16,4 +16,11 @@ public interface DeliveryService {
      */
     DataRet findById(Long id);
 
+    /**
+     * 根据id校验收获地址
+     * @param id
+     * @return
+     */
+    String check(Long id);
+
 }

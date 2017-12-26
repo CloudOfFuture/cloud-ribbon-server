@@ -27,4 +27,16 @@ public class DeliveryServiceImpl implements DeliveryService {
         return deliveryClient.findById(id);
     }
 
+
+    /**
+     * 根据id校验收获地址
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public String check(Long id) {
+        return deliveryClient.check(id);
+    }
+
 }
