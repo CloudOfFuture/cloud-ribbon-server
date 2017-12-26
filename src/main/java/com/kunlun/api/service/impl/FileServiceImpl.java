@@ -6,6 +6,7 @@ import com.kunlun.api.service.FileService;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.io.IOException;
  * @date 17-12-26下午2:03
  * @desc
  */
+@Service
 public class FileServiceImpl implements FileService {
 
     @Autowired

@@ -1,33 +1,34 @@
-package com.kunlun.api.hystrix;
+package com.kunlun.api.service.impl;
 
+import com.kunlun.api.client.WxOrderClient;
 import com.kunlun.api.service.WxOrderService;
 import com.kunlun.entity.Order;
-import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * 微信订单接口  断路器
- *
  * @author by kunlun
  * @version <0.1>
- * @created on 2017/12/20.
+ * @created on 2017/12/26.
  */
-@Component
-public class WxOrderServiceHystrix implements WxOrderService {
+@Service
+public class WxOrderServiceImpl implements WxOrderService {
+
+    @Autowired
+    private WxOrderClient wxOrderClient;
+
 
     /**
      * 退款
      *
      * @param orderId
-     * @param wxCode
-     * @param refundFee
      * @return
      */
     @Override
-    public DataRet<String> refund(Long orderId, String wxCode, Integer refundFee) {
-        return new DataRet<>("ERROR", "退款故障");
+    public DataRet<String> refund(Long orderId) {
+        return wxOrderClient.refund(orderId);
     }
 
     /**
@@ -42,7 +43,7 @@ public class WxOrderServiceHystrix implements WxOrderService {
      */
     @Override
     public PageResult findByOpenid(Integer pageNo, Integer pageSize, String wxCode, String orderStatus, String payType) {
-        return new PageResult("ERROR", "订单列表故障");
+        return wxOrderClient.findByOpenid(pageNo, pageSize, wxCode, orderStatus, payType);
     }
 
     /**
@@ -53,6 +54,6 @@ public class WxOrderServiceHystrix implements WxOrderService {
      */
     @Override
     public DataRet<Order> findById(Long orderId) {
-        return new DataRet<>("ERROR", "查询订单详情故障");
+        return wxOrderClient.findById(orderId);
     }
 }
