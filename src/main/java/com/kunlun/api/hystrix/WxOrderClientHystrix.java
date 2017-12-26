@@ -1,5 +1,6 @@
 package com.kunlun.api.hystrix;
 
+import com.kunlun.api.client.WxOrderClient;
 import com.kunlun.api.service.WxOrderService;
 import com.kunlun.entity.Order;
 import com.kunlun.entity.OrderExt;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @created on 2017/12/20.
  */
 @Component
-public class WxOrderClientHystrix implements WxOrderService {
+public class WxOrderClientHystrix implements WxOrderClient {
 
     /**
      * 退款
