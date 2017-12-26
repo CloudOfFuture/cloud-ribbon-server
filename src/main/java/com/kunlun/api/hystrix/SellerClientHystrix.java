@@ -74,7 +74,7 @@ public class SellerClientHystrix implements SellerClient{
      */
     @Override
     public PageResult findPage(Long userId, Integer pageNo, Integer pageSize, String audit, String searchKey) {
-        return new PageResult();
+        return new PageResult("ERROR","分页失败");
     }
 
 
