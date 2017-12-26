@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @version <0.1>
  * @created on 2017/12/20.
  */
-@FeignClient(value = "cloud-service-order", fallback = OrderServiceHystrix.class)
 public interface OrderService {
 
 
@@ -27,8 +26,7 @@ public interface OrderService {
      * @param orderId
      * @return
      */
-    @GetMapping("/index/log")
-    DataRet<String> test(@RequestParam(value = "order_id") Long orderId);
+    DataRet<String> test(Long orderId);
 
     /**
      * @param orderNo   订单编号
@@ -40,14 +38,13 @@ public interface OrderService {
      * @param pageSize  每页条数
      * @return
      */
-    @GetMapping("/backend/order/findByCondition")
-    PageResult list(@RequestParam(value = "order_no") String orderNo,
-                    @RequestParam(value = "phone") String phone,
-                    @RequestParam(value = "status") String status,
-                    @RequestParam(value = "type") String type,
-                    @RequestParam(value = "search_key") String searchKey,
-                    @RequestParam(value = "page_no") Integer pageNo,
-                    @RequestParam(value = "page_size") Integer pageSize);
+    PageResult list(String orderNo,
+                    String phone,
+                    String status,
+                    String type,
+                    String searchKey,
+                    Integer pageNo,
+                    Integer pageSize);
 
     /**
      * 发货
@@ -55,8 +52,7 @@ public interface OrderService {
      * @param orderCondition
      * @return
      */
-    @PostMapping("/backend/order/sendGood")
-    DataRet<String> sendGood(@RequestBody OrderCondition orderCondition);
+    DataRet<String> sendGood(OrderCondition orderCondition);
 
 
     /**
@@ -65,8 +61,7 @@ public interface OrderService {
      * @param order
      * @return
      */
-    @PostMapping("/backend/order/modify")
-    DataRet<String> modify(@RequestBody Order order);
+    DataRet<String> modify(Order order);
 
 
     /**
@@ -76,7 +71,6 @@ public interface OrderService {
      * @param sellerId
      * @return
      */
-    @GetMapping("/findById")
-    DataRet<Order> findById(@RequestParam(value = "order_id") Long orderId, @RequestHeader(value = "seller_id") Long sellerId);
+    DataRet<Order> findById(Long orderId, Long sellerId);
 
 }
