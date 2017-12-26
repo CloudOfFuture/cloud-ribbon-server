@@ -30,7 +30,8 @@ public interface FileClient {
      * @throws IOException e
      */
     @PostMapping("/file/uploadImage")
-    DataRet uploadImage(@RequestParam MultipartFile file, String jsonContent) throws IOException;
+    DataRet uploadImage(@RequestParam("file") MultipartFile file,
+                        @RequestParam("jsonContent") String jsonContent) throws IOException;
 
     /**
      * 图片删除
