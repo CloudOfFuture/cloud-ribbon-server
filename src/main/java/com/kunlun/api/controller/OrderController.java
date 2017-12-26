@@ -45,9 +45,9 @@ public class OrderController {
                            @RequestParam(value = "phone") String phone,
                            @RequestParam(value = "status") String status,
                            @RequestParam(value = "type") String type,
-                           @RequestParam(value = "search_key") String searchKey,
-                           @RequestParam(value = "page_no") Integer pageNo,
-                           @RequestParam(value = "page_size") Integer pageSize) {
+                           @RequestParam(value = "searchKey") String searchKey,
+                           @RequestParam(value = "pageNo") Integer pageNo,
+                           @RequestParam(value = "pageSize") Integer pageSize) {
         return orderService.list(orderNo, phone, status, type, searchKey, pageNo, pageSize);
     }
 

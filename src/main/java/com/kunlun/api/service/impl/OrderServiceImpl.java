@@ -9,6 +9,7 @@ import com.kunlun.entity.OrderLog;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import com.kunlun.wxentity.OrderCondition;
+import com.mysql.jdbc.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +36,6 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public DataRet<String> test(Long orderId) {
-
         return orderClient.test(orderId);
     }
 
@@ -66,7 +66,16 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public DataRet<String> sendGood(OrderCondition orderCondition) {
-
+        Long orderId = orderCondition.getOrderId();
+        if (null == orderId) {
+            return new DataRet<>("ERROR", "参数错误");
+        }
+        if (StringUtils.isNullOrEmpty(orderCondition.getLogisticNo())) {
+            return new DataRet<>("ERROR", "运单号不能为空");
+        }
+        if (StringUtils.isNullOrEmpty(orderCondition.getLogisticName())) {
+            return new DataRet<>("ERROR", "快递公司不能为空");
+        }
         DataRet<String> ret = orderClient.sendGood(orderCondition);
         if (!ret.isSuccess()) {
             return ret;
@@ -79,10 +88,7 @@ public class OrderServiceImpl implements OrderService {
         if (!logisticRet.isSuccess()) {
             return logisticRet;
         }
-        DataRet<String> orderLogRet = logClient.addOrderLog(orderLog(orderCondition.getOrderId(), orderNo, "发货"));
-        if (!orderLogRet.isSuccess()) {
-            return orderLogRet;
-        }
+        logClient.addOrderLog(orderLog(orderCondition.getOrderId(), orderNo, "发货"));
         return new DataRet<>("发货成功");
     }
 
@@ -94,7 +100,12 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public DataRet<String> modify(Order order) {
-        return null;
+        DataRet<String> orderRet = orderClient.modify(order);
+        if (!orderRet.isSuccess()) {
+            return orderRet;
+        }
+        logClient.addOrderLog(orderLog(order.getId(), order.getOrderNo(), "修改订单"));
+        return new DataRet<>("订单修改成功");
     }
 
     /**
@@ -106,7 +117,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public DataRet<Order> findById(Long orderId, Long sellerId) {
-        return null;
+        return orderClient.findById(orderId, sellerId);
     }
 
 
