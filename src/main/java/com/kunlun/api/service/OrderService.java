@@ -68,4 +68,16 @@ public interface OrderService {
      */
     DataRet<Order> findById(Long orderId, Long sellerId);
 
+    /**
+     * 退款
+     *
+     * @param orderId
+     * @param flag
+     * @param remark
+     * @param refundFee
+     * @return
+     */
+    DataRet<String> refund(Long orderId, String flag, String remark, Integer refundFee,Long sellerId);
+
+
 }
