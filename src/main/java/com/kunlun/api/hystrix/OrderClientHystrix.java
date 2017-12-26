@@ -76,4 +76,14 @@ public class OrderClientHystrix implements OrderClient {
     public DataRet<Order> findById(Long orderId, Long sellerId) {
         return new DataRet<>("ERROR", "订单详情接口异常");
     }
+
+    @Override
+    public Order findByIdForOrder(Long orderId, Long sellerId) {
+        return null;
+    }
+
+    @Override
+    public DataRet<String> refund(Order order) {
+        return null;
+    }
 }
