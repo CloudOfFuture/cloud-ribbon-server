@@ -1,5 +1,6 @@
 package com.kunlun.api.hystrix;
 
+import com.kunlun.api.client.WxOrderClient;
 import com.kunlun.api.service.WxOrderService;
 import com.kunlun.entity.Order;
 import com.kunlun.entity.OrderExt;
@@ -15,19 +16,17 @@ import org.springframework.stereotype.Component;
  * @created on 2017/12/20.
  */
 @Component
-public class WxOrderServiceHystrix implements WxOrderService {
+public class WxOrderClientHystrix implements WxOrderClient {
 
     /**
      * 退款
      *
      * @param orderId
-     * @param wxCode
-     * @param refundFee
      * @return
      */
     @Override
-    public DataRet<String> refund(Long orderId, String wxCode, Integer refundFee) {
-        return new DataRet<>("ERROR", "退款故障");
+    public DataRet<String> refund(Long orderId) {
+        return new DataRet<>("ERROR", "退款接口异常");
     }
 
     /**
@@ -42,7 +41,7 @@ public class WxOrderServiceHystrix implements WxOrderService {
      */
     @Override
     public PageResult findByOpenid(Integer pageNo, Integer pageSize, String wxCode, String orderStatus, String payType) {
-        return new PageResult("ERROR", "订单列表故障");
+        return new PageResult("ERROR", "订单列表接口异常");
     }
 
     /**
@@ -53,6 +52,6 @@ public class WxOrderServiceHystrix implements WxOrderService {
      */
     @Override
     public DataRet<Order> findById(Long orderId) {
-        return new DataRet<>("ERROR", "查询订单详情故障");
+        return new DataRet<>("ERROR", "订单详情接口异常");
     }
 }

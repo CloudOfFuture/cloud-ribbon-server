@@ -23,7 +23,7 @@ public interface LogClient {
      * @param orderLog
      * @return
      */
-    @PostMapping("")
+    @PostMapping("/log/add/orderLog")
     DataRet<String> addOrderLog(@RequestBody OrderLog orderLog);
 
     /**

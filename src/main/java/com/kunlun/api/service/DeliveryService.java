@@ -1,6 +1,7 @@
 package com.kunlun.api.service;
 
 
+import com.kunlun.entity.Delivery;
 import com.kunlun.result.DataRet;
 
 /**
@@ -14,7 +15,7 @@ public interface DeliveryService {
      * @param id
      * @return
      */
-    DataRet findById(Long id);
+    DataRet<Delivery> findById(Long id);
 
     /**
      * 根据id校验收获地址
@@ -22,5 +23,6 @@ public interface DeliveryService {
      * @return
      */
     String check(Long id);
+
 
 }
