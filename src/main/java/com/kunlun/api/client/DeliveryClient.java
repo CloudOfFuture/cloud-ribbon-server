@@ -1,6 +1,7 @@
 package com.kunlun.api.client;
 
 import com.kunlun.api.hystrix.DeliveryClientHystrix;
+import com.kunlun.entity.Delivery;
 import com.kunlun.result.DataRet;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public interface DeliveryClient {
      * @return
      */
     @GetMapping("/delivery/findDetailById")
-    DataRet findById(@RequestParam(value = "id") Long id);
+    DataRet<Delivery> findById(@RequestParam(value = "id") Long id);
 
     /**
      * 根据id校验收获地址

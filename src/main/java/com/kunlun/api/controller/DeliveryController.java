@@ -1,6 +1,7 @@
 package com.kunlun.api.controller;
 
 import com.kunlun.api.service.DeliveryService;
+import com.kunlun.entity.Delivery;
 import com.kunlun.result.DataRet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
