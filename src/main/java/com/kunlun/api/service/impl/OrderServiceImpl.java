@@ -1,12 +1,16 @@
 package com.kunlun.api.service.impl;
 
-import com.codingapi.tx.annotation.TxTransaction;
+import com.kunlun.api.client.LogClient;
 import com.kunlun.api.client.OrderClient;
 import com.kunlun.api.service.OrderService;
+import com.kunlun.entity.Logistics;
 import com.kunlun.entity.Order;
+import com.kunlun.entity.OrderLog;
+import com.kunlun.enums.CommonEnum;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import com.kunlun.wxentity.OrderCondition;
+import com.mysql.jdbc.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +26,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderClient orderClient;
 
+    @Autowired
+    private LogClient logClient;
+
     /**
      * 测试
      *
@@ -30,7 +37,6 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public DataRet<String> test(Long orderId) {
-
         return orderClient.test(orderId);
     }
 
@@ -47,7 +53,8 @@ public class OrderServiceImpl implements OrderService {
      * @return
      */
     @Override
-    public PageResult list(String orderNo, String phone, String status, String type, String searchKey, Integer pageNo, Integer pageSize) {
+    public PageResult list(String orderNo, String phone, String status, String type,
+                           String searchKey, Integer pageNo, Integer pageSize) {
         return orderClient.list(orderNo, phone, status, type, searchKey, pageNo, pageSize);
     }
 
@@ -57,16 +64,33 @@ public class OrderServiceImpl implements OrderService {
      * @param orderCondition
      * @return
      */
-    @TxTransaction
     @Transactional
     @Override
     public DataRet<String> sendGood(OrderCondition orderCondition) {
-        DataRet<String> ret = orderClient.sendGood(orderCondition);
-        if(ret.isSuccess()){
-            //生成发货日志
-
+        Long orderId = orderCondition.getOrderId();
+        if (null == orderId) {
+            return new DataRet<>("ERROR", "参数错误");
         }
-        return ret;
+        if (StringUtils.isNullOrEmpty(orderCondition.getLogisticNo())) {
+            return new DataRet<>("ERROR", "运单号不能为空");
+        }
+        if (StringUtils.isNullOrEmpty(orderCondition.getLogisticName())) {
+            return new DataRet<>("ERROR", "快递公司不能为空");
+        }
+        DataRet<String> ret = orderClient.sendGood(orderCondition);
+        if (!ret.isSuccess()) {
+            return ret;
+        }
+        String orderNo = ret.getBody();
+        //生成发货日志
+        Logistics logistics = this.logistics(orderCondition.getOrderId(), orderCondition.getLogisticNo(),
+                orderCondition.getLogisticName(), orderCondition.getSellerId());
+        DataRet<String> logisticRet = logClient.addLogisticLog(logistics);
+        if (!logisticRet.isSuccess()) {
+            return logisticRet;
+        }
+        logClient.addOrderLog(orderLog(orderCondition.getOrderId(), orderNo, "发货"));
+        return new DataRet<>("发货成功");
     }
 
     /**
@@ -77,7 +101,12 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public DataRet<String> modify(Order order) {
-        return null;
+        DataRet<String> orderRet = orderClient.modify(order);
+        if (!orderRet.isSuccess()) {
+            return orderRet;
+        }
+        logClient.addOrderLog(orderLog(order.getId(), order.getOrderNo(), "修改订单"));
+        return new DataRet<>("订单修改成功");
     }
 
     /**
@@ -89,6 +118,91 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public DataRet<Order> findById(Long orderId, Long sellerId) {
-        return null;
+        return orderClient.findById(orderId, sellerId);
+    }
+
+    /**
+     * 退款
+     *
+     * @param orderId
+     * @param flag      AGREE   REFUSE
+     * @param remark
+     * @param refundFee
+     * @return
+     */
+    @Override
+    public DataRet<String> refund(Long orderId, String flag, String remark, Integer refundFee, Long sellerId) {
+        Order order = orderClient.findByIdForOrder(orderId, sellerId);
+        if (null == order) {
+            return new DataRet<>("ERROR", "订单不存在");
+        }
+        Order postOrder;
+        //退款
+        if (CommonEnum.REFUSE.getCode().equals(flag)) {
+            postOrder = constructOrder(orderId, CommonEnum.REFUND_FAIL.getCode(), 0, remark);
+        } else {
+            postOrder = constructOrder(orderId, CommonEnum.REFUND_SUCCESS.getCode(), refundFee, remark);
+        }
+        DataRet<String> refundRet = orderClient.refund(postOrder);
+        if (!refundRet.isSuccess()) {
+            return refundRet;
+        }
+        //创建待退款日志
+        logClient.addOrderLog(orderLog(order.getId(), order.getOrderNo(), "等待退款"));
+        // TODO  定时任务 退款待处理  库存回退 积分返还
+        return new DataRet<>("退款成功");
+    }
+
+
+    /**
+     * 组装 发货信息
+     *
+     * @param orderId
+     * @param logisticNo
+     * @param logisticName
+     * @param senderId
+     * @return
+     */
+    private Logistics logistics(Long orderId, String logisticNo, String logisticName, Long senderId) {
+        Logistics logistics = new Logistics();
+        logistics.setSenderId(senderId);
+        logistics.setOrderId(orderId);
+        logistics.setLogisticName(logisticName);
+        logistics.setLogisticNo(logisticNo);
+        return logistics;
+    }
+
+    /**
+     * 组装订单日志
+     *
+     * @param orderId
+     * @param orderNo
+     * @param action
+     * @return
+     */
+    private OrderLog orderLog(Long orderId, String orderNo, String action) {
+        OrderLog orderLog = new OrderLog();
+        orderLog.setOrderId(orderId);
+        orderLog.setOrderNo(orderNo);
+        orderLog.setAction(action);
+        return orderLog;
+    }
+
+    /**
+     * 组装退款订单对象
+     *
+     * @param orderId
+     * @param status
+     * @param refundFee
+     * @param remark
+     * @return
+     */
+    private Order constructOrder(Long orderId, String status, Integer refundFee, String remark) {
+        Order order = new Order();
+        order.setId(orderId);
+        order.setOrderStatus(status);
+        order.setRefundFee(refundFee);
+        order.setRemark(remark);
+        return order;
     }
 }

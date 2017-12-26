@@ -1,5 +1,6 @@
 package com.kunlun.api.hystrix;
 
+import com.kunlun.api.client.OrderClient;
 import com.kunlun.api.service.OrderService;
 import com.kunlun.entity.Order;
 import com.kunlun.result.DataRet;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @created on 2017/12/20.
  */
 @Component
-public class OrderServiceHystrix implements OrderService {
+public class OrderClientHystrix implements OrderClient {
 
     /**
      * 测试

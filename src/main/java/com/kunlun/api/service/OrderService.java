@@ -1,16 +1,9 @@
 package com.kunlun.api.service;
 
-import com.kunlun.api.hystrix.OrderServiceHystrix;
 import com.kunlun.entity.Order;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import com.kunlun.wxentity.OrderCondition;
-import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author by kunlun
@@ -29,6 +22,8 @@ public interface OrderService {
     DataRet<String> test(Long orderId);
 
     /**
+     * 订单列表
+     *
      * @param orderNo   订单编号
      * @param phone     收货人手机号
      * @param status    订单状态
@@ -72,5 +67,17 @@ public interface OrderService {
      * @return
      */
     DataRet<Order> findById(Long orderId, Long sellerId);
+
+    /**
+     * 退款
+     *
+     * @param orderId
+     * @param flag
+     * @param remark
+     * @param refundFee
+     * @return
+     */
+    DataRet<String> refund(Long orderId, String flag, String remark, Integer refundFee,Long sellerId);
+
 
 }
