@@ -16,7 +16,7 @@ import java.util.List;
  * @created on 2017-12-21.
  */
 @Component
-public class GoodServiceHystrix implements GoodClient {
+public class GoodClientHystrix implements GoodClient {
 
 
     /**
