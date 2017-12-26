@@ -28,7 +28,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     Request.Options feignOptions() {
-        return new Request.Options(/***connectTimeoutMills***/1 * 1000,/***readTimeoutMills***/1 * 1000);
+        return new Request.Options(/***connectTimeoutMills***/10 * 1000,/***readTimeoutMills***/10 * 1000);
     }
 
 
