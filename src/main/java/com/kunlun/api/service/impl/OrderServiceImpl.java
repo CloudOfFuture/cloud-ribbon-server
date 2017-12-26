@@ -1,9 +1,11 @@
 package com.kunlun.api.service.impl;
 
-import com.codingapi.tx.annotation.TxTransaction;
+import com.kunlun.api.client.LogClient;
 import com.kunlun.api.client.OrderClient;
 import com.kunlun.api.service.OrderService;
+import com.kunlun.entity.Logistics;
 import com.kunlun.entity.Order;
+import com.kunlun.entity.OrderLog;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import com.kunlun.wxentity.OrderCondition;
@@ -21,6 +23,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderClient orderClient;
+
+    @Autowired
+    private LogClient logClient;
 
     /**
      * 测试
@@ -47,7 +52,8 @@ public class OrderServiceImpl implements OrderService {
      * @return
      */
     @Override
-    public PageResult list(String orderNo, String phone, String status, String type, String searchKey, Integer pageNo, Integer pageSize) {
+    public PageResult list(String orderNo, String phone, String status, String type,
+                           String searchKey, Integer pageNo, Integer pageSize) {
         return orderClient.list(orderNo, phone, status, type, searchKey, pageNo, pageSize);
     }
 
@@ -57,16 +63,27 @@ public class OrderServiceImpl implements OrderService {
      * @param orderCondition
      * @return
      */
-    @TxTransaction
     @Transactional
     @Override
     public DataRet<String> sendGood(OrderCondition orderCondition) {
-        DataRet<String> ret = orderClient.sendGood(orderCondition);
-        if(ret.isSuccess()){
-            //生成发货日志
 
+        DataRet<String> ret = orderClient.sendGood(orderCondition);
+        if (!ret.isSuccess()) {
+            return ret;
         }
-        return ret;
+        String orderNo = ret.getBody();
+        //生成发货日志
+        Logistics logistics = this.logistics(orderCondition.getOrderId(), orderCondition.getLogisticNo(),
+                orderCondition.getLogisticName(), orderCondition.getSellerId());
+        DataRet<String> logisticRet = logClient.addLogisticLog(logistics);
+        if (!logisticRet.isSuccess()) {
+            return logisticRet;
+        }
+        DataRet<String> orderLogRet = logClient.addOrderLog(orderLog(orderCondition.getOrderId(), orderNo, "发货"));
+        if (!orderLogRet.isSuccess()) {
+            return orderLogRet;
+        }
+        return new DataRet<>("发货成功");
     }
 
     /**
@@ -90,5 +107,40 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public DataRet<Order> findById(Long orderId, Long sellerId) {
         return null;
+    }
+
+
+    /**
+     * 组装 发货信息
+     *
+     * @param orderId
+     * @param logisticNo
+     * @param logisticName
+     * @param senderId
+     * @return
+     */
+    private Logistics logistics(Long orderId, String logisticNo, String logisticName, Long senderId) {
+        Logistics logistics = new Logistics();
+        logistics.setSenderId(senderId);
+        logistics.setOrderId(orderId);
+        logistics.setLogisticName(logisticName);
+        logistics.setLogisticNo(logisticNo);
+        return logistics;
+    }
+
+    /**
+     * 组装订单日志
+     *
+     * @param orderId
+     * @param orderNo
+     * @param action
+     * @return
+     */
+    private OrderLog orderLog(Long orderId, String orderNo, String action) {
+        OrderLog orderLog = new OrderLog();
+        orderLog.setOrderId(orderId);
+        orderLog.setOrderNo(orderNo);
+        orderLog.setAction(action);
+        return orderLog;
     }
 }
