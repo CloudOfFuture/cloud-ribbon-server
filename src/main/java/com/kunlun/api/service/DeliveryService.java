@@ -1,11 +1,7 @@
 package com.kunlun.api.service;
 
 
-import com.kunlun.api.hystrix.DeliveryServiceHystrix;
 import com.kunlun.result.DataRet;
-import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author by hws
@@ -19,5 +15,12 @@ public interface DeliveryService {
      * @return
      */
     DataRet findById(Long id);
+
+    /**
+     * 根据id校验收获地址
+     * @param id
+     * @return
+     */
+    String check(Long id);
 
 }
