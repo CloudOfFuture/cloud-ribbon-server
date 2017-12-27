@@ -79,7 +79,7 @@ public interface OrderClient {
      * @return
      */
     @GetMapping("/findById")
-    DataRet<Order> findById(@RequestParam("orderId") Long orderId, @RequestHeader("sellerId") Long sellerId);
+    DataRet<Order> findById(@RequestParam("orderId") Long orderId, @RequestParam("sellerId") Long sellerId);
 
     /**
      * 查询Order对象
@@ -89,7 +89,7 @@ public interface OrderClient {
      * @return
      */
     @GetMapping("/findByIdForOrder")
-    Order findByIdForOrder(@RequestParam("orderId") Long orderId, @RequestHeader("sellerId") Long sellerId);
+    Order findByIdForOrder(@RequestParam("orderId") Long orderId, @RequestParam("sellerId") Long sellerId);
 
     /**
      * 修改订单信息
