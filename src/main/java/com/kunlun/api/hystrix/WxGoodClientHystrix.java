@@ -59,5 +59,4 @@ public class WxGoodClientHystrix implements WxGoodClient{
         return new DataRet<>("not_found", "暂无数据");
     }
 
-
 }

@@ -7,6 +7,7 @@ import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author by hws
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class WxGoodServiceImpl implements WxGoodService{
+
     @Autowired
     private WxGoodClient wxGoodClient;
 
