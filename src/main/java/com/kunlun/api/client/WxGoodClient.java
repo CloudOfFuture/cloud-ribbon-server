@@ -63,11 +63,4 @@ public interface WxGoodClient {
     @GetMapping("wx/good/findGoodSnapshot")
     DataRet findGoodSnapshot(@RequestParam("orderId") Long orderId);
 
-    /**
-     * 新增商品快照
-     * @param goodSnapshot
-     * @return
-     */
-    @PostMapping("wx/good/addGoodSnapShot")
-    DataRet addGoodSnapShot(@RequestBody GoodSnapshot goodSnapshot);
 }
