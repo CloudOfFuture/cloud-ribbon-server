@@ -27,13 +27,13 @@ eureka:
 ribbon:
   NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
   MaxAutoRetriesNextServer: 0
-logging:
-  level:
-    com:
-      kunlun:
-        api:
-          client:
-            FileClient: debug
+#logging:
+#  level:
+#    com:
+#      kunlun:
+#        api:
+#          client:
+#            FileClient: debug
 hystrix:
   default:
     execution:
