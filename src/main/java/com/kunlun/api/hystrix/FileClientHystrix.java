@@ -19,8 +19,8 @@ import java.io.IOException;
 @Component
 public class FileClientHystrix implements FileClient {
     @Override
-    public DataRet uploadImage(MultipartFile file, String jsonContent) throws IOException {
-        return new DataRet("upload_error", "删除失败");
+    public DataRet uploadImage(MultipartFile file, String jsonContent){
+        return new DataRet("ERROR", "上传失败");
     }
 
     @Override

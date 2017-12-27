@@ -1,14 +1,15 @@
 package com.kunlun.api.client;
 
 import com.kunlun.api.hystrix.FileClientHystrix;
+import com.kunlun.config.FeignMultipartConfig;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.annotation.MultipartConfig;
 import java.io.IOException;
 
 /**
@@ -17,7 +18,9 @@ import java.io.IOException;
  * @date 17-12-26下午2:00
  * @desc
  */
-@FeignClient(value = "cloud-service-common", fallback = FileClientHystrix.class)
+@FeignClient(value = "cloud-service-common",
+        configuration = FeignMultipartConfig.class,
+        fallback = FileClientHystrix.class)
 public interface FileClient {
 
 
@@ -27,11 +30,10 @@ public interface FileClient {
      * @param jsonContent String
      * @param file        MultipartFile
      * @return DataRet
-     * @throws IOException e
      */
-    @PostMapping("/file/uploadImage")
-    DataRet uploadImage(@RequestParam("file") MultipartFile file,
-                        @RequestParam("jsonContent") String jsonContent) throws IOException;
+    @PostMapping(value = "/file/uploadImage", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    DataRet uploadImage(@RequestPart("file") MultipartFile file,
+                        @RequestParam("jsonContent") String jsonContent);
 
     /**
      * 图片删除

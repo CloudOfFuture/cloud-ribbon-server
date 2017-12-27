@@ -78,15 +78,5 @@ public class WxGoodController {
         return wxGoodService.findGoodSnapshot(orderId);
     }
 
-    /**
-     * 新增商品快照
-     * @param goodSnapshot
-     * @return
-     */
-
-    @PostMapping("/addGoodSnapShot")
-    public DataRet addGoodSnapShot(@RequestBody GoodSnapshot goodSnapshot){
-        return wxGoodService.addGoodSnapShot(goodSnapshot);
-    }
 
 }

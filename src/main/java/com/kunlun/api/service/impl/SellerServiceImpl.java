@@ -19,6 +19,12 @@ public class SellerServiceImpl implements SellerService{
     @Autowired
     private SellerClient sellerClient;
 
+    /**
+     * 创建店铺
+     *
+     * @param store
+     * @return
+     */
     @Override
     public DataRet<String> add(Store store) {
         return sellerClient.add(store);

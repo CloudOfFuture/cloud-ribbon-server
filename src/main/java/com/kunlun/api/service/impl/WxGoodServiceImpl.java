@@ -66,14 +66,4 @@ public class WxGoodServiceImpl implements WxGoodService{
         return wxGoodClient.findGoodSnapshot(orderId);
     }
 
-    /**
-     * 新增商品快照
-     *
-     * @param goodSnapshot
-     * @return
-     */
-    @Override
-    public DataRet addGoodSnapShot(GoodSnapshot goodSnapshot) {
-        return wxGoodClient.addGoodSnapShot(goodSnapshot);
-    }
 }
