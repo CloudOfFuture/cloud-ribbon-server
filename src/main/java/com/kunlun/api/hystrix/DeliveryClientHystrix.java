@@ -22,14 +22,4 @@ public class DeliveryClientHystrix implements DeliveryClient{
         return new DataRet("Error","收获地址无效");
     }
 
-    /**
-     * 根据id校验收获地址
-     *
-     * @param id
-     * @return
-     */
-    @Override
-    public String check(Long id) {
-        return "系统错误";
-    }
 }

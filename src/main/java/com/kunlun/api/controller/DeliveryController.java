@@ -30,14 +30,4 @@ public class DeliveryController {
         return deliveryService.findById(id);
     }
 
-    /**
-     * 根据id校验收获地址
-     *
-     * @param id
-     * @return
-     */
-    @GetMapping("check")
-    private String check(@RequestParam(value = "id") Long id) {
-        return deliveryService.check(id);
-    }
 }
