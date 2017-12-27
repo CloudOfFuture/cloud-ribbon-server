@@ -19,7 +19,9 @@ public class GlobalException {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    private DataRet<String> internalServerError() {
+    private DataRet<String> internalServerError( Exception e) {
+        System.out.println(e.getCause());
+        System.out.println(e.getMessage());
         return new DataRet<>("ERROR", "服务宕机");
     }
 }
