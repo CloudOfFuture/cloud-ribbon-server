@@ -63,5 +63,4 @@ public interface WxGoodClient {
     @GetMapping("wx/good/findGoodSnapshot")
     DataRet findGoodSnapshot(@RequestParam("orderId") Long orderId);
 
-
 }
