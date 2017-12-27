@@ -32,8 +32,8 @@ logging:
     com:
       kunlun:
         api:
-          service:
-            IndexService: debug
+          client:
+            FileClient: debug
 hystrix:
   default:
     execution:
