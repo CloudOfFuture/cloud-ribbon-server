@@ -1,7 +1,7 @@
 package com.kunlun.api.client;
 
 import com.kunlun.api.hystrix.FileClientHystrix;
-import com.kunlun.config.FeignMultipartConfig;
+//import com.kunlun.config.FeignMultipartConfig;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -19,7 +19,6 @@ import java.io.IOException;
  * @desc
  */
 @FeignClient(value = "cloud-service-common",
-        configuration = FeignMultipartConfig.class,
         fallback = FileClientHystrix.class)
 public interface FileClient {
 
