@@ -22,11 +22,5 @@ public interface DeliveryClient {
     @GetMapping("/delivery/findDetailById")
     DataRet<Delivery> findById(@RequestParam(value = "id") Long id);
 
-    /**
-     * 根据id校验收获地址
-     * @param id
-     * @return
-     */
-    @GetMapping("/delivery/check")
-    String check(@RequestParam(value = "id") Long id);
+
 }
