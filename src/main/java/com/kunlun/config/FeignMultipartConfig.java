@@ -13,13 +13,9 @@ import org.springframework.context.annotation.Scope;
  * @date 17-12-26下午6:12
  * @desc
  */
-@Configuration
 public class FeignMultipartConfig {
-
     @Bean
-    @Primary
-    @Scope("prototype")
-    public Encoder multipartFormEncoder() {
+    public Encoder feignFormEncoder() {
         return new SpringFormEncoder();
     }
 }

@@ -4,13 +4,14 @@ import com.kunlun.api.hystrix.FileClientHystrix;
 import com.kunlun.config.FeignMultipartConfig;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
+import feign.codec.Encoder;
+import feign.form.spring.SpringFormEncoder;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.annotation.MultipartConfig;
-import java.io.IOException;
 
 /**
  * @author JackSpeed
@@ -31,9 +32,13 @@ public interface FileClient {
      * @param file        MultipartFile
      * @return DataRet
      */
-    @PostMapping(value = "/file/uploadImage", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/file/uploadImage",
+            produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     DataRet uploadImage(@RequestPart("file") MultipartFile file,
                         @RequestParam("jsonContent") String jsonContent);
+
+
 
     /**
      * 图片删除
