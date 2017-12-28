@@ -23,6 +23,8 @@ spring:
   boot:
     admin:
       url: http://localhost:8090
+      username: user
+      password: pass
 eureka:
   client:
     service-url:
