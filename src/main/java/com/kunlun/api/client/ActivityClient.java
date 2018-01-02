@@ -101,4 +101,18 @@ public interface ActivityClient {
      */
     @PostMapping("/activity/unbindActivityWithGood")
     DataRet unbindActivityWithGood(@RequestBody JSONObject jsonObject);
+
+
+    /**
+     * 活动列表
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param activityType
+     * @return
+     */
+    @GetMapping("/activity/findActivityList")
+     PageResult findByActivityType(@RequestParam(value = "pageNo") Integer pageNo,
+                                         @RequestParam(value = "pageSize") Integer pageSize,
+                                         @RequestParam(value = "activityType") String activityType);
 }

@@ -79,4 +79,15 @@ public interface ActivityService {
      * @return DataRet
      */
     DataRet unbindActivityWithGood(JSONObject jsonObject);
+
+
+    /**
+     * 活动列表
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param activityType
+     * @return
+     */
+    PageResult findByActivityType(Integer pageNo, Integer pageSize, String activityType);
 }

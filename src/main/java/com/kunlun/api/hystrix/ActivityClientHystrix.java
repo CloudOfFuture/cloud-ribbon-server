@@ -53,4 +53,17 @@ public class ActivityClientHystrix implements ActivityClient {
     public DataRet unbindActivityWithGood(JSONObject jsonObject) {
         return new DataRet("ERROR", "解绑失败");
     }
+
+    /**
+     * 活动列表获取失败回调
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param activityType
+     * @return
+     */
+    @Override
+    public PageResult findByActivityType(Integer pageNo, Integer pageSize, String activityType) {
+        return new PageResult("ERROR","获取活动列表失败");
+    }
 }
