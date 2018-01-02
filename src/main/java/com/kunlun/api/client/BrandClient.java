@@ -3,6 +3,7 @@ package com.kunlun.api.client;
 import com.kunlun.api.hystrix.BrandClientHystrix;
 import com.kunlun.entity.Brand;
 import com.kunlun.result.DataRet;
+import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,4 +44,18 @@ public interface BrandClient {
      */
     @GetMapping("/brand/findBrandById")
     DataRet findBrandById(@RequestParam(value = "id") Integer id);
+
+    /**
+     * 分页查询品牌详情/模糊查询
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param searchKey
+     * @return
+     */
+    @GetMapping("/brand/findByCondition")
+    PageResult findByCondition(
+            @RequestParam(value = "pageNo") Integer pageNo,
+            @RequestParam(value = "pageSize") Integer pageSize,
+            @RequestParam(value = "searchKey") String searchKey);
 }

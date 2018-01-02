@@ -3,6 +3,7 @@ package com.kunlun.api.controller;
 import com.kunlun.api.service.BrandService;
 import com.kunlun.entity.Brand;
 import com.kunlun.result.DataRet;
+import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,5 +50,20 @@ public class BrandController {
     @GetMapping("/findBrandById")
     public DataRet findBrandById(@RequestParam(value = "id") Integer id) {
         return brandService.findBrandById(id);
+    }
+
+    /**
+     * 分页查询品牌详情/模糊查询
+     *
+     * @param pageNo    页码
+     * @param pageSize  数量
+     * @param searchKey 关键字
+     * @return
+     */
+    @GetMapping("/findByCondition")
+    public PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
+                                      @RequestParam(value = "pageSize") Integer pageSize,
+                                      @RequestParam(value = "searchKey") String searchKey) {
+        return brandService.findByCondition(pageNo, pageSize, searchKey);
     }
 }

@@ -3,6 +3,7 @@ package com.kunlun.api.hystrix;
 import com.kunlun.api.client.BrandClient;
 import com.kunlun.entity.Brand;
 import com.kunlun.result.DataRet;
+import com.kunlun.result.PageResult;
 import org.springframework.stereotype.Component;
 
 /**
@@ -44,5 +45,18 @@ public class BrandClientHystrix implements BrandClient {
     @Override
     public DataRet findBrandById(Integer id) {
         return new DataRet("ERROR", "查询品牌详情失败");
+    }
+
+    /**
+     * 分页查询品牌详情/模糊查询
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param searchKey
+     * @return
+     */
+    @Override
+    public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey) {
+        return new PageResult("ERROR", "模糊查询失败");
     }
 }
