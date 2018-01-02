@@ -27,12 +27,12 @@ public class GoodServiceImpl implements GoodService {
     /**
      * 商品创建
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @Override
-    public DataRet<String> add(Good good) {
-        return goodClient.add(good);
+    public DataRet<String> add(JSONObject jsonObject) {
+        return goodClient.add(jsonObject);
     }
 
     /**
@@ -95,12 +95,12 @@ public class GoodServiceImpl implements GoodService {
     /**
      * 修改商品信息
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @Override
-    public DataRet<String> update(Good good) {
-        return goodClient.update(good);
+    public DataRet<String> update(JSONObject jsonObject) {
+        return goodClient.update(jsonObject);
     }
 
     /**

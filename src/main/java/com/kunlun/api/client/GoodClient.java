@@ -26,11 +26,11 @@ public interface GoodClient {
     /**
      * 商品创建
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @PostMapping("/backstage/good/add")
-    DataRet<String> add(@RequestBody Good good);
+    DataRet<String> add(@RequestBody JSONObject jsonObject);
 
     /**
      * 获取商品详情
@@ -95,11 +95,11 @@ public interface GoodClient {
     /**
      * 修改商品信息
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @PostMapping("/backstage/good/update")
-    DataRet<String> update(@RequestBody Good good);
+    DataRet<String> update(@RequestBody JSONObject jsonObject);
 
 
     /**

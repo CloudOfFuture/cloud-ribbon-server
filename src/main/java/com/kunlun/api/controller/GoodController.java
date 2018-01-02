@@ -27,12 +27,12 @@ public class GoodController {
     /**
      * 商品创建
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @PostMapping("/add")
-    public DataRet<String> add(@RequestBody Good good){
-        return goodService.add(good);
+    public DataRet<String> add(@RequestBody JSONObject jsonObject){
+        return goodService.add(jsonObject);
     }
 
     /**
@@ -107,13 +107,12 @@ public class GoodController {
     /**
      * 修改商品
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @PostMapping("/update")
-    public DataRet<String> update(@RequestBody Good good){
-        //TODO 图片
-        return goodService.update(good);
+    public DataRet<String> update(@RequestBody JSONObject jsonObject){
+        return goodService.update(jsonObject);
     }
 
     /**

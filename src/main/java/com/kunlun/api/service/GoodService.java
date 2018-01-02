@@ -18,10 +18,10 @@ public interface GoodService {
     /**
      * 商品创建
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
-    DataRet<String> add(Good good);
+    DataRet<String> add(JSONObject jsonObject);
 
     /**
      * 获取商品详情
@@ -82,10 +82,10 @@ public interface GoodService {
     /**
      * 修改商品信息
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
-    DataRet<String> update(Good good);
+    DataRet<String> update(JSONObject jsonObject);
 
 
     /**

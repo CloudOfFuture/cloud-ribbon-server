@@ -20,11 +20,11 @@ public class GoodClientHystrix implements GoodClient {
     /**
      * 创建失败
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @Override
-    public DataRet<String> add(Good good) {
+    public DataRet<String> add(JSONObject jsonObject) {
         return new DataRet<>("ERROR","创建失败");
     }
 
@@ -91,11 +91,11 @@ public class GoodClientHystrix implements GoodClient {
     /**
      * 修改商品信息
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @Override
-    public DataRet<String> update(Good good) {
+    public DataRet<String> update(JSONObject jsonObject) {
         return new DataRet<>("ERROR","修改商品信息失败");
     }
 
