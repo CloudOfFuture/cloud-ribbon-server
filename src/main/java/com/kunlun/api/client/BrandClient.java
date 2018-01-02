@@ -23,4 +23,13 @@ public interface BrandClient {
      */
     @PostMapping("/brand/add")
     DataRet add(@RequestBody Brand brand);
+
+    /**
+     * 修改品牌
+     *
+     * @param brand
+     * @return
+     */
+    @PostMapping("/brand/modify")
+    DataRet modify(Brand brand);
 }

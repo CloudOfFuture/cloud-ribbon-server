@@ -24,11 +24,22 @@ public class BrandController {
     /**
      * 增加品牌
      *
-     * @param brand
+     * @param brand 品牌
      * @return
      */
     @PostMapping("/add")
     public DataRet add(@RequestBody Brand brand) {
         return brandService.add(brand);
+    }
+
+    /**
+     * 修改品牌
+     *
+     * @param brand 品牌
+     * @return
+     */
+    @PostMapping("/modify")
+    public DataRet modify(@RequestBody Brand brand) {
+        return brandService.modify(brand);
     }
 }

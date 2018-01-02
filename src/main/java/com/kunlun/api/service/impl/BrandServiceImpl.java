@@ -28,4 +28,15 @@ public class BrandServiceImpl implements BrandService {
     public DataRet add(Brand brand) {
         return brandClient.add(brand);
     }
+
+    /**
+     * 修改品牌
+     *
+     * @param brand
+     * @return
+     */
+    @Override
+    public DataRet modify(Brand brand) {
+        return brandClient.modify(brand);
+    }
 }

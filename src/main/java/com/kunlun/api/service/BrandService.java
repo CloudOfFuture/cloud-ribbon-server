@@ -17,4 +17,12 @@ public interface BrandService {
      * @return
      */
     DataRet add(Brand brand);
+
+    /**
+     * 修改品牌
+     *
+     * @param brand
+     * @return
+     */
+    DataRet modify(Brand brand);
 }
