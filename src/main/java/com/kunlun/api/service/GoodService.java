@@ -48,18 +48,9 @@ public interface GoodService {
      * @param freight
      * @return
      */
-    PageResult findByCondition(Integer pageNo,
-                               Integer pageSize,
-                               String searchKey,
-                               String goodNo,
-                               Date startDate,
-                               Date endDate,
-                               Long brandId,
-                               String onSale,
-                               Long categoryId,
-                               String hot,
-                               String isNew,
-                               String freight);
+    PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey, String goodNo,
+                               Date startDate, Date endDate, Long brandId, String onSale,
+                               Long categoryId, String hot, String isNew, String freight, Long sellerId, String type);
 
 
     /**
@@ -126,4 +117,6 @@ public interface GoodService {
      * @return
      */
     DataRet<String> updateStock(Long id, Integer count);
+
+
 }

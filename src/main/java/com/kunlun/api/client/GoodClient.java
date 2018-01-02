@@ -61,6 +61,8 @@ public interface GoodClient {
     @GetMapping("/backstage/good/findByCondition")
     PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
                                @RequestParam(value = "pageSize") Integer pageSize,
+                               @RequestParam(value = "sellerId") Long sellerId,
+                               @RequestParam(value = "type") String type,
                                @RequestParam(value = "searchKey",required = false) String searchKey,
                                @RequestParam(value = "goodNo",required = false) String goodNo,
                                @RequestParam(value = "startDate",required = false) Date startDate,

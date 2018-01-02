@@ -39,6 +39,8 @@ public class GoodClientHystrix implements GoodClient {
         return new DataRet<>("ERROR","未找到");
     }
 
+
+
     /**
      * 分页查询
      *
@@ -57,12 +59,12 @@ public class GoodClientHystrix implements GoodClient {
      * @return
      */
     @Override
-    public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey, String goodNo, Date startDate,
-                                      Date endDate, Long brandId, String onSale, Long categoryId, String hot,
+    public PageResult findByCondition(Integer pageNo, Integer pageSize, Long sellerId, String type,
+                                      String searchKey, String goodNo, Date startDate, Date endDate,
+                                      Long brandId, String onSale, Long categoryId, String hot,
                                       String isNew, String freight) {
-        return new PageResult();
+        return new  PageResult("ERROR","分页失败");
     }
-
 
     /**
      * 根据id删除

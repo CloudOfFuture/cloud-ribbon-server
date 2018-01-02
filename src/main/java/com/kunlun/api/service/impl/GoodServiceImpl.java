@@ -46,6 +46,8 @@ public class GoodServiceImpl implements GoodService {
         return goodClient.findById(id);
     }
 
+
+
     /**
      * 分页查询
      *
@@ -66,10 +68,10 @@ public class GoodServiceImpl implements GoodService {
     @Override
     public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey, String goodNo,
                                       Date startDate, Date endDate, Long brandId, String onSale, Long categoryId,
-                                      String hot, String isNew, String freight) {
-        return goodClient.findByCondition(pageNo,pageSize,searchKey,goodNo,startDate,endDate,brandId,onSale,categoryId,hot,isNew,freight);
+                                      String hot, String isNew, String freight, Long sellerId, String type) {
+        return goodClient.findByCondition(pageNo,pageSize,sellerId,type,searchKey,goodNo,startDate,endDate,
+                                          brandId,onSale,categoryId,hot,isNew,freight);
     }
-
     /**
      * 根据id删除商品
      *
