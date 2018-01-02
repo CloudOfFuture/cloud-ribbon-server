@@ -34,4 +34,15 @@ public class BrandClientHystrix implements BrandClient {
     public DataRet modify(Brand brand) {
         return new DataRet("ERROR", "修改失败");
     }
+
+    /**
+     * 根据id查询品牌详情
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet findBrandById(Integer id) {
+        return new DataRet("ERROR", "查询品牌详情失败");
+    }
 }

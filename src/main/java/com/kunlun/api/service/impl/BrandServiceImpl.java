@@ -6,6 +6,7 @@ import com.kunlun.entity.Brand;
 import com.kunlun.result.DataRet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author by fk
@@ -38,5 +39,16 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public DataRet modify(Brand brand) {
         return brandClient.modify(brand);
+    }
+
+    /**
+     * 根据id查询品牌详情
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet findBrandById(Integer id) {
+        return brandClient.findBrandById(id);
     }
 }

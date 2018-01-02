@@ -25,4 +25,12 @@ public interface BrandService {
      * @return
      */
     DataRet modify(Brand brand);
+
+    /**
+     * 根据id查询品牌详情
+     *
+     * @param id
+     * @return
+     */
+    DataRet findBrandById(Integer id);
 }

@@ -4,10 +4,7 @@ import com.kunlun.api.service.BrandService;
 import com.kunlun.entity.Brand;
 import com.kunlun.result.DataRet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author by fk
@@ -41,5 +38,16 @@ public class BrandController {
     @PostMapping("/modify")
     public DataRet modify(@RequestBody Brand brand) {
         return brandService.modify(brand);
+    }
+
+    /**
+     * 根据id查询品牌详情
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/findBrandById")
+    public DataRet findBrandById(@RequestParam(value = "id") Integer id) {
+        return brandService.findBrandById(id);
     }
 }
