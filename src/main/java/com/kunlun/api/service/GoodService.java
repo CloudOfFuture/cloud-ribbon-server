@@ -18,10 +18,10 @@ public interface GoodService {
     /**
      * 商品创建
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
-    DataRet<String> add(Good good);
+    DataRet<String> add(JSONObject jsonObject);
 
     /**
      * 获取商品详情
@@ -48,18 +48,9 @@ public interface GoodService {
      * @param freight
      * @return
      */
-    PageResult findByCondition(Integer pageNo,
-                               Integer pageSize,
-                               String searchKey,
-                               String goodNo,
-                               Date startDate,
-                               Date endDate,
-                               Long brandId,
-                               String onSale,
-                               Long categoryId,
-                               String hot,
-                               String isNew,
-                               String freight);
+    PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey, String goodNo,
+                               Date startDate, Date endDate, Long brandId, String onSale,
+                               Long categoryId, String hot, String isNew, String freight, Long sellerId, String type);
 
 
     /**
@@ -82,10 +73,10 @@ public interface GoodService {
     /**
      * 修改商品信息
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
-    DataRet<String> update(Good good);
+    DataRet<String> update(JSONObject jsonObject);
 
 
     /**
@@ -126,4 +117,6 @@ public interface GoodService {
      * @return
      */
     DataRet<String> updateStock(Long id, Integer count);
+
+
 }

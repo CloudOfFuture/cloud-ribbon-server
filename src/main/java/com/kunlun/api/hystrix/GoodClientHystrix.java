@@ -20,11 +20,11 @@ public class GoodClientHystrix implements GoodClient {
     /**
      * 创建失败
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @Override
-    public DataRet<String> add(Good good) {
+    public DataRet<String> add(JSONObject jsonObject) {
         return new DataRet<>("ERROR","创建失败");
     }
 
@@ -38,6 +38,8 @@ public class GoodClientHystrix implements GoodClient {
     public DataRet<Good> findById(Long id) {
         return new DataRet<>("ERROR","未找到");
     }
+
+
 
     /**
      * 分页查询
@@ -57,12 +59,12 @@ public class GoodClientHystrix implements GoodClient {
      * @return
      */
     @Override
-    public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey, String goodNo, Date startDate,
-                                      Date endDate, Long brandId, String onSale, Long categoryId, String hot,
+    public PageResult findByCondition(Integer pageNo, Integer pageSize, Long sellerId, String type,
+                                      String searchKey, String goodNo, Date startDate, Date endDate,
+                                      Long brandId, String onSale, Long categoryId, String hot,
                                       String isNew, String freight) {
-        return new PageResult();
+        return new  PageResult("ERROR","分页失败");
     }
-
 
     /**
      * 根据id删除
@@ -91,11 +93,11 @@ public class GoodClientHystrix implements GoodClient {
     /**
      * 修改商品信息
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @Override
-    public DataRet<String> update(Good good) {
+    public DataRet<String> update(JSONObject jsonObject) {
         return new DataRet<>("ERROR","修改商品信息失败");
     }
 

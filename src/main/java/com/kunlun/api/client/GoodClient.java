@@ -26,11 +26,11 @@ public interface GoodClient {
     /**
      * 商品创建
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @PostMapping("/backstage/good/add")
-    DataRet<String> add(@RequestBody Good good);
+    DataRet<String> add(@RequestBody JSONObject jsonObject);
 
     /**
      * 获取商品详情
@@ -61,6 +61,8 @@ public interface GoodClient {
     @GetMapping("/backstage/good/findByCondition")
     PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
                                @RequestParam(value = "pageSize") Integer pageSize,
+                               @RequestParam(value = "sellerId") Long sellerId,
+                               @RequestParam(value = "type") String type,
                                @RequestParam(value = "searchKey",required = false) String searchKey,
                                @RequestParam(value = "goodNo",required = false) String goodNo,
                                @RequestParam(value = "startDate",required = false) Date startDate,
@@ -95,11 +97,11 @@ public interface GoodClient {
     /**
      * 修改商品信息
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @PostMapping("/backstage/good/update")
-    DataRet<String> update(@RequestBody Good good);
+    DataRet<String> update(@RequestBody JSONObject jsonObject);
 
 
     /**

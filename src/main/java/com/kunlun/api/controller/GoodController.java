@@ -27,12 +27,12 @@ public class GoodController {
     /**
      * 商品创建
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @PostMapping("/add")
-    public DataRet<String> add(@RequestBody Good good){
-        return goodService.add(good);
+    public DataRet<String> add(@RequestBody JSONObject jsonObject){
+        return goodService.add(jsonObject);
     }
 
     /**
@@ -67,18 +67,20 @@ public class GoodController {
     @GetMapping("/findByCondition")
     public PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
                                       @RequestParam(value = "pageSize") Integer pageSize,
-                                      @RequestParam(value = "searchKey",required = false) String searchKey,
-                                      @RequestParam(value = "goodNo",required = false) String goodNo,
-                                      @RequestParam(value = "startDate",required = false) Date startDate,
-                                      @RequestParam(value = "endDate",required = false) Date endDate,
-                                      @RequestParam(value = "brandId",required = false) Long brandId,
-                                      @RequestParam(value = "onSale",required = false) String onSale,
-                                      @RequestParam(value = "categoryId",required = false) Long categoryId,
-                                      @RequestParam(value = "hot",required = false) String hot,
-                                      @RequestParam(value = "isNew",required = false) String isNew,
-                                      @RequestParam(value = "freight",required = false) String freight) {
+                                      @RequestParam(value = "sellerId") Long sellerId,
+                                      @RequestParam(value = "type") String type,
+                                      @RequestParam(value = "searchKey", required = false) String searchKey,
+                                      @RequestParam(value = "goodNo", required = false) String goodNo,
+                                      @RequestParam(value = "startDate", required = false) Date startDate,
+                                      @RequestParam(value = "endDate", required = false) Date endDate,
+                                      @RequestParam(value = "brandId", required = false) Long brandId,
+                                      @RequestParam(value = "onSale", required = false) String onSale,
+                                      @RequestParam(value = "categoryId", required = false) Long categoryId,
+                                      @RequestParam(value = "hot", required = false) String hot,
+                                      @RequestParam(value = "isNew", required = false) String isNew,
+                                      @RequestParam(value = "freight", required = false) String freight) {
         return goodService.findByCondition(pageNo, pageSize, searchKey, goodNo, startDate, endDate,
-                brandId, onSale, categoryId, hot, isNew, freight);
+                brandId, onSale, categoryId, hot, isNew, freight, sellerId, type);
     }
 
     /**
@@ -107,13 +109,12 @@ public class GoodController {
     /**
      * 修改商品
      *
-     * @param good
+     * @param jsonObject
      * @return
      */
     @PostMapping("/update")
-    public DataRet<String> update(@RequestBody Good good){
-        //TODO 图片
-        return goodService.update(good);
+    public DataRet<String> update(@RequestBody JSONObject jsonObject){
+        return goodService.update(jsonObject);
     }
 
     /**
