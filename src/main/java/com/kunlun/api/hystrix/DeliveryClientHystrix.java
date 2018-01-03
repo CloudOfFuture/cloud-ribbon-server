@@ -66,11 +66,11 @@ public class DeliveryClientHystrix implements DeliveryClient{
     /**
      * 删除收货地址
      *
-     * @param delivery
+     * @param id
      * @return
      */
     @Override
-    public DataRet<String> delete(Delivery delivery) {
+    public DataRet<String> delete(Long id) {
         return new DataRet<>("ERROR","删除收货地址失败");
     }
 

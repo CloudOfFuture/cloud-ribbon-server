@@ -69,12 +69,12 @@ public class DeliveryServiceImpl implements DeliveryService {
     /**
      * 删除收货地址
      *
-     * @param delivery
+     * @param id
      * @return
      */
     @Override
-    public DataRet<String> delete(Delivery delivery) {
-        return deliveryClient.delete(delivery);
+    public DataRet<String> delete(Long id) {
+        return deliveryClient.delete(id);
     }
 
 

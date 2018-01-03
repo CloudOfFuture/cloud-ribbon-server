@@ -44,7 +44,7 @@ public interface DeliveryClient {
      * @param delivery
      * @return
      */
-    @PostMapping("/add")
+    @PostMapping("/delivery/add")
      DataRet<String> add(@RequestBody Delivery delivery);
 
 
@@ -54,18 +54,18 @@ public interface DeliveryClient {
      * @param delivery
      * @return
      */
-    @PostMapping("/update")
+    @PostMapping("/delivery/update")
      DataRet<String> update(@RequestBody Delivery delivery);
 
 
     /**
      * 删除收货地址
      *
-     * @param delivery
+     * @param id
      * @return
      */
-    @PostMapping("/delete")
-     DataRet<String> delete(@RequestBody Delivery delivery);
+    @PostMapping("/delivery/delete")
+     DataRet<String> delete(@RequestParam(value = "id") Long id);
 
 
 
@@ -75,7 +75,7 @@ public interface DeliveryClient {
      * @param id
      * @return
      */
-    @PostMapping("/defaultAddress")
+    @PostMapping("/delivery/defaultAddress")
      DataRet<String> defaultAddress(@RequestParam(value = "id") Long id,
                                     @RequestParam(value = "wxCode") String wxCode);
 
@@ -88,7 +88,7 @@ public interface DeliveryClient {
      * @param wxCode
      * @return
      */
-    @RequestMapping(value = "/getDefault", method = RequestMethod.GET)
+    @RequestMapping(value = "/delivery/getDefault", method = RequestMethod.GET)
      DataRet<Delivery> getDefault(@RequestParam(value = "wxCode") String wxCode);
 
 
