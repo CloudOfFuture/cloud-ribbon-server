@@ -6,6 +6,7 @@ import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -23,20 +24,20 @@ public interface PointClient {
      * 积分检查
      *
      * @param pointValue
-     * @param openid
+     * @param wxCode
      * @return
      */
     @GetMapping("/point/checkPoint")
-    String checkPoint(@RequestParam(value = "pointValue") Integer pointValue,
-                      @RequestParam(value = "openid") String openid);
+     DataRet<String> checkPoint(@RequestParam(value = "pointValue") Integer pointValue,
+                                      @RequestParam(value = "wxCode") String wxCode);
 
     /**
      * 根据userId查询用户积分
-     * @param userId
+     * @param wxCode
      * @return
      */
-    @GetMapping("/findPointByUserId")
-     DataRet<Point> findPointByUserId(@RequestParam(value = "userId") String userId);
+    @GetMapping("/point/findPointByUserId")
+     DataRet<Point> findPointByUserId(@RequestParam(value = "wxCode") String wxCode);
 
 
     /**
@@ -51,4 +52,15 @@ public interface PointClient {
      PageResult findPointLog(@RequestParam(value = "pageNo") Integer pageNo,
                                    @RequestParam(value = "pageSize") Integer pageSize,
                                    @RequestParam(value = "wxCode") String wxCode);
+
+
+    /**
+     * 操作用户积分（增,减）
+     * @param point
+     * @param wxCode
+     * @return
+     */
+    @PostMapping("/updatePoint")
+     DataRet<String> updatePoint(@RequestParam(value = "point") Integer point,
+                                       @RequestParam(value = "wxCode") String wxCode);
 }

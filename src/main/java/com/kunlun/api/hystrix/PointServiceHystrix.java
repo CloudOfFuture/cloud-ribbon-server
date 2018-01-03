@@ -18,22 +18,22 @@ public class PointServiceHystrix implements PointClient {
     /**
      * 积分校验
      * @param pointValue
-     * @param openid
+     * @param wxCode
      * @return
      */
     @Override
-    public String checkPoint(Integer pointValue, String openid) {
-        return "积分无效";
+    public DataRet<String> checkPoint(Integer pointValue, String wxCode) {
+        return new DataRet<>("ERROR","校验失败");
     }
 
     /**
+     *获取详情
      *
-     *
-     * @param userId
+     * @param wxCode
      * @return
      */
     @Override
-    public DataRet<Point> findPointByUserId(String userId) {
+    public DataRet<Point> findPointByUserId(String wxCode) {
         return new DataRet<>("ERROR","查无结果");
     }
 
@@ -49,5 +49,18 @@ public class PointServiceHystrix implements PointClient {
     @Override
     public PageResult findPointLog(Integer pageNo, Integer pageSize, String wxCode) {
         return new PageResult("ERROR","获取积分记录失败");
+    }
+
+
+    /**
+     * 操作积分
+     *
+     * @param point
+     * @param wxCode
+     * @return
+     */
+    @Override
+    public DataRet<String> updatePoint(Integer point, String wxCode) {
+        return new DataRet<>("ERROR","操作积分失败");
     }
 }
