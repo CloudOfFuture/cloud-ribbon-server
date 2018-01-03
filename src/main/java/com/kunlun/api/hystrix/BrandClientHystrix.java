@@ -1,10 +1,12 @@
 package com.kunlun.api.hystrix;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.BrandClient;
 import com.kunlun.entity.Brand;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.stereotype.Component;
+
 
 /**
  * @author by fk
@@ -58,5 +60,16 @@ public class BrandClientHystrix implements BrandClient {
     @Override
     public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey) {
         return new PageResult("ERROR", "模糊查询失败");
+    }
+
+    /**
+     * 批量删除品牌状态
+     *
+     * @param object
+     * @return
+     */
+    @Override
+    public DataRet batchModifyStatus(JSONObject object) {
+        return new DataRet("ERROR", "删除失败");
     }
 }

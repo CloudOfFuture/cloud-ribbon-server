@@ -1,8 +1,10 @@
 package com.kunlun.api.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.entity.Brand;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
+
 
 /**
  * @author by fk
@@ -44,4 +46,12 @@ public interface BrandService {
      * @return
      */
     PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey);
+
+    /**
+     * 批量删除品牌状态
+     *
+     * @param object
+     * @return
+     */
+    DataRet batchModifyStatus(JSONObject object);
 }
