@@ -1,11 +1,13 @@
 package com.kunlun.api.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.service.BrandService;
 import com.kunlun.entity.Brand;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 /**
  * @author by fk
@@ -66,4 +68,16 @@ public class BrandController {
                                       @RequestParam(value = "searchKey") String searchKey) {
         return brandService.findByCondition(pageNo, pageSize, searchKey);
     }
+
+    /**
+     * 批量删除品牌状态
+     *
+     * @param object 对象
+     * @return
+     */
+    @PostMapping(value = "/batchModifyStatus")
+    public DataRet batchModifyStatus(@RequestBody JSONObject object) {
+        return brandService.batchModifyStatus(object);
+    }
+
 }

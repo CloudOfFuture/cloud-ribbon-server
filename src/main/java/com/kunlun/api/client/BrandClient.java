@@ -1,5 +1,6 @@
 package com.kunlun.api.client;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.hystrix.BrandClientHystrix;
 import com.kunlun.entity.Brand;
 import com.kunlun.result.DataRet;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * @author by fk
@@ -34,7 +36,7 @@ public interface BrandClient {
      * @return
      */
     @PostMapping("/brand/modify")
-    DataRet modify(Brand brand);
+    DataRet modify(@RequestBody Brand brand);
 
     /**
      * 根据id查询品牌详情
@@ -58,4 +60,13 @@ public interface BrandClient {
             @RequestParam(value = "pageNo") Integer pageNo,
             @RequestParam(value = "pageSize") Integer pageSize,
             @RequestParam(value = "searchKey") String searchKey);
+
+    /**
+     * 批量删除品牌状态
+     *
+     * @param object
+     * @return
+     */
+    @PostMapping("/brand/batchModifyStatus")
+    DataRet batchModifyStatus(@RequestBody JSONObject object);
 }

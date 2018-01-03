@@ -1,5 +1,6 @@
 package com.kunlun.api.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.BrandClient;
 import com.kunlun.api.service.BrandService;
 import com.kunlun.entity.Brand;
@@ -7,7 +8,7 @@ import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * @author by fk
@@ -65,4 +66,16 @@ public class BrandServiceImpl implements BrandService {
     public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey) {
         return brandClient.findByCondition(pageNo, pageSize, searchKey);
     }
+
+    /**
+     * 批量删除品牌状态
+     *
+     * @param object
+     * @return
+     */
+    @Override
+    public DataRet batchModifyStatus(JSONObject object) {
+        return brandClient.batchModifyStatus(object);
+    }
+
 }
