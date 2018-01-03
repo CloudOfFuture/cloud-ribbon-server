@@ -69,4 +69,7 @@ public interface BrandClient {
      */
     @PostMapping("/brand/batchModifyStatus")
     DataRet batchModifyStatus(@RequestBody JSONObject object);
+
+    Long l=140L;
+    Integer i =212;
 }
