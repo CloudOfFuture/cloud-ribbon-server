@@ -1,11 +1,11 @@
 package com.kunlun.api.controller;
 
 import com.kunlun.api.service.PointService;
+import com.kunlun.entity.Point;
+import com.kunlun.result.DataRet;
+import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author by kunlun
@@ -19,9 +19,57 @@ public class PointController {
     @Autowired
     private PointService pointService;
 
+
+    /**
+     * 积分检查
+     *
+     * @param pointValue
+     * @param wxCode
+     * @return
+     */
     @GetMapping("/checkPoint")
-    public String checkPoint(@RequestParam(value = "pointValue") Integer pointValue,
-                             @RequestParam(value = "openid") String openid) {
-        return pointService.checkPoint(pointValue,openid);
+    public DataRet<String> checkPoint(@RequestParam(value = "pointValue") Integer pointValue,
+                             @RequestParam(value = "wxCode") String wxCode) {
+        return pointService.checkPoint(pointValue,wxCode);
     }
+
+
+    /**
+     * 根据userId查询用户积分
+     * @param wxCode
+     * @return
+     */
+    @GetMapping("/findPointByUserId")
+    public DataRet<Point> findPointByUserId(@RequestParam(value = "wxCode") String wxCode){
+        return pointService.findPointByUserId(wxCode);
+    }
+
+
+    /**
+     * 获取积分记录列表
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param wxCode
+     * @return
+     */
+    @GetMapping("/findPointLog")
+    public PageResult findPointLog(@RequestParam(value = "pageNo") Integer pageNo,
+                                   @RequestParam(value = "pageSize") Integer pageSize,
+                                   @RequestParam(value = "wxCode") String wxCode){
+        return pointService.findPointLog(pageNo,pageSize,wxCode);
+    }
+
+    /**
+     * 操作用户积分（增,减）
+     * @param point
+     * @param wxCode
+     * @return
+     */
+    @PostMapping("/updatePoint")
+    public DataRet<String> updatePoint(@RequestParam(value = "point") Integer point,
+                                       @RequestParam(value = "wxCode") String wxCode){
+        return pointService.updatePoint(point,wxCode);
+    }
+
 }
