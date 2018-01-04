@@ -3,10 +3,12 @@ package com.kunlun.api.client;
 import com.kunlun.api.hystrix.TicketClientHystrix;
 import com.kunlun.entity.Ticket;
 import com.kunlun.result.DataRet;
+import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author by fk
@@ -24,4 +26,17 @@ public interface TicketClient {
      */
     @PostMapping("/ticket/add")
     DataRet add(@RequestBody Ticket ticket);
+
+    /**
+     * 模糊查询优惠券（带分页）
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param searchKey
+     * @return
+     */
+    @GetMapping("/ticket/findByCondition")
+    PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
+                               @RequestParam(value = "pageSize") Integer pageSize,
+                               @RequestParam(value = "searchKey", required = false) String searchKey);
 }

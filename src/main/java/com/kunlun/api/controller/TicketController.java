@@ -3,11 +3,9 @@ package com.kunlun.api.controller;
 import com.kunlun.api.service.TicketService;
 import com.kunlun.entity.Ticket;
 import com.kunlun.result.DataRet;
+import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author by fk
@@ -30,5 +28,20 @@ public class TicketController {
     @PostMapping("/add")
     public DataRet add(@RequestBody Ticket ticket) {
         return ticketService.add(ticket);
+    }
+
+    /**
+     * 模糊查询优惠券（带分页）
+     *
+     * @param pageNo    页码
+     * @param pageSize  数量
+     * @param searchKey 关键字
+     * @return
+     */
+    @GetMapping("/findByCondition")
+    public PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
+                                      @RequestParam(value = "pageSize") Integer pageSize,
+                                      @RequestParam(value = "searchKey", required = false) String searchKey) {
+        return ticketService.findByCondition(pageNo, pageSize, searchKey);
     }
 }

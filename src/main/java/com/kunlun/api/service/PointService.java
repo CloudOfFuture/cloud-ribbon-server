@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @version <0.1>
  * @created on 2017/12/22.
  */
-@FeignClient(value = "cloud-service-user-center", fallback = PointServiceHystrix.class)
 public interface PointService {
 
 

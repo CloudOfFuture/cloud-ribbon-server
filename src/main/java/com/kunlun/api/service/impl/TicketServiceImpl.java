@@ -4,6 +4,7 @@ import com.kunlun.api.client.TicketClient;
 import com.kunlun.api.service.TicketService;
 import com.kunlun.entity.Ticket;
 import com.kunlun.result.DataRet;
+import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +28,18 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public DataRet add(Ticket ticket) {
         return ticketClient.add(ticket);
+    }
+
+    /**
+     * 模糊查询优惠券（带分页）
+     *
+     * @param pageNo
+     * @param pageSize
+     * @param searchKey
+     * @return
+     */
+    @Override
+    public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey) {
+        return ticketClient.findByCondition(pageNo, pageSize, searchKey);
     }
 }
