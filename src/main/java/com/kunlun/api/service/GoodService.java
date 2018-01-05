@@ -119,4 +119,12 @@ public interface GoodService {
     DataRet<String> updateStock(Long id, Integer count);
 
 
+    /**
+     * 商品销量
+     *
+     * @param count
+     * @param goodId
+     * @return
+     */
+    DataRet<String> updateSaleVolume(Integer count, Long goodId);
 }

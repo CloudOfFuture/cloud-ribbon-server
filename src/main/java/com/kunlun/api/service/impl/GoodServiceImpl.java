@@ -150,6 +150,19 @@ public class GoodServiceImpl implements GoodService {
      */
     @Override
     public DataRet<String> updateStock(Long id, Integer count) {
-        return updateStock(id,count);
+        return goodClient.updateStock(id,count);
+    }
+
+
+    /**
+     * 商品销量
+     *
+     * @param count
+     * @param goodId
+     * @return
+     */
+    @Override
+    public DataRet<String> updateSaleVolume(Integer count, Long goodId) {
+        return goodClient.updateSaleVolume(count,goodId);
     }
 }
