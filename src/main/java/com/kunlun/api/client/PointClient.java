@@ -24,20 +24,20 @@ public interface PointClient {
      * 积分检查
      *
      * @param pointValue
-     * @param wxCode
+     * @param openid
      * @return
      */
     @GetMapping("/point/checkPoint")
      DataRet<String> checkPoint(@RequestParam(value = "pointValue") Integer pointValue,
-                                      @RequestParam(value = "wxCode") String wxCode);
+                                      @RequestParam(value = "openid") String openid);
 
     /**
      * 根据userId查询用户积分
-     * @param wxCode
+     * @param userId
      * @return
      */
     @GetMapping("/point/findPointByUserId")
-     DataRet<Point> findPointByUserId(@RequestParam(value = "wxCode") String wxCode);
+     DataRet<Point> findPointByUserId(@RequestParam(value = "userId") String userId);
 
 
     /**
@@ -62,5 +62,5 @@ public interface PointClient {
      */
     @PostMapping("/updatePoint")
      DataRet<String> updatePoint(@RequestParam(value = "point") Integer point,
-                                       @RequestParam(value = "wxCode") String wxCode);
+                                       @RequestParam(value = "userId") String userId);
 }
