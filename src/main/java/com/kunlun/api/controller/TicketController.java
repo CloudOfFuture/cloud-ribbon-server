@@ -44,4 +44,15 @@ public class TicketController {
                                       @RequestParam(value = "searchKey", required = false) String searchKey) {
         return ticketService.findByCondition(pageNo, pageSize, searchKey);
     }
+
+    /**
+     * 修改优惠券
+     *
+     * @param ticket 优惠券
+     * @return
+     */
+    @PostMapping("/modifyByTicket")
+    public DataRet modifyByTicket(@RequestBody Ticket ticket) {
+        return ticketService.modifyByTicket(ticket);
+    }
 }

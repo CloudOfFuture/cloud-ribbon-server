@@ -42,4 +42,15 @@ public class TicketServiceImpl implements TicketService {
     public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey) {
         return ticketClient.findByCondition(pageNo, pageSize, searchKey);
     }
+
+    /**
+     * 修改优惠券
+     *
+     * @param ticket
+     * @return
+     */
+    @Override
+    public DataRet modifyByTicket(Ticket ticket) {
+        return ticketClient.modifyByTicket(ticket);
+    }
 }
