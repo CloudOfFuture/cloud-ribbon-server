@@ -53,4 +53,15 @@ public class TicketServiceImpl implements TicketService {
     public DataRet modifyByTicket(Ticket ticket) {
         return ticketClient.modifyByTicket(ticket);
     }
+
+    /**
+     * 根据主键id删除优惠券
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet deleteById(Long id) {
+        return ticketClient.deleteById(id);
+    }
 }

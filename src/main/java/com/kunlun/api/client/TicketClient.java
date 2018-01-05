@@ -48,4 +48,13 @@ public interface TicketClient {
      */
     @PostMapping("/ticket/modifyByTicket")
     DataRet modifyByTicket(@RequestBody Ticket ticket);
+
+    /**
+     * 根据主键id删除优惠券
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/ticket/deleteById")
+    DataRet deleteById(@RequestParam(value = "id") Long id);
 }

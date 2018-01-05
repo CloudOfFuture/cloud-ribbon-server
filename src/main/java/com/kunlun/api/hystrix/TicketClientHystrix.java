@@ -48,4 +48,15 @@ public class TicketClientHystrix implements TicketClient {
     public DataRet modifyByTicket(Ticket ticket) {
         return new DataRet("ERROR", "修改优惠券失败");
     }
+
+    /**
+     * 根据主键id删除优惠券
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet deleteById(Long id) {
+        return new DataRet("ERROR", "删除优惠卷失败");
+    }
 }

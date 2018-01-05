@@ -55,4 +55,16 @@ public class TicketController {
     public DataRet modifyByTicket(@RequestBody Ticket ticket) {
         return ticketService.modifyByTicket(ticket);
     }
+
+    /**
+     * 根据主键id删除优惠券
+     *
+     * @param id 主键id
+     * @return
+     */
+    @GetMapping("deleteById")
+    public DataRet deleteById(@RequestParam(value = "id") Long id) {
+        return ticketService.deleteById(id);
+    }
+
 }
