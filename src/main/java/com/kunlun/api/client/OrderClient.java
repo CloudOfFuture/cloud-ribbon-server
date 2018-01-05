@@ -89,14 +89,20 @@ public interface OrderClient {
      * @return
      */
     @GetMapping("/findByIdForOrder")
-    Order findByIdForOrder(@RequestParam("orderId") Long orderId, @RequestParam("sellerId") Long sellerId);
+    DataRet<Order> findByIdForOrder(@RequestParam("orderId") Long orderId, @RequestParam("sellerId") Long sellerId);
 
     /**
-     * 修改订单信息
+     * 退款审核
      *
-     * @param order
-     * @return
+     * @param orderId   Long
+     * @param flag      AGREE 同意  REFUSE  拒绝
+     * @param remark    String
+     * @param refundFee Integer
+     * @return DataRet
      */
-    @PostMapping("/refund")
-    DataRet<String> refund(@RequestBody Order order);
+    @PostMapping("/order/audit/refund")
+    DataRet<String> auditRefund(@RequestParam("orderId") Long orderId,
+                                @RequestParam("flag") String flag,
+                                @RequestParam(value = "remark") String remark,
+                                @RequestParam(value = "refundFee") Integer refundFee);
 }

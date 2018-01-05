@@ -88,4 +88,21 @@ public class OrderController {
     public DataRet<Order> findById(@RequestParam Long orderId, @RequestHeader Long sellerId) {
         return orderService.findById(orderId, sellerId);
     }
+
+    /**
+     * 退款
+     *
+     * @param orderId   Long
+     * @param flag     AGREE 同意  REFUSE  拒绝
+     * @param remark    String
+     * @param refundFee Integer
+     * @return DataRet
+     */
+    @PostMapping("/audit/refund")
+    public DataRet<String> auditRefund(@RequestParam("orderId") Long orderId,
+                                       @RequestParam("flag") String flag,
+                                       @RequestParam(value = "remark", required = false) String remark,
+                                       @RequestParam(value = "refundFee") Integer refundFee) {
+        return orderService.auditRefund(orderId, flag, remark, refundFee);
+    }
 }

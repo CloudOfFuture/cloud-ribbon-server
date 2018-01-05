@@ -78,12 +78,12 @@ public class OrderClientHystrix implements OrderClient {
     }
 
     @Override
-    public Order findByIdForOrder(Long orderId, Long sellerId) {
-        return null;
+    public DataRet<Order> findByIdForOrder(Long orderId, Long sellerId) {
+        return new DataRet<>("ERROR", "请求失败");
     }
 
     @Override
-    public DataRet<String> refund(Order order) {
-        return null;
+    public DataRet<String> auditRefund(Long orderId, String flag, String remark, Integer refundFee) {
+        return new DataRet<>("ERROR", "请求失败");
     }
 }

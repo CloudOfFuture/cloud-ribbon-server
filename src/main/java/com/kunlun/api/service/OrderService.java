@@ -77,7 +77,6 @@ public interface OrderService {
      * @param refundFee
      * @return
      */
-    DataRet<String> refund(Long orderId, String flag, String remark, Integer refundFee,Long sellerId);
-
+    DataRet<String> auditRefund(Long orderId, String flag, String remark, Integer refundFee);
 
 }

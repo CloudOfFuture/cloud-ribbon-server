@@ -9,6 +9,7 @@ import com.kunlun.entity.OrderLog;
 import com.kunlun.enums.CommonEnum;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
+import com.kunlun.utils.CommonUtil;
 import com.kunlun.wxentity.OrderCondition;
 import com.mysql.jdbc.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,35 +123,19 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * 退款
+     * 退款审核
      *
      * @param orderId
-     * @param flag      AGREE   REFUSE
+     * @param flag      AGREE 同意  REFUSE  拒绝
      * @param remark
      * @param refundFee
      * @return
      */
     @Override
-    public DataRet<String> refund(Long orderId, String flag, String remark, Integer refundFee, Long sellerId) {
-        Order order = orderClient.findByIdForOrder(orderId, sellerId);
-        if (null == order) {
-            return new DataRet<>("ERROR", "订单不存在");
-        }
-        Order postOrder;
-        //退款
-        if (CommonEnum.REFUSE.getCode().equals(flag)) {
-            postOrder = constructOrder(orderId, CommonEnum.REFUND_FAIL.getCode(), 0, remark);
-        } else {
-            postOrder = constructOrder(orderId, CommonEnum.REFUND_SUCCESS.getCode(), refundFee, remark);
-        }
-        DataRet<String> refundRet = orderClient.refund(postOrder);
-        if (!refundRet.isSuccess()) {
-            return refundRet;
-        }
+    public DataRet<String> auditRefund(Long orderId, String flag, String remark, Integer refundFee) {
         //创建待退款日志
-        logClient.addOrderLog(orderLog(order.getId(), order.getOrderNo(), "等待退款"));
-        // TODO  定时任务 退款待处理  库存回退 积分返还
-        return new DataRet<>("退款成功");
+        logClient.addOrderLog(CommonUtil.constructOrderLog(null, "等待退款", "", orderId));
+        return orderClient.auditRefund(orderId, flag, remark, refundFee);
     }
 
 
