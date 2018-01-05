@@ -39,4 +39,13 @@ public interface TicketClient {
     PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
                                @RequestParam(value = "pageSize") Integer pageSize,
                                @RequestParam(value = "searchKey", required = false) String searchKey);
+
+    /**
+     * 修改优惠券
+     *
+     * @param ticket
+     * @return
+     */
+    @PostMapping("/ticket/modifyByTicket")
+    DataRet modifyByTicket(@RequestBody Ticket ticket);
 }

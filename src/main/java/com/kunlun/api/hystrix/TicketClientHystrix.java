@@ -35,6 +35,17 @@ public class TicketClientHystrix implements TicketClient {
      */
     @Override
     public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey) {
-        return new PageResult("ERROR","查询失败");
+        return new PageResult("ERROR", "查询失败");
+    }
+
+    /**
+     * 修改优惠券
+     *
+     * @param ticket
+     * @return
+     */
+    @Override
+    public DataRet modifyByTicket(Ticket ticket) {
+        return new DataRet("ERROR", "修改优惠券失败");
     }
 }
