@@ -8,6 +8,8 @@ import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author by fk
  * @version <0.1>
@@ -63,5 +65,16 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public DataRet deleteById(Long id) {
         return ticketClient.deleteById(id);
+    }
+
+    /**
+     * 根据主键id批量删除优惠券
+     *
+     * @param list
+     * @return
+     */
+    @Override
+    public DataRet batchDeleteById(List<Long> list) {
+        return ticketClient.batchDeleteById(list);
     }
 }

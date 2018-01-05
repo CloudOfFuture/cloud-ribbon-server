@@ -4,6 +4,8 @@ import com.kunlun.entity.Ticket;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 
+import java.util.List;
+
 /**
  * @author by fk
  * @version <0.1>
@@ -44,4 +46,12 @@ public interface TicketService {
      * @return
      */
     DataRet deleteById(Long id);
+
+    /**
+     * 根据主键id删除优惠券
+     *
+     * @param list
+     * @return
+     */
+    DataRet batchDeleteById(List<Long> list);
 }

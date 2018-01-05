@@ -6,6 +6,8 @@ import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author by fk
  * @version <0.1>
@@ -58,5 +60,16 @@ public class TicketClientHystrix implements TicketClient {
     @Override
     public DataRet deleteById(Long id) {
         return new DataRet("ERROR", "删除优惠卷失败");
+    }
+
+    /**
+     * 根据主键id批量删除优惠券
+     *
+     * @param list
+     * @return
+     */
+    @Override
+    public DataRet batchDeleteById(List<Long> list) {
+        return new DataRet("ERROR", "批量删除优惠券失败");
     }
 }

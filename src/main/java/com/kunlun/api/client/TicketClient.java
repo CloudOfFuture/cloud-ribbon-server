@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * @author by fk
  * @version <0.1>
@@ -57,4 +59,13 @@ public interface TicketClient {
      */
     @GetMapping("/ticket/deleteById")
     DataRet deleteById(@RequestParam(value = "id") Long id);
+
+    /**
+     * 根据主键id批量删除优惠券
+     *
+     * @param list
+     * @return
+     */
+    @PostMapping("/ticket/batchDeleteById")
+    DataRet batchDeleteById(@RequestBody List<Long> list);
 }
