@@ -68,4 +68,13 @@ public interface TicketClient {
      */
     @PostMapping("/ticket/batchDeleteById")
     DataRet batchDeleteById(@RequestBody List<Long> list);
+
+    /**
+     * 根据主键id查询优惠券详情
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/ticket/findById")
+    DataRet findById(@RequestParam(value = "id") Long id);
 }

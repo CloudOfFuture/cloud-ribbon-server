@@ -72,4 +72,15 @@ public class TicketClientHystrix implements TicketClient {
     public DataRet batchDeleteById(List<Long> list) {
         return new DataRet("ERROR", "批量删除优惠券失败");
     }
+
+    /**
+     * 根据主键id查询优惠券详情
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet findById(Long id) {
+        return new DataRet("ERROR", "查询优惠券详情出错");
+    }
 }

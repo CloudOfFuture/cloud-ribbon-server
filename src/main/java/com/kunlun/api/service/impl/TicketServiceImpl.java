@@ -77,4 +77,15 @@ public class TicketServiceImpl implements TicketService {
     public DataRet batchDeleteById(List<Long> list) {
         return ticketClient.batchDeleteById(list);
     }
+
+    /**
+     * 根据主键id查询优惠券详情
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet findById(Long id) {
+        return ticketClient.findById(id);
+    }
 }

@@ -81,4 +81,15 @@ public class TicketController {
         List<Long> list = object.getJSONArray("list").toJavaList(Long.class);
         return ticketService.batchDeleteById(list);
     }
+
+    /**
+     * 根据主键id查询优惠券详情
+     *
+     * @param id 主键
+     * @return
+     */
+    @GetMapping("/findById")
+    public DataRet findById(@RequestParam(value = "id") Long id) {
+        return ticketService.findById(id);
+    }
 }
