@@ -20,18 +20,18 @@ public interface PointService {
      * 积分校验
      *
      * @param pointValue
-     * @param wxCode
+     * @param openid
      * @return
      */
-    DataRet<String> checkPoint(Integer pointValue, String wxCode);
+    DataRet<String> checkPoint(Integer pointValue, String openid);
 
     /**
      * 获取积分详情
      *
-     * @param wxCode
+     * @param userId
      * @return
      */
-    DataRet<Point> findPointByUserId(String wxCode);
+    DataRet<Point> findPointByUserId(String userId);
 
     /**
      *
@@ -48,8 +48,8 @@ public interface PointService {
      * 操作用户积分
      *
      * @param point
-     * @param wxCode
+     * @param userId
      * @return
      */
-    DataRet<String> updatePoint(Integer point, String wxCode);
+    DataRet<String> updatePoint(Integer point, String userId);
 }
