@@ -150,4 +150,17 @@ public interface GoodClient {
     @PostMapping("/backstage/good/updateStock")
     DataRet<String> updateStock(@RequestParam(value = "id") Long id,
                                 @RequestParam(value = "count") Integer count);
+
+
+
+    /**
+     * 商品销量
+     *
+     * @param count
+     * @param goodId
+     * @return
+     */
+    @PostMapping("/backstage/good/updateSaleVolume")
+     DataRet<String> updateSaleVolume(@RequestParam(value = "count") Integer count,
+                                            @RequestParam(value = "goodId") Long goodId);
 }

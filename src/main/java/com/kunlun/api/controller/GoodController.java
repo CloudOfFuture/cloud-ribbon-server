@@ -168,4 +168,18 @@ public class GoodController {
                                   @RequestParam(value = "count") Integer count){
         return goodService.updateStock(id,count);
     }
+
+
+    /**
+     * 商品销量
+     *
+     * @param count
+     * @param goodId
+     * @return
+     */
+    @PostMapping("/updateSaleVolume")
+    public DataRet<String> updateSaleVolume(@RequestParam(value = "count") Integer count,
+                                            @RequestParam(value = "goodId") Long goodId){
+        return goodService.updateSaleVolume(count,goodId);
+    }
 }
