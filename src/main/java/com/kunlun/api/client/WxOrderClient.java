@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @version <0.1>
  * @created on 2017/12/26.
  */
-@FeignClient(value = "cloud-service-order", fallback = WxOrderClientHystrix.class)
+@FeignClient(value = "cloud-service-order")
 public interface WxOrderClient {
 
     /**
