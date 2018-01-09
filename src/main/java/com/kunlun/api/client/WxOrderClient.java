@@ -6,6 +6,7 @@ import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -22,8 +23,8 @@ public interface WxOrderClient {
      * @param orderId
      * @return
      */
-    @GetMapping("/wx/order/refund")
-    DataRet<String> refund(@RequestParam(value = "orderId") Long orderId);
+    @GetMapping("/wx/order/applyRefund")
+    DataRet<String> applyRefund(@RequestParam(value = "orderId") Long orderId);
 
 
     /**
@@ -51,4 +52,26 @@ public interface WxOrderClient {
      */
     @GetMapping("/wx/order/findById")
     DataRet<Order> findById(@RequestParam(value = "orderId") Long orderId);
+
+    /**
+     * 确认收货
+     *
+     * @param orderId   订单id
+     * @param ipAddress 请求ip
+     * @return
+     */
+    @PostMapping("/wx/order/confirmByGood")
+    DataRet<String> confirmByGood(@RequestParam("orderId") Long orderId,
+                                  @RequestParam("ipAddress") String ipAddress);
+
+    /**
+     * 取消订单
+     *
+     * @param orderId   订单id
+     * @param ipAddress 请求ip
+     * @return
+     */
+    @PostMapping("/wx/order/cancelByOrder")
+    DataRet<String> cancelByOrder(@RequestParam("orderId") Long orderId,
+                                  @RequestParam("ipAddress") String ipAddress);
 }
