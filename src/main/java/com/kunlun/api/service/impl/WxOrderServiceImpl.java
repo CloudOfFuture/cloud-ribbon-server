@@ -27,8 +27,8 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @return
      */
     @Override
-    public DataRet<String> refund(Long orderId) {
-        return wxOrderClient.refund(orderId);
+    public DataRet<String> applyRefund(Long orderId) {
+        return wxOrderClient.applyRefund(orderId);
     }
 
     /**
@@ -55,5 +55,27 @@ public class WxOrderServiceImpl implements WxOrderService {
     @Override
     public DataRet<Order> findById(Long orderId) {
         return wxOrderClient.findById(orderId);
+    }
+    /**
+     * 取消订单
+     *
+     * @param orderId 订单id
+     * @param ipAddress 请求ip
+     * @return
+     */
+    @Override
+    public DataRet<String> cancelByOrder(Long orderId, String ipAddress) {
+        return wxOrderClient.cancelByOrder(orderId, ipAddress);
+    }
+    /**
+     * 确认收货
+     *
+     * @param orderId 订单id
+     * @param ipAddress 请求ip
+     * @return
+     */
+    @Override
+    public DataRet<String> confirmByGood(Long orderId, String ipAddress) {
+        return wxOrderClient.confirmByGood(orderId, ipAddress);
     }
 }

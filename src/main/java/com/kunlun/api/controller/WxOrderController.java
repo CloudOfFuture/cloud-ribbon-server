@@ -5,6 +5,7 @@ import com.kunlun.entity.Order;
 import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
+import com.kunlun.utils.IpUtil;
 import com.kunlun.wxentity.OrderCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 微信订单接口
@@ -52,9 +55,9 @@ public class WxOrderController {
      *
      * @return
      */
-    @GetMapping("/refund")
-    public DataRet<String> refund(@RequestParam(value = "orderId") Long orderId) {
-        return wxOrderService.refund(orderId);
+    @GetMapping("/applyRefund")
+    public DataRet<String> applyRefund(@RequestParam(value = "orderId") Long orderId) {
+        return wxOrderService.applyRefund(orderId);
     }
 
     /**
@@ -68,5 +71,31 @@ public class WxOrderController {
         return wxOrderService.findById(orderId);
     }
 
+    /**
+     * 确认收货
+     *
+     * @param orderId 订单id
+     * @param request 请求ip
+     * @return
+     */
+    @PostMapping("/confirmByGood")
+    public DataRet<String> confirmByGood(@RequestParam(value = "orderId") Long orderId,
+                                         HttpServletRequest request) {
+        String ipAddress = IpUtil.getIPAddress(request);
+        return wxOrderService.confirmByGood(orderId, ipAddress);
+    }
 
+    /**
+     * 取消订单
+     *
+     * @param orderId 订单id
+     * @param request 请求ip
+     * @return
+     */
+    @PostMapping("/cancelByOrder")
+    public DataRet<String> cancelByOrder(@RequestParam(value = "orderId") Long orderId,
+                                         HttpServletRequest request) {
+        String ipAddress = IpUtil.getIPAddress(request);
+        return wxOrderService.cancelByOrder(orderId, ipAddress);
+    }
 }
