@@ -3,6 +3,7 @@ package com.kunlun.api.service.impl;
 import com.kunlun.api.client.WxOrderClient;
 import com.kunlun.api.service.WxOrderService;
 import com.kunlun.entity.Order;
+import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @return
      */
     @Override
-    public DataRet<Order> findById(Long orderId) {
+    public DataRet<OrderExt> findById(Long orderId) {
         return wxOrderClient.findById(orderId);
     }
 }

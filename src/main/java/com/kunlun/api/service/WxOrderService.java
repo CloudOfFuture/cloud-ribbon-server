@@ -1,6 +1,7 @@
 package com.kunlun.api.service;
 
 import com.kunlun.entity.Order;
+import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 
@@ -39,5 +40,5 @@ public interface WxOrderService {
      * @param orderId
      * @return
      */
-    DataRet<Order> findById(Long orderId);
+    DataRet<OrderExt> findById(Long orderId);
 }

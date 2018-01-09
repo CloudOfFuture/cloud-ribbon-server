@@ -2,6 +2,7 @@ package com.kunlun.api.client;
 
 import com.kunlun.api.hystrix.WxOrderClientHystrix;
 import com.kunlun.entity.Order;
+import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -50,5 +51,5 @@ public interface WxOrderClient {
      * @return
      */
     @GetMapping("/wx/order/findById")
-    DataRet<Order> findById(@RequestParam(value = "orderId") Long orderId);
+    DataRet<OrderExt> findById(@RequestParam(value = "orderId") Long orderId);
 }

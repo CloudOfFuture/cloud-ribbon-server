@@ -64,7 +64,7 @@ public class WxOrderController {
      * @return
      */
     @GetMapping("/findById")
-    public DataRet<Order> findById(@RequestParam(value = "orderId") Long orderId) {
+    public DataRet<OrderExt> findById(@RequestParam(value = "orderId") Long orderId) {
         return wxOrderService.findById(orderId);
     }
 

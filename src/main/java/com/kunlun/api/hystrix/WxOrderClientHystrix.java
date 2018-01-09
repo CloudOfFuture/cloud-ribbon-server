@@ -51,7 +51,7 @@ public class WxOrderClientHystrix implements WxOrderClient {
      * @return
      */
     @Override
-    public DataRet<Order> findById(Long orderId) {
+    public DataRet<OrderExt> findById(Long orderId) {
         return new DataRet<>("ERROR", "订单详情接口异常");
     }
 }
