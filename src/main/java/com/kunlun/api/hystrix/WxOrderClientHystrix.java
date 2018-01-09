@@ -25,7 +25,7 @@ public class WxOrderClientHystrix implements WxOrderClient {
      * @return
      */
     @Override
-    public DataRet<String> refund(Long orderId) {
+    public DataRet<String> applyRefund(Long orderId) {
         return new DataRet<>("ERROR", "退款接口异常");
     }
 
@@ -53,5 +53,15 @@ public class WxOrderClientHystrix implements WxOrderClient {
     @Override
     public DataRet<OrderExt> findById(Long orderId) {
         return new DataRet<>("ERROR", "订单详情接口异常");
+    }
+
+    @Override
+    public DataRet<String> confirmByGood(Long orderId, String ipAddress) {
+        return new DataRet<>("ERROR", "接口异常");
+    }
+
+    @Override
+    public DataRet<String> cancelByOrder(Long orderId, String ipAddress) {
+        return new DataRet<>("ERROR", "接口异常");
     }
 }

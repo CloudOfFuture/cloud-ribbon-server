@@ -2,11 +2,11 @@ package com.kunlun.api.client;
 
 import com.kunlun.api.hystrix.WxOrderClientHystrix;
 import com.kunlun.entity.Order;
-import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @version <0.1>
  * @created on 2017/12/26.
  */
-@FeignClient(value = "cloud-service-order")
+@FeignClient(value = "cloud-service-order", fallback = WxOrderClientHystrix.class)
 public interface WxOrderClient {
 
     /**
@@ -23,8 +23,8 @@ public interface WxOrderClient {
      * @param orderId
      * @return
      */
-    @GetMapping("/wx/order/refund")
-    DataRet<String> refund(@RequestParam(value = "orderId") Long orderId);
+    @GetMapping("/wx/order/applyRefund")
+    DataRet<String> applyRefund(@RequestParam(value = "orderId") Long orderId);
 
 
     /**
@@ -51,5 +51,27 @@ public interface WxOrderClient {
      * @return
      */
     @GetMapping("/wx/order/findById")
-    DataRet<OrderExt> findById(@RequestParam(value = "orderId") Long orderId);
+    DataRet<Order> findById(@RequestParam(value = "orderId") Long orderId);
+
+    /**
+     * 确认收货
+     *
+     * @param orderId   订单id
+     * @param ipAddress 请求ip
+     * @return
+     */
+    @PostMapping("/wx/order/confirmByGood")
+    DataRet<String> confirmByGood(@RequestParam("orderId") Long orderId,
+                                  @RequestParam("ipAddress") String ipAddress);
+
+    /**
+     * 取消订单
+     *
+     * @param orderId   订单id
+     * @param ipAddress 请求ip
+     * @return
+     */
+    @PostMapping("/wx/order/cancelByOrder")
+    DataRet<String> cancelByOrder(@RequestParam("orderId") Long orderId,
+                                  @RequestParam("ipAddress") String ipAddress);
 }

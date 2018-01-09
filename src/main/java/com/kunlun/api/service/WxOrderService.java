@@ -1,7 +1,6 @@
 package com.kunlun.api.service;
 
 import com.kunlun.entity.Order;
-import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 
@@ -19,7 +18,7 @@ public interface WxOrderService {
      * @param orderId
      * @return
      */
-    DataRet<String> refund(Long orderId);
+    DataRet<String> applyRefund(Long orderId);
 
 
     /**
@@ -40,5 +39,23 @@ public interface WxOrderService {
      * @param orderId
      * @return
      */
-    DataRet<OrderExt> findById(Long orderId);
+    DataRet<Order> findById(Long orderId);
+
+    /**
+     * 取消订单
+     *
+     * @param orderId
+     * @param ipAddress
+     * @return
+     */
+    DataRet<String> cancelByOrder(Long orderId, String ipAddress);
+
+    /**
+     * 确认收货
+     *
+     * @param orderId
+     * @param ipAddress
+     * @return
+     */
+    DataRet<String> confirmByGood(Long orderId, String ipAddress);
 }
