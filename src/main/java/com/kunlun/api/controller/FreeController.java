@@ -33,6 +33,7 @@ public class FreeController {
     @PostMapping("/apply")
     public DataRet apply(@RequestBody UnifiedRequestData unifiedRequestData, HttpServletRequest request){
         String ipAddress= IpUtil.getIPAddress(request);
-        return freeService.apply(unifiedRequestData,ipAddress);
+        unifiedRequestData.setIpAddress(ipAddress);
+        return freeService.apply(unifiedRequestData);
     }
 }

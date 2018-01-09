@@ -15,8 +15,7 @@ public interface FreeService {
      *
      *
      * @param unifiedRequestData
-     * @param ipAddress
      * @return
      */
-    DataRet apply(UnifiedRequestData unifiedRequestData, String ipAddress);
+    DataRet apply(UnifiedRequestData unifiedRequestData);
 }

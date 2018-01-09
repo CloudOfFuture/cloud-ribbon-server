@@ -21,9 +21,8 @@ public interface FreeClient {
      * 试用预付款订单
      *
      * @param unifiedRequestData
-     * @param ipAddress
      * @return
      */
     @PostMapping("/wx/free/apply")
-     DataRet apply(@RequestBody UnifiedRequestData unifiedRequestData,String ipAddress);
+     DataRet apply(@RequestBody UnifiedRequestData unifiedRequestData);
 }

@@ -24,11 +24,10 @@ public class FreeServiceImpl implements FreeService{
      *
      *
      * @param unifiedRequestData
-     * @param ipAddress
      * @return
      */
     @Override
-    public DataRet apply(UnifiedRequestData unifiedRequestData,String ipAddress) {
-        return freeClient.apply(unifiedRequestData,ipAddress);
+    public DataRet apply(UnifiedRequestData unifiedRequestData) {
+        return freeClient.apply(unifiedRequestData);
     }
 }
