@@ -19,11 +19,11 @@ public class FreeClientHystrix implements FreeClient{
      * 生成预付款订单
      *
      * @param unifiedRequestData
-     * @param request
+     * @param ipAddress
      * @return
      */
     @Override
-    public DataRet apply(UnifiedRequestData unifiedRequestData, HttpServletRequest request) {
+    public DataRet apply(UnifiedRequestData unifiedRequestData,String ipAddress) {
         return new DataRet("ERROR","生成预付款订单失败");
     }
 }

@@ -31,8 +31,8 @@ public class FreeController {
      * @return
      */
     @PostMapping("/apply")
-    public DataRet apply(@RequestBody UnifiedRequestData unifiedRequestData,
-                         HttpServletRequest request){
-        return freeService.apply(unifiedRequestData,request);
+    public DataRet apply(@RequestBody UnifiedRequestData unifiedRequestData, HttpServletRequest request){
+        String ipAddress= IpUtil.getIPAddress(request);
+        return freeService.apply(unifiedRequestData,ipAddress);
     }
 }

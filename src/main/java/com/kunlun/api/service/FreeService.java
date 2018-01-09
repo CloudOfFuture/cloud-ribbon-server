@@ -2,7 +2,6 @@ package com.kunlun.api.service;
 
 import com.kunlun.result.DataRet;
 import com.kunlun.wxentity.UnifiedRequestData;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 
 /**
  * @author by hmy
@@ -16,8 +15,8 @@ public interface FreeService {
      *
      *
      * @param unifiedRequestData
-     * @param request
+     * @param ipAddress
      * @return
      */
-    DataRet apply(UnifiedRequestData unifiedRequestData, HttpServletRequest request);
+    DataRet apply(UnifiedRequestData unifiedRequestData, String ipAddress);
 }
