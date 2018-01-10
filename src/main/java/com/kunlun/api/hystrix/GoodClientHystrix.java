@@ -82,11 +82,11 @@ public class GoodClientHystrix implements GoodClient {
     /**
      * 批量删除商品
      *
-     * @param idList
+     * @param object
      * @return
      */
     @Override
-    public DataRet<String> deleteByIdList(List<Long> idList) {
+    public DataRet<String> deleteByIdList(JSONObject object) {
         return new DataRet<>("ERROR","批量删除失败");
     }
 

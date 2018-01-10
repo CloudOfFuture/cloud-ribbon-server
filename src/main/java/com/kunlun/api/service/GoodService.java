@@ -66,10 +66,10 @@ public interface GoodService {
     /**
      * 批量删除
      *
-     * @param idList
+     * @param object
      * @return
      */
-    DataRet<String> deleteByIdList(List<Long> idList);
+    DataRet<String> deleteByIdList(JSONObject object);
 
 
     /**

@@ -87,12 +87,12 @@ public class GoodServiceImpl implements GoodService {
     /**
      * 批量删除
      *
-     * @param idList
+     * @param object
      * @return
      */
     @Override
-    public DataRet<String> deleteByIdList(List<Long> idList) {
-        return goodClient.deleteByIdList(idList);
+    public DataRet<String> deleteByIdList(JSONObject object) {
+        return goodClient.deleteByIdList(object);
     }
 
     /**

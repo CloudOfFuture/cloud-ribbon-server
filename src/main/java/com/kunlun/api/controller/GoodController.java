@@ -99,13 +99,12 @@ public class GoodController {
     /**
      * 批量删除
      *
-     * @param jsonArray
+     * @param object
      * @return
      */
     @PostMapping("/deleteByIdList")
-    public DataRet<String> deleteByIdList(@RequestBody JSONArray jsonArray) {
-        List<Long> idList = jsonArray.toJavaList(Long.class);
-        return goodService.deleteByIdList(idList);
+    public DataRet<String> deleteByIdList(@RequestBody JSONObject object) {
+        return goodService.deleteByIdList(object);
     }
 
 
