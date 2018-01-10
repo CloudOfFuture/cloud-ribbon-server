@@ -36,7 +36,7 @@ public interface OrderClient {
      * @param orderNo   订单编号
      * @param phone     收货人手机号
      * @param status    订单状态
-     * @param type      订单类型
+     * @param orderType      订单类型
      * @param searchKey 搜索关键字
      * @param pageNo    当前页
      * @param pageSize  每页条数
@@ -46,7 +46,7 @@ public interface OrderClient {
     PageResult list(@RequestParam("orderNo") String orderNo,
                     @RequestParam("phone") String phone,
                     @RequestParam("status") String status,
-                    @RequestParam("type") String type,
+                    @RequestParam("type") String orderType,
                     @RequestParam("searchKey") String searchKey,
                     @RequestParam("pageNo") Integer pageNo,
                     @RequestParam("pageSize") Integer pageSize);

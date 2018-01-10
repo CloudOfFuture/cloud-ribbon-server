@@ -47,16 +47,16 @@ public class OrderServiceImpl implements OrderService {
      * @param orderNo   订单编号
      * @param phone     收货人手机号
      * @param status    订单状态
-     * @param type      订单类型
+     * @param orderType 订单类型
      * @param searchKey 搜索关键字
      * @param pageNo    当前页
      * @param pageSize  每页条数
      * @return
      */
     @Override
-    public PageResult list(String orderNo, String phone, String status, String type,
+    public PageResult list(String orderNo, String phone, String status, String orderType,
                            String searchKey, Integer pageNo, Integer pageSize) {
-        return orderClient.list(orderNo, phone, status, type, searchKey, pageNo, pageSize);
+        return orderClient.list(orderNo, phone, status, orderType, searchKey, pageNo, pageSize);
     }
 
     /**

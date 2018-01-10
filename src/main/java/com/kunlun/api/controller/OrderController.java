@@ -34,21 +34,21 @@ public class OrderController {
      * @param orderNo   订单编号
      * @param phone     收货人手机号
      * @param status    订单状态
-     * @param type      订单类型
+     * @param orderType 订单类型
      * @param searchKey 搜索关键字
      * @param pageNo    当前页
      * @param pageSize  每页条数
      * @return
      */
     @GetMapping("/findByCondition")
-    public PageResult list(@RequestParam(value = "orderNo") String orderNo,
-                           @RequestParam(value = "phone") String phone,
-                           @RequestParam(value = "status") String status,
-                           @RequestParam(value = "type") String type,
-                           @RequestParam(value = "searchKey") String searchKey,
+    public PageResult list(@RequestParam(value = "orderNo", required = false) String orderNo,
+                           @RequestParam(value = "phone", required = false) String phone,
+                           @RequestParam(value = "status", required = false) String status,
+                           @RequestParam(value = "type", required = false) String orderType,
+                           @RequestParam(value = "searchKey", required = false) String searchKey,
                            @RequestParam(value = "pageNo") Integer pageNo,
                            @RequestParam(value = "pageSize") Integer pageSize) {
-        return orderService.list(orderNo, phone, status, type, searchKey, pageNo, pageSize);
+        return orderService.list(orderNo, phone, status, orderType, searchKey, pageNo, pageSize);
     }
 
     /**
@@ -93,7 +93,7 @@ public class OrderController {
      * 退款
      *
      * @param orderId   Long
-     * @param flag     AGREE 同意  REFUSE  拒绝
+     * @param flag      AGREE 同意  REFUSE  拒绝
      * @param remark    String
      * @param refundFee Integer
      * @return DataRet
