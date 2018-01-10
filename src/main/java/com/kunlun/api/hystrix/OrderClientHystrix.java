@@ -32,14 +32,14 @@ public class OrderClientHystrix implements OrderClient {
      * @param orderNo   订单编号
      * @param phone     收货人手机号
      * @param status    订单状态
-     * @param type      订单类型
+     * @param orderType 订单类型
      * @param searchKey 搜索关键字
      * @param pageNo    当前页
      * @param pageSize  每页条数
      * @return
      */
     @Override
-    public PageResult list(String orderNo, String phone, String status, String type, String searchKey, Integer pageNo, Integer pageSize) {
+    public PageResult list(String orderNo, String phone, String status, String orderType, String searchKey, Integer pageNo, Integer pageSize) {
         return new PageResult("ERROR", "订单列表接口异常");
     }
 

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.GoodClient;
 import com.kunlun.api.service.GoodService;
 import com.kunlun.entity.Good;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +39,12 @@ public class GoodServiceImpl implements GoodService {
     /**
      * 获取商品详情
      *
-     * @param id
+     * @param goodId
      * @return
      */
     @Override
-    public DataRet<Good> findById(Long id) {
-        return goodClient.findById(id);
+    public DataRet<GoodExt> findById(Long goodId) {
+        return goodClient.findById(goodId);
     }
 
 
@@ -86,12 +87,12 @@ public class GoodServiceImpl implements GoodService {
     /**
      * 批量删除
      *
-     * @param idList
+     * @param object
      * @return
      */
     @Override
-    public DataRet<String> deleteByIdList(List<Long> idList) {
-        return goodClient.deleteByIdList(idList);
+    public DataRet<String> deleteByIdList(JSONObject object) {
+        return goodClient.deleteByIdList(object);
     }
 
     /**

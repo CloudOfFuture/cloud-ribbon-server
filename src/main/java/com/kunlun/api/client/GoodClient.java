@@ -3,6 +3,7 @@ package com.kunlun.api.client;
 import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.hystrix.GoodClientHystrix;
 import com.kunlun.entity.Good;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -35,11 +36,11 @@ public interface GoodClient {
     /**
      * 获取商品详情
      *
-     * @param id
+     * @param goodId
      * @return
      */
     @GetMapping("/backstage/good/findById")
-    DataRet<Good> findById(@RequestParam(value = "id") Long id);
+    DataRet<GoodExt> findById(@RequestParam(value = "goodId") Long goodId);
 
     /**
      * 分页查询
@@ -87,11 +88,11 @@ public interface GoodClient {
     /**
      * 批量删除
      *
-     * @param idList
+     * @param object
      * @return
      */
     @PostMapping("/backstage/good/deleteByIdList")
-    DataRet<String> deleteByIdList(@RequestBody List<Long> idList);
+    DataRet<String> deleteByIdList(@RequestBody JSONObject object);
 
 
     /**

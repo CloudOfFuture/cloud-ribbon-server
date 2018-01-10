@@ -3,6 +3,7 @@ package com.kunlun.api.hystrix;
 import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.GoodClient;
 import com.kunlun.entity.Good;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.stereotype.Component;
@@ -31,11 +32,11 @@ public class GoodClientHystrix implements GoodClient {
     /**
      * 获取商品详情
      *
-     * @param id
+     * @param goodId
      * @return
      */
     @Override
-    public DataRet<Good> findById(Long id) {
+    public DataRet<GoodExt> findById(Long goodId) {
         return new DataRet<>("ERROR","未找到");
     }
 
@@ -81,11 +82,11 @@ public class GoodClientHystrix implements GoodClient {
     /**
      * 批量删除商品
      *
-     * @param idList
+     * @param object
      * @return
      */
     @Override
-    public DataRet<String> deleteByIdList(List<Long> idList) {
+    public DataRet<String> deleteByIdList(JSONObject object) {
         return new DataRet<>("ERROR","批量删除失败");
     }
 

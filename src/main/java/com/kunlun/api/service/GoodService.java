@@ -2,6 +2,7 @@ package com.kunlun.api.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.kunlun.entity.Good;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 
@@ -27,10 +28,10 @@ public interface GoodService {
     /**
      * 获取商品详情
      *
-     * @param id
+     * @param goodId
      * @return
      */
-    DataRet<Good> findById(Long id);
+    DataRet<GoodExt> findById(Long goodId);
 
     /**
      * 分页查询
@@ -65,10 +66,10 @@ public interface GoodService {
     /**
      * 批量删除
      *
-     * @param idList
+     * @param object
      * @return
      */
-    DataRet<String> deleteByIdList(List<Long> idList);
+    DataRet<String> deleteByIdList(JSONObject object);
 
 
     /**
