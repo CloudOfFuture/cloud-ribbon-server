@@ -2,6 +2,8 @@ package com.kunlun.api.hystrix;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kunlun.api.client.SellerClient;
+import com.kunlun.api.client.SellerGoodClient;
 import com.kunlun.api.service.SellerGoodService;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
@@ -14,37 +16,91 @@ import org.springframework.stereotype.Component;
  * @desc
  */
 @Component
-public class SellerGoodServiceHystrix implements SellerGoodService {
+public class SellerGoodServiceHystrix implements SellerGoodClient{
+
+
+    /**
+     * 商品新增
+     *
+     * @param object
+     * @return
+     */
     @Override
     public DataRet<String> add(JSONObject object) {
-        return new DataRet<>("add_error", "添加失败");
+        return new DataRet<>("ERROR", "商户新增商品接口出错");
     }
 
     @Override
     public DataRet findById(Long id) {
-        return new DataRet<>("not_found", "暂无数据");
+        return new DataRet<>("ERROR", "暂无数据");
     }
 
+    /**
+     * 商户商品修改
+     *
+     * @param object
+     * @return
+     */
     @Override
     public DataRet updateGood(JSONObject object) {
-        return new DataRet<>("update_error", "修改失败");
+        return new DataRet<>("ERROR", "修改失败");
     }
 
+    /**
+     *
+     *
+     * @param pageNo     Integer
+     * @param pageSize   Integer
+     * @param userId     Long
+     * @param type       UNBIND_CATEGORY 未绑定类目
+     *                   UNBIND_ACTIVITY 未绑定活动
+     *                   BIND_ACTIVITY 已经绑定活动
+     * @param searchKey  String
+     * @param goodNo     String
+     * @param startDate  String
+     * @param endDate    String
+     * @param brandId    Long
+     * @param saleStatus String
+     * @param categoryId Long
+     * @param hot        String
+     * @param isNew      String
+     * @param freight    String
+     * @return
+     */
     @Override
     public PageResult findByCondition(Integer pageNo, Integer pageSize, Long userId, String type, String searchKey, String goodNo, String startDate, String endDate, Long brandId, String saleStatus, Long categoryId, String hot, String isNew, String freight) {
-        return new PageResult();
+        return new PageResult("ERROR","商户分页查询接口出错");
     }
 
+    /**
+     *
+     *
+     * @param jsonArray
+     * @return
+     */
     @Override
     public DataRet deleteByIdList(JSONArray jsonArray) {
         return new DataRet<>("del_error", "删除失败");
     }
 
+    /**
+     *
+     *
+     * @param id    商品id，主键
+     * @param count 数量  小于0 扣减，大于0 增加库存
+     * @return
+     */
     @Override
     public DataRet updateGoodStock(Long id, Integer count) {
         return new DataRet<>("update_error", "修改失败");
     }
 
+    /**
+     *
+     *
+     * @param object
+     * @return
+     */
     @Override
     public DataRet batchUpdateSaleStatus(JSONObject object) {
         return new DataRet<>("update_error", "修改失败");
