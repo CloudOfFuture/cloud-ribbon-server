@@ -88,11 +88,11 @@ public interface GoodClient {
     /**
      * 批量删除
      *
-     * @param idList
+     * @param object
      * @return
      */
     @PostMapping("/backstage/good/deleteByIdList")
-    DataRet<String> deleteByIdList(@RequestBody List<Long> idList);
+    DataRet<String> deleteByIdList(@RequestBody JSONObject object);
 
 
     /**
@@ -137,7 +137,7 @@ public interface GoodClient {
      */
     @PostMapping("/backstage/good/audit")
     DataRet<String> audit(@RequestParam(value = "audit") String audit,
-                          @RequestParam(value = "reason") String reason,
+                          @RequestParam(value = "reason",required = false) String reason,
                           @RequestParam(value = "id") Long id);
 
 

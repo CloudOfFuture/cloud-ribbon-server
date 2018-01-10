@@ -99,13 +99,12 @@ public class GoodController {
     /**
      * 批量删除
      *
-     * @param jsonArray
+     * @param object
      * @return
      */
     @PostMapping("/deleteByIdList")
-    public DataRet<String> deleteByIdList(@RequestBody JSONArray jsonArray) {
-        List<Long> idList = jsonArray.toJavaList(Long.class);
-        return goodService.deleteByIdList(idList);
+    public DataRet<String> deleteByIdList(@RequestBody JSONObject object) {
+        return goodService.deleteByIdList(object);
     }
 
 
@@ -154,7 +153,7 @@ public class GoodController {
      */
     @PostMapping("/audit")
     public DataRet<String> audit(@RequestParam(value = "audit") String audit,
-                                 @RequestParam(value = "reason") String reason,
+                                 @RequestParam(value = "reason",required = false) String reason,
                                  @RequestParam(value = "id") Long id) {
         return goodService.audit(audit, reason, id);
     }
