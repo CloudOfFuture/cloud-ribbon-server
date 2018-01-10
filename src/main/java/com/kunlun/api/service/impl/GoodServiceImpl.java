@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.GoodClient;
 import com.kunlun.api.service.GoodService;
 import com.kunlun.entity.Good;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class GoodServiceImpl implements GoodService {
      * @return
      */
     @Override
-    public DataRet<Good> findById(Long goodId) {
+    public DataRet<GoodExt> findById(Long goodId) {
         return goodClient.findById(goodId);
     }
 

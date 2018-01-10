@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.service.GoodService;
 import com.kunlun.entity.Good;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class GoodController {
      * @return
      */
     @GetMapping("/findById")
-    public DataRet<Good> findById(@RequestParam(value = "goodId") Long goodId) {
+    public DataRet<GoodExt> findById(@RequestParam(value = "goodId") Long goodId) {
         return goodService.findById(goodId);
     }
 
