@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @created on 2017-12-29.
  */
 @Service
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private RoleClient roleClient;
@@ -35,7 +35,7 @@ public class RoleServiceImpl implements RoleService{
 
 
     /**
-     *修改角色信息
+     * 修改角色信息
      *
      * @param sysRole
      * @return
@@ -46,7 +46,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     /**
-     *删除角色
+     * 删除角色
      *
      * @param id
      * @return
@@ -57,7 +57,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     /**
-     *获取详情
+     * 获取详情
      *
      * @param id
      * @return
@@ -68,7 +68,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     /**
-     *列表
+     * 列表
      *
      * @param pageNo
      * @param pageSize
@@ -77,13 +77,12 @@ public class RoleServiceImpl implements RoleService{
      */
     @Override
     public PageResult findByCondition(Integer pageNo, Integer pageSize, String searchKey) {
-        return roleClient.findByCondition(pageNo,pageSize,searchKey);
+        return roleClient.findByCondition(pageNo, pageSize, searchKey);
     }
 
 
-
     /**
-     *角色分配菜单
+     * 角色分配菜单
      *
      * @param object
      * @return
@@ -94,7 +93,7 @@ public class RoleServiceImpl implements RoleService{
     }
 
     /**
-     *用户分配角色
+     * 用户分配角色
      *
      * @param roleId
      * @param userId
@@ -102,6 +101,6 @@ public class RoleServiceImpl implements RoleService{
      */
     @Override
     public DataRet<String> getUser(Long roleId, Long userId) {
-        return roleClient.getUser(roleId,userId);
+        return roleClient.getUser(roleId, userId);
     }
 }

@@ -54,7 +54,7 @@ public class WxOrderServiceImpl implements WxOrderService {
      * @return
      */
     @Override
-    public DataRet<OrderExt> findById(Long orderId) {
+    public DataRet<Order> findById(Long orderId) {
         return wxOrderClient.findById(orderId);
     }
     /**

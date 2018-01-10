@@ -1,9 +1,7 @@
 package com.kunlun.api.hystrix;
 
 import com.kunlun.api.client.WxOrderClient;
-import com.kunlun.api.service.WxOrderService;
 import com.kunlun.entity.Order;
-import com.kunlun.entity.OrderExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.stereotype.Component;
@@ -51,7 +49,7 @@ public class WxOrderClientHystrix implements WxOrderClient {
      * @return
      */
     @Override
-    public DataRet<OrderExt> findById(Long orderId) {
+    public DataRet<Order> findById(Long orderId) {
         return new DataRet<>("ERROR", "订单详情接口异常");
     }
 

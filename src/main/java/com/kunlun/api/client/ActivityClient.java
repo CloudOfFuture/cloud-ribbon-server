@@ -3,7 +3,6 @@ package com.kunlun.api.client;
 import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.hystrix.ActivityClientHystrix;
 import com.kunlun.entity.Activity;
-import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 
 /**
  * @author ycj

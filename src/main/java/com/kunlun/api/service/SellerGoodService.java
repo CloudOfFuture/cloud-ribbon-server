@@ -3,7 +3,6 @@ package com.kunlun.api.service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.hystrix.SellerGoodServiceHystrix;
-import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;

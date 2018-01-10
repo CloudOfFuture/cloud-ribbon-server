@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface PointClient {
 
 
-
-
     /**
      * 积分检查
      *
@@ -28,16 +26,17 @@ public interface PointClient {
      * @return
      */
     @GetMapping("/point/checkPoint")
-     DataRet<String> checkPoint(@RequestParam(value = "pointValue") Integer pointValue,
-                                      @RequestParam(value = "openid") String openid);
+    DataRet<String> checkPoint(@RequestParam(value = "pointValue") Integer pointValue,
+                               @RequestParam(value = "openid") String openid);
 
     /**
      * 根据userId查询用户积分
+     *
      * @param userId
      * @return
      */
     @GetMapping("/point/findPointByUserId")
-     DataRet<Point> findPointByUserId(@RequestParam(value = "userId") String userId);
+    DataRet<Point> findPointByUserId(@RequestParam(value = "userId") String userId);
 
 
     /**
@@ -49,18 +48,19 @@ public interface PointClient {
      * @return
      */
     @GetMapping("/findPointLog")
-     PageResult findPointLog(@RequestParam(value = "pageNo") Integer pageNo,
-                                   @RequestParam(value = "pageSize") Integer pageSize,
-                                   @RequestParam(value = "wxCode") String wxCode);
+    PageResult findPointLog(@RequestParam(value = "pageNo") Integer pageNo,
+                            @RequestParam(value = "pageSize") Integer pageSize,
+                            @RequestParam(value = "wxCode") String wxCode);
 
 
     /**
      * 操作用户积分（增,减）
+     *
      * @param point
-     * @param wxCode
+     * @param userId
      * @return
      */
     @PostMapping("/updatePoint")
-     DataRet<String> updatePoint(@RequestParam(value = "point") Integer point,
-                                       @RequestParam(value = "userId") String userId);
+    DataRet<String> updatePoint(@RequestParam(value = "point") Integer point,
+                                @RequestParam(value = "userId") String userId);
 }

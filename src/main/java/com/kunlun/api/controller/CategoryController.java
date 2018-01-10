@@ -8,7 +8,6 @@ import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 /**
  * @author by hmy
@@ -31,8 +30,8 @@ public class CategoryController {
      */
     @PostMapping("/bindCategoryGood")
     public DataRet<String> bind(@RequestParam(value = "categoryId") Long categoryId,
-                                @RequestParam(value = "goodId") Long goodId){
-        return categoryService.bind(categoryId,goodId);
+                                @RequestParam(value = "goodId") Long goodId) {
+        return categoryService.bind(categoryId, goodId);
     }
 
 
@@ -43,7 +42,7 @@ public class CategoryController {
      * @return
      */
     @PostMapping("/unbindCategoryGood")
-    public DataRet<String> unbinding(@RequestParam(value = "goodId") Long goodId){
+    public DataRet<String> unbinding(@RequestParam(value = "goodId") Long goodId) {
         return categoryService.unbinding(goodId);
     }
 
@@ -117,8 +116,8 @@ public class CategoryController {
     @GetMapping("/findByCondition")
     public PageResult findByCondition(@RequestParam("pageNo") Integer pageNo,
                                       @RequestParam("pageSize") Integer pageSize,
-                                      @RequestParam(value = "type",required = false) String type,
-                                      @RequestParam(value = "searchKey",required = false) String searchKey) {
+                                      @RequestParam(value = "type", required = false) String type,
+                                      @RequestParam(value = "searchKey", required = false) String searchKey) {
         return categoryService.findByCondition(pageNo, pageSize, type, searchKey);
     }
 
@@ -130,7 +129,7 @@ public class CategoryController {
      * @return
      */
     @PostMapping("/bindBatch")
-    public DataRet<String> bindBatch(@RequestBody JSONObject jsonObject){
+    public DataRet<String> bindBatch(@RequestBody JSONObject jsonObject) {
         return categoryService.bindBatch(jsonObject);
     }
 
@@ -142,7 +141,7 @@ public class CategoryController {
      * @return
      */
     @PostMapping("/unbindBatch")
-    public DataRet<String> unbindBatch(@RequestBody JSONObject jsonObject){
+    public DataRet<String> unbindBatch(@RequestBody JSONObject jsonObject) {
         return categoryService.unbindBatch(jsonObject);
     }
 }

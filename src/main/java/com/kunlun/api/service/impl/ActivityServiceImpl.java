@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.ActivityClient;
 import com.kunlun.api.service.ActivityService;
 import com.kunlun.entity.Activity;
-import com.kunlun.entity.Good;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
