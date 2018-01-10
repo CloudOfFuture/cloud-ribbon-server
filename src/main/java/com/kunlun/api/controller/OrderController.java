@@ -53,11 +53,6 @@ public class OrderController {
 
     /**
      * 发货
-     * orderId
-     * deliveryNo
-     * expressName
-     * expressNo
-     * senderId
      *
      * @param orderCondition
      * @return
