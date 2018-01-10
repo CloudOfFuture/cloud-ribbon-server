@@ -35,11 +35,11 @@ public interface GoodClient {
     /**
      * 获取商品详情
      *
-     * @param id
+     * @param goodId
      * @return
      */
     @GetMapping("/backstage/good/findById")
-    DataRet<Good> findById(@RequestParam(value = "id") Long id);
+    DataRet<Good> findById(@RequestParam(value = "goodId") Long goodId);
 
     /**
      * 分页查询

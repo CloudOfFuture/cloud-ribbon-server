@@ -27,10 +27,10 @@ public interface GoodService {
     /**
      * 获取商品详情
      *
-     * @param id
+     * @param goodId
      * @return
      */
-    DataRet<Good> findById(Long id);
+    DataRet<Good> findById(Long goodId);
 
     /**
      * 分页查询

@@ -39,12 +39,12 @@ public class GoodController {
     /**
      * 获取商品详情
      *
-     * @param id
+     * @param goodId
      * @return
      */
     @GetMapping("/findById")
-    public DataRet<Good> findById(@RequestParam(value = "id") Long id) {
-        return goodService.findById(id);
+    public DataRet<Good> findById(@RequestParam(value = "goodId") Long goodId) {
+        return goodService.findById(goodId);
     }
 
 

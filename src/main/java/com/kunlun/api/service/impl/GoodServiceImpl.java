@@ -38,12 +38,12 @@ public class GoodServiceImpl implements GoodService {
     /**
      * 获取商品详情
      *
-     * @param id
+     * @param goodId
      * @return
      */
     @Override
-    public DataRet<Good> findById(Long id) {
-        return goodClient.findById(id);
+    public DataRet<Good> findById(Long goodId) {
+        return goodClient.findById(goodId);
     }
 
 
