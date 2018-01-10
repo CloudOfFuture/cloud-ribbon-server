@@ -36,7 +36,7 @@ public class SellerClientHystrix implements SellerClient{
      * @return
      */
     @Override
-    public DataRet<String> updateStatus(Long id, String status, String operator) {
+    public DataRet<String> updateStatus(Long id, String status, Long operator) {
         return new DataRet<>("ERROR","更新状态失败");
     }
 

@@ -31,7 +31,7 @@ public interface SellerService {
      *@param operator
      * @return
      */
-    DataRet<String> updateStatus(Long id, String status, String operator);
+    DataRet<String> updateStatus(Long id, String status, Long operator);
 
 
     /**
