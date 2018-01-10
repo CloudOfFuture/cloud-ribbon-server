@@ -42,7 +42,7 @@ public interface SellerClient {
     @PostMapping("/seller/updateStatus")
     DataRet<String> updateStatus(@RequestParam(value = "id") Long id,
                                  @RequestParam(value = "status") String status,
-                                 @RequestParam(value = "operator") String operator);
+                                 @RequestParam(value = "operator") Long operator);
 
 
     /**
@@ -51,7 +51,7 @@ public interface SellerClient {
      * @param store
      * @return
      */
-    @PostMapping("/seller/modify")
+    @PostMapping("/seller/update")
     DataRet<String> update(@RequestBody Store store);
 
     /**

@@ -34,18 +34,18 @@ public class SellerController {
      * 修改店铺状态
      *
      * @param id
-     * @param status 店铺状态 NORMAL 正常 ,
-     *               CLOSE_LEADER 管理员关闭,
-     *               CLOSE 关闭，
-     *               DELETE 删除状态
-     *@param operator
+     * @param status   店铺状态 NORMAL 正常 ,
+     *                 CLOSE_LEADER 管理员关闭,
+     *                 CLOSE 关闭，
+     *                 DELETE 删除状态
+     * @param operator 操作人id
      * @return
      */
     @PostMapping("/updateStatus")
     public DataRet<String> updateStatus(@RequestParam(value = "id") Long id,
                                         @RequestParam(value = "status") String status,
-                                        @RequestParam(value = "operator") String operator) {
-        return sellerService.updateStatus(id, status,operator);
+                                        @RequestParam(value = "operator") Long operator) {
+        return sellerService.updateStatus(id, status, operator);
     }
 
     /**
@@ -54,8 +54,8 @@ public class SellerController {
      * @param store
      * @return
      */
-    @PostMapping("/modify")
-    public DataRet<String> modify(@RequestBody Store store) {
+    @PostMapping("/update")
+    public DataRet<String> update(@RequestBody Store store) {
         return sellerService.update(store);
     }
 
@@ -67,6 +67,9 @@ public class SellerController {
      */
     @GetMapping("/findByUserId")
     public DataRet<Store> findByUserId(@RequestParam(value = "userId") Long userId) {
+        if (userId == null) {
+            return new DataRet<>("ERROR", "参数有误");
+        }
         return sellerService.findByUserId(userId);
     }
 
@@ -79,11 +82,11 @@ public class SellerController {
      * @return
      */
     @GetMapping("/findPage")
-    public PageResult findPage(@RequestParam(value = "userId",required = false) Long userId,
+    public PageResult findPage(@RequestParam(value = "userId", required = false) Long userId,
                                @RequestParam(value = "pageNo") Integer pageNo,
                                @RequestParam(value = "pageSize") Integer pageSize,
-                               @RequestParam(value = "audit",required = false) String audit,
-                               @RequestParam(value = "searchKey",required = false) String searchKey) {
+                               @RequestParam(value = "audit", required = false) String audit,
+                               @RequestParam(value = "searchKey", required = false) String searchKey) {
         return sellerService.findPage(userId, pageNo, pageSize, audit, searchKey);
     }
 
@@ -98,7 +101,7 @@ public class SellerController {
     @PostMapping("/audit")
     public DataRet<String> audit(@RequestParam(value = "audit") String audit,
                                  @RequestParam(value = "id") Long id,
-                                 @RequestParam(value = "reason",required = false) String reason) {
+                                 @RequestParam(value = "reason", required = false) String reason) {
         return sellerService.audit(audit, reason, id);
     }
 }

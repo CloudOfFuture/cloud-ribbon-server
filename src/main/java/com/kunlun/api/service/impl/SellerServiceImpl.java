@@ -43,7 +43,7 @@ public class SellerServiceImpl implements SellerService{
      * @return
      */
     @Override
-    public DataRet<String> updateStatus(Long id, String status, String operator) {
+    public DataRet<String> updateStatus(Long id, String status, Long operator) {
         return sellerClient.updateStatus(id,status,operator);
     }
 
