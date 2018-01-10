@@ -78,8 +78,9 @@ public interface OrderClient {
      * @param sellerId
      * @return
      */
-    @GetMapping("/findById")
-    DataRet<Order> findById(@RequestParam("orderId") Long orderId, @RequestParam("sellerId") Long sellerId);
+    @GetMapping("/backend/order/findById")
+    DataRet<Order> findById(@RequestParam(value = "orderId") Long orderId,
+                            @RequestHeader(value = "sellerId") Long sellerId);
 
     /**
      * 查询Order对象
