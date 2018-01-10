@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 17-12-25上午9:54
  * @desc
  */
-@FeignClient(value = "cloud-service-good", fallback = SellerGoodServiceHystrix.class)
 public interface SellerGoodService {
     /**
      * 创建商品
@@ -26,8 +25,7 @@ public interface SellerGoodService {
      * @param object JSONObject
      * @return JSONObject
      */
-    @PostMapping("/seller/good/add")
-    DataRet add(@RequestBody JSONObject object);
+    DataRet add(JSONObject object);
 
 
     /**
@@ -113,4 +111,6 @@ public interface SellerGoodService {
      */
     @PostMapping("/seller/good/batchUpdateSaleStatus")
     DataRet batchUpdateSaleStatus(@RequestBody JSONObject object);
+
+
 }
