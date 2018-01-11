@@ -98,7 +98,7 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
      */
     @Override
     public DataRet deleteByIdList(JSONArray jsonArray) {
-        return new DataRet<>("del_error", "删除失败");
+        return new DataRet<>("ERROR", "删除失败");
     }
 
     /**
@@ -110,7 +110,7 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
      */
     @Override
     public DataRet updateGoodStock(Long id, Integer count) {
-        return new DataRet<>("update_error", "修改失败");
+        return new DataRet<>("ERROR", "修改失败");
     }
 
     /**
@@ -121,6 +121,6 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
      */
     @Override
     public DataRet batchUpdateSaleStatus(JSONObject object) {
-        return new DataRet<>("update_error", "修改失败");
+        return new DataRet<>("ERROR", "修改失败");
     }
 }
