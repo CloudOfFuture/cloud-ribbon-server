@@ -55,7 +55,7 @@ public interface SellerGoodClient {
      *
      * @return DataRet
      */
-    @PostMapping(value = "/deleteByIdList")
+    @PostMapping(value = "/seller/good/deleteByIdList")
      DataRet deleteByIdList(@RequestBody JSONArray jsonArray);
 
 

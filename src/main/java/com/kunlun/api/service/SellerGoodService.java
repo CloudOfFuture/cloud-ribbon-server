@@ -84,7 +84,7 @@ public interface SellerGoodService {
      * @param jsonArray 商品id集合
      * @return JSONObject
      */
-    DataRet deleteByIdList(@RequestBody JSONArray jsonArray);
+    DataRet deleteByIdList( JSONArray jsonArray);
 
     /**
      * 商品库存减扣

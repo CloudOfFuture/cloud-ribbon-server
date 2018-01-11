@@ -121,7 +121,7 @@ public class SellerGoodServiceImpl implements SellerGoodService{
     }
 
     /**
-     * 根据id删除商品
+     * 根据id删除
      *
      * @param id
      * @return
