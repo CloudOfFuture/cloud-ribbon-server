@@ -88,9 +88,7 @@ public interface DeliveryClient {
      * @param wxCode
      * @return
      */
-    @RequestMapping(value = "/delivery/getDefault", method = RequestMethod.GET)
+    @GetMapping(value = "/delivery/getDefault")
     DataRet<Delivery> getDefault(@RequestParam(value = "wxCode", required = false) String wxCode,
                                  @RequestParam(value = "userId", required = false) Long userId);
-
-
 }
