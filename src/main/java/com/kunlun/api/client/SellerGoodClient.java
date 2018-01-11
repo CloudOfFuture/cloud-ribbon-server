@@ -3,6 +3,7 @@ package com.kunlun.api.client;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.hystrix.SellerGoodServiceHystrix;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -41,11 +42,20 @@ public interface SellerGoodClient {
 
 
     /**
+     * 根据id删除商品
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/seller/good/delete")
+     DataRet delete(@RequestParam(value = "id") Long id);
+
+    /**
      * 批量删除商品
      *
      * @return DataRet
      */
-    @PostMapping(value = "/deleteByIdList")
+    @PostMapping(value = "/seller/good/deleteByIdList")
      DataRet deleteByIdList(@RequestBody JSONArray jsonArray);
 
 
@@ -57,7 +67,7 @@ public interface SellerGoodClient {
      * @return
      */
     @GetMapping(value = "/seller/good/findById")
-     DataRet findById(@RequestParam(value = "id") Long id);
+     DataRet<GoodExt> findById(@RequestParam(value = "id") Long id);
 
 
     /**
@@ -98,6 +108,17 @@ public interface SellerGoodClient {
                                       @RequestParam(value = "freight", required = false) String freight) ;
 
 
+
+    /**
+     * 根据id商品上下架
+     *
+     * @param id
+     * @param onSale
+     * @return
+     */
+    @PostMapping("/seller/good/updateSaleStatus")
+     DataRet updateSaleStatus(@RequestParam(value = "id") Long id,
+                                    @RequestParam(value = "onSale") String onSale);
 
     /**
      * 批量商品上下架

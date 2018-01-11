@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("delivery")
 public class DeliveryController {
+
     @Autowired
     private DeliveryService deliveryService;
 
@@ -29,18 +30,19 @@ public class DeliveryController {
     }
 
     /**
-     *用户收货地址分页
+     * 用户收货地址分页
      *
      * @param wxCode
      * @param pageNo
      * @param pageSize
      * @return
      */
-    @GetMapping("/findByWxCode")
-    public PageResult findByWxCode(@RequestParam(value = "wxCode") String wxCode,
+    @GetMapping("/findByUserId")
+    public PageResult findByUserId(@RequestParam(value = "wxCode", required = false) String wxCode,
+                                   @RequestParam(value = "userId", required = false) Long userId,
                                    @RequestParam(value = "pageNo") Integer pageNo,
-                                   @RequestParam(value = "pageSize") Integer pageSize){
-        return deliveryService.findByWxCode(wxCode,pageNo,pageSize);
+                                   @RequestParam(value = "pageSize") Integer pageSize) {
+        return deliveryService.findByUserId(wxCode, userId, pageNo, pageSize);
     }
 
     /**
@@ -50,7 +52,7 @@ public class DeliveryController {
      * @return
      */
     @PostMapping("/add")
-    public DataRet<String> add(@RequestBody Delivery delivery){
+    public DataRet<String> add(@RequestBody Delivery delivery) {
         return deliveryService.add(delivery);
     }
 
@@ -61,7 +63,7 @@ public class DeliveryController {
      * @return
      */
     @PostMapping("/update")
-    public DataRet<String> update(@RequestBody Delivery delivery){
+    public DataRet<String> update(@RequestBody Delivery delivery) {
         return deliveryService.update(delivery);
     }
 
@@ -72,9 +74,9 @@ public class DeliveryController {
      * @param id
      * @return
      */
-    @PostMapping("/delete")
-    public DataRet<String> delete(@RequestParam(value = "id") Long id){
-        return deliveryService.delete(id);
+    @PostMapping("/deleteById")
+    public DataRet<String> deleteById(@RequestParam(value = "id") Long id) {
+        return deliveryService.deleteById(id);
     }
 
 
@@ -86,8 +88,9 @@ public class DeliveryController {
      */
     @PostMapping("/defaultAddress")
     public DataRet<String> defaultAddress(@RequestParam(value = "id") Long id,
-                                          @RequestParam(value = "wxCode") String wxCode) {
-        return deliveryService.defaultAddress(id, wxCode);
+                                          @RequestParam(value = "wxCode", required = false) String wxCode,
+                                          @RequestParam(value = "userId", required = false) Long userId) {
+        return deliveryService.defaultAddress(id, wxCode, userId);
     }
 
 
@@ -98,7 +101,8 @@ public class DeliveryController {
      * @return
      */
     @RequestMapping(value = "/getDefault", method = RequestMethod.GET)
-    public DataRet<Delivery> getDefault(@RequestParam(value = "wxCode") String wxCode) {
-        return deliveryService.getDefault(wxCode);
+    public DataRet<Delivery> getDefault(@RequestParam(value = "wxCode", required = false) String wxCode,
+                                        @RequestParam(value = "userId", required = false) Long userId) {
+        return deliveryService.getDefault(wxCode, userId);
     }
 }

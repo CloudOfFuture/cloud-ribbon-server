@@ -2,12 +2,9 @@ package com.kunlun.api.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.kunlun.api.hystrix.SellerGoodServiceHystrix;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
-import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,8 +31,7 @@ public interface SellerGoodService {
      * @param id Long
      * @return JSONObject
      */
-    @GetMapping("/seller/good/findById")
-    DataRet findById(@RequestParam(value = "id") Long id);
+    DataRet<GoodExt> findById(Long id);
 
     /**
      * 根据id修改商品信息
@@ -43,8 +39,7 @@ public interface SellerGoodService {
      * @param object JSONObject
      * @return JSONObject
      */
-    @PostMapping("/seller/good/update")
-    DataRet updateGood(@RequestBody JSONObject object);
+    DataRet updateGood(JSONObject object);
 
 
     /**
@@ -68,7 +63,6 @@ public interface SellerGoodService {
      * @param freight    String
      * @return List
      */
-    @GetMapping("/seller/good/findByCondition")
     PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
                                @RequestParam(value = "pageSize") Integer pageSize,
                                @RequestParam(value = "userId") Long userId,
@@ -90,8 +84,7 @@ public interface SellerGoodService {
      * @param jsonArray 商品id集合
      * @return JSONObject
      */
-    @PostMapping("/seller/good/deleteByIdList")
-    DataRet deleteByIdList(@RequestBody JSONArray jsonArray);
+    DataRet deleteByIdList( JSONArray jsonArray);
 
     /**
      * 商品库存减扣
@@ -100,17 +93,31 @@ public interface SellerGoodService {
      * @param count 扣减、增加数量
      * @return DataRet
      */
-    @PostMapping("/seller/good/updateGoodStock")
-    DataRet updateGoodStock(@RequestParam(value = "id") Long id,
-                            @RequestParam(value = "count") Integer count);
+    DataRet updateGoodStock( Long id, Integer count);
 
     /**
      * 批量商品上下架
      *
      * @return JSONObject
      */
-    @PostMapping("/seller/good/batchUpdateSaleStatus")
-    DataRet batchUpdateSaleStatus(@RequestBody JSONObject object);
+    DataRet batchUpdateSaleStatus(JSONObject object);
 
 
+    /**
+     * 根据id删除商品
+     *
+     * @param id
+     * @return
+     */
+    DataRet delete(Long id);
+
+
+    /**
+     * 根据id商品上下架
+     *
+     * @param id
+     * @param onSale
+     * @return
+     */
+    DataRet updateSaleStatus(Long id, String onSale);
 }

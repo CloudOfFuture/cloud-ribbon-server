@@ -25,7 +25,7 @@ public interface PointClient {
      * @param openid
      * @return
      */
-    @GetMapping("/point/checkPoint")
+    @PostMapping("/point/checkPoint")
     DataRet<String> checkPoint(@RequestParam(value = "pointValue") Integer pointValue,
                                @RequestParam(value = "openid") String openid);
 
@@ -47,7 +47,7 @@ public interface PointClient {
      * @param wxCode
      * @return
      */
-    @GetMapping("/findPointLog")
+    @GetMapping("/point/findPointLog")
     PageResult findPointLog(@RequestParam(value = "pageNo") Integer pageNo,
                             @RequestParam(value = "pageSize") Integer pageSize,
                             @RequestParam(value = "wxCode") String wxCode);
@@ -56,11 +56,11 @@ public interface PointClient {
     /**
      * 操作用户积分（增,减）
      *
-     * @param point
+     * @param operatePoint
      * @param userId
      * @return
      */
-    @PostMapping("/updatePoint")
-    DataRet<String> updatePoint(@RequestParam(value = "point") Integer point,
+    @PostMapping("/point/updatePoint")
+    DataRet<String> updatePoint(@RequestParam(value = "operatePoint") Integer operatePoint,
                                 @RequestParam(value = "userId") String userId);
 }

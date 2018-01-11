@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.SellerClient;
 import com.kunlun.api.client.SellerGoodClient;
 import com.kunlun.api.service.SellerGoodService;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.stereotype.Component;
@@ -30,8 +31,14 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
         return new DataRet<>("ERROR", "商户新增商品接口出错");
     }
 
+    /**
+     * 获取商品详情
+     *
+     * @param id 商品id
+     * @return
+     */
     @Override
-    public DataRet findById(Long id) {
+    public DataRet<GoodExt> findById(Long id) {
         return new DataRet<>("ERROR", "暂无数据");
     }
 
@@ -47,7 +54,18 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
     }
 
     /**
+     * 根据id删除商品
      *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet delete(Long id) {
+        return new DataRet("ERROR","商户根据id删除商品接口出错");
+    }
+
+    /**
+     *分页查询
      *
      * @param pageNo     Integer
      * @param pageSize   Integer
@@ -73,18 +91,30 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
     }
 
     /**
+     * 根据id商品上下架
      *
+     * @param id
+     * @param onSale
+     * @return
+     */
+    @Override
+    public DataRet updateSaleStatus(Long id, String onSale) {
+        return new DataRet("ERROR","根据id商品上下架接口出错");
+    }
+
+    /**
+     *批量删除
      *
      * @param jsonArray
      * @return
      */
     @Override
     public DataRet deleteByIdList(JSONArray jsonArray) {
-        return new DataRet<>("del_error", "删除失败");
+        return new DataRet<>("ERROR", "删除失败");
     }
 
     /**
-     *
+     *修改库存
      *
      * @param id    商品id，主键
      * @param count 数量  小于0 扣减，大于0 增加库存
@@ -92,7 +122,7 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
      */
     @Override
     public DataRet updateGoodStock(Long id, Integer count) {
-        return new DataRet<>("update_error", "修改失败");
+        return new DataRet<>("ERROR", "修改失败");
     }
 
     /**
@@ -103,6 +133,6 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
      */
     @Override
     public DataRet batchUpdateSaleStatus(JSONObject object) {
-        return new DataRet<>("update_error", "修改失败");
+        return new DataRet<>("ERROR", "修改失败");
     }
 }

@@ -3,10 +3,13 @@ package com.kunlun.api.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.service.SellerGoodService;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -46,6 +49,19 @@ public class SellerGoodController {
     }
 
 
+
+    /**
+     * 根据id删除商品
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/delete")
+    public DataRet delete(@RequestParam(value = "id") Long id){
+        return sellerGoodService.delete(id);
+    }
+
+
     /**
      * 批量删除商品
      *
@@ -57,14 +73,13 @@ public class SellerGoodController {
     }
 
     /**
-     * s
      * 根据商品id查询商品
      *
      * @param id 商品id
      * @return
      */
     @GetMapping(value = "/findById")
-    public DataRet findById(@RequestParam(value = "id") Long id) {
+    public DataRet<GoodExt> findById(@RequestParam(value = "id") Long id) {
         return sellerGoodService.findById(id);
     }
 
@@ -107,6 +122,21 @@ public class SellerGoodController {
         return sellerGoodService.findByCondition(pageNo, pageSize, userId, type, searchKey, goodNo,
                 startDate, endDate, brandId, saleStatus, categoryId, hot, isNew, freight);
     }
+
+
+    /**
+     * 根据id商品上下架
+     *
+     * @param id
+     * @param onSale
+     * @return
+     */
+    @PostMapping("/updateSaleStatus")
+    public DataRet updateSaleStatus(@RequestParam(value = "id") Long id,
+                                    @RequestParam(value = "onSale") String onSale){
+        return sellerGoodService.updateSaleStatus(id,onSale);
+    }
+
 
     /**
      * 批量商品上下架
