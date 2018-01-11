@@ -137,7 +137,7 @@ public interface GoodClient {
      */
     @PostMapping("/backstage/good/audit")
     DataRet<String> audit(@RequestParam(value = "audit") String audit,
-                          @RequestParam(value = "reason") String reason,
+                          @RequestParam(value = "reason",required = false) String reason,
                           @RequestParam(value = "id") Long id);
 
 

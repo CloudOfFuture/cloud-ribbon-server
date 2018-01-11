@@ -1,28 +1,25 @@
-package com.kunlun.api.controller;
+package com.kunlun.api.client;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.kunlun.api.service.SellerGoodService;
+import com.kunlun.api.hystrix.SellerGoodServiceHystrix;
 import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * @author JackSpeed
- * @version V1.0 <>
- * @date 17-12-25上午9:52
- * @desc
+ * @author by hmy
+ * @version <0.1>
+ * @created on 2018-01-10.
  */
+@FeignClient(value = "cloud-service-good",fallback = SellerGoodServiceHystrix.class)
+public interface SellerGoodClient {
 
-@RestController
-@RequestMapping("seller/good")
-public class SellerGoodController {
-
-    @Autowired
-    private SellerGoodService sellerGoodService;
 
     /**
      * 创建商品
@@ -30,10 +27,9 @@ public class SellerGoodController {
      * @param object
      * @return
      */
-    @PostMapping(value = "/add")
-    public DataRet add(@RequestBody JSONObject object) {
-        return sellerGoodService.add(object);
-    }
+    @PostMapping(value = "/seller/good/add")
+     DataRet add(@RequestBody JSONObject object);
+
 
     /**
      * 修改商品
@@ -41,11 +37,8 @@ public class SellerGoodController {
      * @param object
      * @return
      */
-    @PostMapping(value = "/update")
-    public DataRet updateGood(@RequestBody JSONObject object) {
-        return sellerGoodService.updateGood(object);
-    }
-
+    @PostMapping(value = "/seller/good/update")
+     DataRet updateGood(@RequestBody JSONObject object);
 
 
     /**
@@ -54,11 +47,8 @@ public class SellerGoodController {
      * @param id
      * @return
      */
-    @PostMapping("/delete")
-    public DataRet delete(@RequestParam(value = "id") Long id){
-        return sellerGoodService.delete(id);
-    }
-
+    @PostMapping("/seller/good/delete")
+     DataRet delete(@RequestParam(value = "id") Long id);
 
     /**
      * 批量删除商品
@@ -66,20 +56,19 @@ public class SellerGoodController {
      * @return DataRet
      */
     @PostMapping(value = "/deleteByIdList")
-    public DataRet deleteByIdList(@RequestBody JSONArray jsonArray) {
-        return sellerGoodService.deleteByIdList(jsonArray);
-    }
+     DataRet deleteByIdList(@RequestBody JSONArray jsonArray);
+
 
     /**
+     * s
      * 根据商品id查询商品
      *
      * @param id 商品id
      * @return
      */
-    @GetMapping(value = "/findById")
-    public DataRet<GoodExt> findById(@RequestParam(value = "id") Long id) {
-        return sellerGoodService.findById(id);
-    }
+    @GetMapping(value = "/seller/good/findById")
+     DataRet<GoodExt> findById(@RequestParam(value = "id") Long id);
+
 
     /**
      * 条件查询商品列表
@@ -102,8 +91,8 @@ public class SellerGoodController {
      * @param freight    String
      * @return List
      */
-    @GetMapping(value = "/findByCondition")
-    public PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
+    @GetMapping(value = "/seller/good/findByCondition")
+     PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
                                       @RequestParam(value = "pageSize") Integer pageSize,
                                       @RequestParam(value = "userId") Long userId,
                                       @RequestParam(value = "type") String type,
@@ -116,10 +105,9 @@ public class SellerGoodController {
                                       @RequestParam(value = "categoryId", required = false) Long categoryId,
                                       @RequestParam(value = "hot", required = false) String hot,
                                       @RequestParam(value = "isNew", required = false) String isNew,
-                                      @RequestParam(value = "freight", required = false) String freight) {
-        return sellerGoodService.findByCondition(pageNo, pageSize, userId, type, searchKey, goodNo,
-                startDate, endDate, brandId, saleStatus, categoryId, hot, isNew, freight);
-    }
+                                      @RequestParam(value = "freight", required = false) String freight) ;
+
+
 
     /**
      * 批量商品上下架
@@ -127,10 +115,9 @@ public class SellerGoodController {
      * @param object
      * @return
      */
-    @PostMapping(value = "/batchUpdateSaleStatus")
-    public DataRet batchUpdateSaleStatus(@RequestBody JSONObject object) {
-        return sellerGoodService.batchUpdateSaleStatus(object);
-    }
+    @PostMapping(value = "/seller/good/batchUpdateSaleStatus")
+     DataRet batchUpdateSaleStatus(@RequestBody JSONObject object);
+
 
     /**
      * 商品库存修改
@@ -139,9 +126,7 @@ public class SellerGoodController {
      * @param id    商品id，主键
      * @return
      */
-    @PostMapping(value = "/updateGoodStock")
-    public DataRet updateGoodStock(@RequestParam(value = "id") Long id,
-                                   @RequestParam(value = "count") Integer count) {
-        return sellerGoodService.updateGoodStock(id, count);
-    }
+    @PostMapping(value = "/seller/good/updateGoodStock")
+     DataRet updateGoodStock(@RequestParam(value = "id") Long id,
+                                   @RequestParam(value = "count") Integer count);
 }

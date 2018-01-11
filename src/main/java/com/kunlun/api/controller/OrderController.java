@@ -53,11 +53,6 @@ public class OrderController {
 
     /**
      * 发货
-     * orderId
-     * deliveryNo
-     * expressName
-     * expressNo
-     * senderId
      *
      * @param orderCondition
      * @return
@@ -85,7 +80,8 @@ public class OrderController {
      * @return
      */
     @GetMapping("/findById")
-    public DataRet<Order> findById(@RequestParam Long orderId, @RequestHeader Long sellerId) {
+    public DataRet<Order> findById(@RequestParam(value = "orderId") Long orderId,
+                                   @RequestHeader(value = "sellerId") Long sellerId) {
         return orderService.findById(orderId, sellerId);
     }
 
