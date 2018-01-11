@@ -16,26 +16,28 @@ public interface DeliveryClient {
 
     /**
      * 根据id查找收获地址详情
+     *
      * @param id
      * @return
      */
-    @GetMapping("/delivery/findDetailById")
+    @GetMapping("/delivery/findById")
     DataRet<Delivery> findById(@RequestParam(value = "id") Long id);
 
 
     /**
-     *用户收货地址分页
+     * 用户收货地址分页
      *
      * @param wxCode
+     * @param userId
      * @param pageNo
      * @param pageSize
      * @return
      */
-    @GetMapping("/delivery/findByWxCode")
-     PageResult findByWxCode(@RequestParam(value = "wxCode") String wxCode,
-                                   @RequestParam(value = "pageNo") Integer pageNo,
-                                   @RequestParam(value = "pageSize") Integer pageSize);
-
+    @GetMapping("/delivery/findByUserId")
+    PageResult findByUserId(@RequestParam(value = "wxCode", required = false) String wxCode,
+                            @RequestParam(value = "userId", required = false) Long userId,
+                            @RequestParam(value = "pageNo") Integer pageNo,
+                            @RequestParam(value = "pageSize") Integer pageSize);
 
 
     /**
@@ -45,7 +47,7 @@ public interface DeliveryClient {
      * @return
      */
     @PostMapping("/delivery/add")
-     DataRet<String> add(@RequestBody Delivery delivery);
+    DataRet<String> add(@RequestBody Delivery delivery);
 
 
     /**
@@ -55,7 +57,7 @@ public interface DeliveryClient {
      * @return
      */
     @PostMapping("/delivery/update")
-     DataRet<String> update(@RequestBody Delivery delivery);
+    DataRet<String> update(@RequestBody Delivery delivery);
 
 
     /**
@@ -64,9 +66,8 @@ public interface DeliveryClient {
      * @param id
      * @return
      */
-    @PostMapping("/delivery/delete")
-     DataRet<String> delete(@RequestParam(value = "id") Long id);
-
+    @PostMapping("/delivery/deleteById")
+    DataRet<String> deleteById(@RequestParam(value = "id") Long id);
 
 
     /**
@@ -76,10 +77,9 @@ public interface DeliveryClient {
      * @return
      */
     @PostMapping("/delivery/defaultAddress")
-     DataRet<String> defaultAddress(@RequestParam(value = "id") Long id,
-                                    @RequestParam(value = "wxCode") String wxCode);
-
-
+    DataRet<String> defaultAddress(@RequestParam(value = "id") Long id,
+                                   @RequestParam(value = "wxCode", required = false) String wxCode,
+                                   @RequestParam(value = "userId", required = false) Long userId);
 
 
     /**
@@ -89,8 +89,8 @@ public interface DeliveryClient {
      * @return
      */
     @RequestMapping(value = "/delivery/getDefault", method = RequestMethod.GET)
-     DataRet<Delivery> getDefault(@RequestParam(value = "wxCode") String wxCode);
-
+    DataRet<Delivery> getDefault(@RequestParam(value = "wxCode", required = false) String wxCode,
+                                 @RequestParam(value = "userId", required = false) Long userId);
 
 
 }
