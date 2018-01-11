@@ -110,6 +110,17 @@ public interface SellerGoodClient {
 
 
     /**
+     * 根据id商品上下架
+     *
+     * @param id
+     * @param onSale
+     * @return
+     */
+    @PostMapping("/seller/good/updateSaleStatus")
+     DataRet updateSaleStatus(@RequestParam(value = "id") Long id,
+                                    @RequestParam(value = "onSale") String onSale);
+
+    /**
      * 批量商品上下架
      *
      * @param object

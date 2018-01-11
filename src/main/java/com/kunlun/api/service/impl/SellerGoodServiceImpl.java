@@ -130,4 +130,16 @@ public class SellerGoodServiceImpl implements SellerGoodService{
     public DataRet delete(Long id) {
         return sellerGoodClient.delete(id);
     }
+
+    /**
+     * 根据id商品上下架
+     *
+     * @param id
+     * @param onSale
+     * @return
+     */
+    @Override
+    public DataRet updateSaleStatus(Long id, String onSale) {
+        return sellerGoodClient.updateSaleStatus(id,onSale);
+    }
 }

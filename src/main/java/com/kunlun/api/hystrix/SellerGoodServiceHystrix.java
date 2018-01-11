@@ -91,6 +91,18 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
     }
 
     /**
+     * 根据id商品上下架
+     *
+     * @param id
+     * @param onSale
+     * @return
+     */
+    @Override
+    public DataRet updateSaleStatus(Long id, String onSale) {
+        return new DataRet("ERROR","根据id商品上下架接口出错");
+    }
+
+    /**
      *批量删除
      *
      * @param jsonArray

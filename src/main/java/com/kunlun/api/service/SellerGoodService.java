@@ -110,4 +110,14 @@ public interface SellerGoodService {
      * @return
      */
     DataRet delete(Long id);
+
+
+    /**
+     * 根据id商品上下架
+     *
+     * @param id
+     * @param onSale
+     * @return
+     */
+    DataRet updateSaleStatus(Long id, String onSale);
 }

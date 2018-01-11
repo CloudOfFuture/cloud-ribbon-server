@@ -123,6 +123,21 @@ public class SellerGoodController {
                 startDate, endDate, brandId, saleStatus, categoryId, hot, isNew, freight);
     }
 
+
+    /**
+     * 根据id商品上下架
+     *
+     * @param id
+     * @param onSale
+     * @return
+     */
+    @PostMapping("/updateSaleStatus")
+    public DataRet updateSaleStatus(@RequestParam(value = "id") Long id,
+                                    @RequestParam(value = "onSale") String onSale){
+        return sellerGoodService.updateSaleStatus(id,onSale);
+    }
+
+
     /**
      * 批量商品上下架
      *
