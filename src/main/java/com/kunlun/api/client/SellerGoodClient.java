@@ -47,7 +47,7 @@ public interface SellerGoodClient {
      * @param id
      * @return
      */
-    @PostMapping("/delete")
+    @PostMapping("/seller/good/delete")
      DataRet delete(@RequestParam(value = "id") Long id);
 
     /**
