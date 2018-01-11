@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.SellerClient;
 import com.kunlun.api.client.SellerGoodClient;
 import com.kunlun.api.service.SellerGoodService;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.stereotype.Component;
@@ -30,8 +31,14 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
         return new DataRet<>("ERROR", "商户新增商品接口出错");
     }
 
+    /**
+     * 获取商品详情
+     *
+     * @param id 商品id
+     * @return
+     */
     @Override
-    public DataRet findById(Long id) {
+    public DataRet<GoodExt> findById(Long id) {
         return new DataRet<>("ERROR", "暂无数据");
     }
 
@@ -47,7 +54,7 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
     }
 
     /**
-     *
+     *分页查询
      *
      * @param pageNo     Integer
      * @param pageSize   Integer
@@ -73,7 +80,7 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
     }
 
     /**
-     *
+     *批量删除
      *
      * @param jsonArray
      * @return
@@ -84,7 +91,7 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
     }
 
     /**
-     *
+     *修改库存
      *
      * @param id    商品id，主键
      * @param count 数量  小于0 扣减，大于0 增加库存

@@ -2,6 +2,7 @@ package com.kunlun.api.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.kunlun.entity.GoodExt;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,7 +31,7 @@ public interface SellerGoodService {
      * @param id Long
      * @return JSONObject
      */
-    DataRet findById(Long id);
+    DataRet<GoodExt> findById(Long id);
 
     /**
      * 根据id修改商品信息
