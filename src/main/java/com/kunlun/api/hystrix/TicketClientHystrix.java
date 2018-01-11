@@ -1,5 +1,6 @@
 package com.kunlun.api.hystrix;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.TicketClient;
 import com.kunlun.entity.Ticket;
 import com.kunlun.result.DataRet;
@@ -65,11 +66,11 @@ public class TicketClientHystrix implements TicketClient {
     /**
      * 根据主键id批量删除优惠券
      *
-     * @param list
+     * @param jsonObject
      * @return
      */
     @Override
-    public DataRet batchDeleteById(List<Long> list) {
+    public DataRet batchDeleteById(JSONObject jsonObject) {
         return new DataRet("ERROR", "批量删除优惠券失败");
     }
 

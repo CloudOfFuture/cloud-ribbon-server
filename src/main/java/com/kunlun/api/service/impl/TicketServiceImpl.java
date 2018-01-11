@@ -1,5 +1,6 @@
 package com.kunlun.api.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.TicketClient;
 import com.kunlun.api.service.TicketService;
 import com.kunlun.entity.Ticket;
@@ -8,7 +9,6 @@ import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 /**
  * @author by fk
@@ -70,12 +70,12 @@ public class TicketServiceImpl implements TicketService {
     /**
      * 根据主键id批量删除优惠券
      *
-     * @param list
+     * @param jsonObject
      * @return
      */
     @Override
-    public DataRet batchDeleteById(List<Long> list) {
-        return ticketClient.batchDeleteById(list);
+    public DataRet batchDeleteById(JSONObject jsonObject) {
+        return ticketClient.batchDeleteById(jsonObject);
     }
 
     /**

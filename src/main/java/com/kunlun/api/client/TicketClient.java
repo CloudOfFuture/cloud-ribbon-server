@@ -1,5 +1,6 @@
 package com.kunlun.api.client;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.hystrix.TicketClientHystrix;
 import com.kunlun.entity.Ticket;
 import com.kunlun.result.DataRet;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 
 /**
  * @author by fk
@@ -63,11 +63,11 @@ public interface TicketClient {
     /**
      * 根据主键id批量删除优惠券
      *
-     * @param list
+     * @param jsonObject
      * @return
      */
     @PostMapping("/ticket/batchDeleteById")
-    DataRet batchDeleteById(@RequestBody List<Long> list);
+    DataRet batchDeleteById(@RequestBody JSONObject jsonObject);
 
     /**
      * 根据主键id查询优惠券详情
