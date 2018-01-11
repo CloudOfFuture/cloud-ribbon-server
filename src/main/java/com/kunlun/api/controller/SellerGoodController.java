@@ -47,6 +47,19 @@ public class SellerGoodController {
     }
 
 
+
+    /**
+     * 根据id删除商品
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/delete")
+    public DataRet delete(@RequestParam(value = "id") Long id){
+        return sellerGoodService.delete(id);
+    }
+
+
     /**
      * 批量删除商品
      *

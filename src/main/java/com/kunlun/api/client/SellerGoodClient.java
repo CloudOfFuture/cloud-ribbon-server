@@ -42,6 +42,15 @@ public interface SellerGoodClient {
 
 
     /**
+     * 根据id删除商品
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("/delete")
+     DataRet delete(@RequestParam(value = "id") Long id);
+
+    /**
      * 批量删除商品
      *
      * @return DataRet

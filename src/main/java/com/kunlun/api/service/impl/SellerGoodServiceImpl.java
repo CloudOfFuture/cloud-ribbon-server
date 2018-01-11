@@ -119,4 +119,15 @@ public class SellerGoodServiceImpl implements SellerGoodService{
     public DataRet batchUpdateSaleStatus(JSONObject object) {
         return sellerGoodClient.batchUpdateSaleStatus(object);
     }
+
+    /**
+     * 根据id删除商品
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet delete(Long id) {
+        return sellerGoodClient.delete(id);
+    }
 }

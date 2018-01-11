@@ -54,6 +54,17 @@ public class SellerGoodServiceHystrix implements SellerGoodClient{
     }
 
     /**
+     * 根据id删除商品
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public DataRet delete(Long id) {
+        return new DataRet("ERROR","商户根据id删除商品接口出错");
+    }
+
+    /**
      *分页查询
      *
      * @param pageNo     Integer

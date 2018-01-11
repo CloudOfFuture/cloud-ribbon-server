@@ -103,4 +103,11 @@ public interface SellerGoodService {
     DataRet batchUpdateSaleStatus(JSONObject object);
 
 
+    /**
+     * 根据id删除商品
+     *
+     * @param id
+     * @return
+     */
+    DataRet delete(Long id);
 }
