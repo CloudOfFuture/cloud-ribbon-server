@@ -1,5 +1,6 @@
 package com.kunlun.api.service.impl;
 
+import com.github.pagehelper.util.StringUtil;
 import com.kunlun.api.client.DeliveryClient;
 import com.kunlun.api.service.DeliveryService;
 import com.kunlun.entity.Delivery;
@@ -26,6 +27,9 @@ public class DeliveryServiceImpl implements DeliveryService {
      */
     @Override
     public DataRet<Delivery> findById(Long id) {
+        if (id == null) {
+            return new DataRet<>("ERROR", "参数错误");
+        }
         return deliveryClient.findById(id);
     }
 
@@ -38,8 +42,14 @@ public class DeliveryServiceImpl implements DeliveryService {
      * @return
      */
     @Override
-    public PageResult findByWxCode(String wxCode, Integer pageNo, Integer pageSize) {
-        return deliveryClient.findByWxCode(wxCode,pageNo,pageSize);
+    public PageResult findByUserId(String wxCode, Long userId, Integer pageNo, Integer pageSize) {
+        if (StringUtil.isEmpty(wxCode) && userId == null) {
+            return new PageResult("ERROR", "参数错误");
+        }
+        if (pageSize == null || pageNo == null) {
+            return new PageResult("ERROR", "参数错误");
+        }
+        return deliveryClient.findByUserId(wxCode, userId, pageNo, pageSize);
     }
 
     /**
@@ -50,6 +60,9 @@ public class DeliveryServiceImpl implements DeliveryService {
      */
     @Override
     public DataRet<String> add(Delivery delivery) {
+        if (StringUtil.isEmpty(delivery.getWxCode()) && StringUtil.isEmpty(delivery.getUserId())) {
+            return new DataRet<>("ERROR", "参数错误");
+        }
         return deliveryClient.add(delivery);
     }
 
@@ -62,6 +75,9 @@ public class DeliveryServiceImpl implements DeliveryService {
      */
     @Override
     public DataRet<String> update(Delivery delivery) {
+        if (delivery.getId() == null) {
+            return new DataRet<>("ERROR", "参数错误");
+        }
         return deliveryClient.update(delivery);
     }
 
@@ -73,8 +89,11 @@ public class DeliveryServiceImpl implements DeliveryService {
      * @return
      */
     @Override
-    public DataRet<String> delete(Long id) {
-        return deliveryClient.delete(id);
+    public DataRet<String> deleteById(Long id) {
+        if (id == null) {
+            return new DataRet<>("ERROR", "参数错误");
+        }
+        return deliveryClient.deleteById(id);
     }
 
 
@@ -86,8 +105,14 @@ public class DeliveryServiceImpl implements DeliveryService {
      * @return
      */
     @Override
-    public DataRet<String> defaultAddress(Long id, String wxCode) {
-        return deliveryClient.defaultAddress(id,wxCode);
+    public DataRet<String> defaultAddress(Long id, String wxCode, Long userId) {
+        if (id == null) {
+            return new DataRet<>("ERROR", "参数错误");
+        }
+        if (StringUtil.isEmpty(wxCode) && userId == null) {
+            return new DataRet<>("ERROR", "参数错误");
+        }
+        return deliveryClient.defaultAddress(id, wxCode, userId);
     }
 
 
@@ -98,8 +123,11 @@ public class DeliveryServiceImpl implements DeliveryService {
      * @return
      */
     @Override
-    public DataRet<Delivery> getDefault(String wxCode) {
-        return deliveryClient.getDefault(wxCode);
+    public DataRet<Delivery> getDefault(String wxCode, Long userId) {
+        if (StringUtil.isEmpty(wxCode) && userId == null) {
+            return new DataRet<>("ERROR", "参数错误");
+        }
+        return deliveryClient.getDefault(wxCode, userId);
     }
 
 
