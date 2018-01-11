@@ -65,7 +65,7 @@ public class BrandController {
     @GetMapping("/findByCondition")
     public PageResult findByCondition(@RequestParam(value = "pageNo") Integer pageNo,
                                       @RequestParam(value = "pageSize") Integer pageSize,
-                                      @RequestParam(value = "searchKey") String searchKey) {
+                                      @RequestParam(value = "searchKey",required = false) String searchKey) {
         return brandService.findByCondition(pageNo, pageSize, searchKey);
     }
 

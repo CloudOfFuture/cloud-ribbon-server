@@ -1,10 +1,10 @@
 package com.kunlun.api.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.kunlun.entity.Ticket;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 
-import java.util.List;
 
 /**
  * @author by fk
@@ -50,10 +50,10 @@ public interface TicketService {
     /**
      * 根据主键id删除优惠券
      *
-     * @param list
+     * @param jsonObject
      * @return
      */
-    DataRet batchDeleteById(List<Long> list);
+    DataRet batchDeleteById(JSONObject jsonObject);
 
     /**
      * 根据主键id查询优惠券详情
