@@ -1,12 +1,9 @@
 package com.kunlun.api.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kunlun.api.client.SellerGoodClient;
 import com.kunlun.api.service.SellerGoodService;
-import com.kunlun.api.service.SellerService;
-import com.kunlun.entity.Store;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +33,7 @@ public class SellerGoodServiceImpl implements SellerGoodService{
     }
 
     /**
-     *
+     *获取商品详情
      *
      * @param id Long
      * @return
@@ -47,7 +44,7 @@ public class SellerGoodServiceImpl implements SellerGoodService{
     }
 
     /**
-     *
+     *修改商品
      *
      * @param object JSONObject
      * @return
@@ -59,7 +56,7 @@ public class SellerGoodServiceImpl implements SellerGoodService{
 
 
     /**
-     *
+     *分页查询
      *
      * @param pageNo     Integer
      * @param pageSize   Integer
@@ -88,7 +85,7 @@ public class SellerGoodServiceImpl implements SellerGoodService{
     }
 
     /**
-     *
+     *批量删除
      *
      * @param jsonArray 商品id集合
      * @return
@@ -100,7 +97,7 @@ public class SellerGoodServiceImpl implements SellerGoodService{
 
 
     /**
-     *
+     *修改商品库存
      *
      * @param id    商品id--主键
      * @param count 扣减、增加数量
