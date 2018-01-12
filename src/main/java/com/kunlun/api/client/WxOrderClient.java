@@ -95,7 +95,8 @@ public interface WxOrderClient {
      * @return
      */
     @PostMapping("/wx/order/updatePrepayId")
-    DataRet<String> updateOrderPrepayId(Long id, String prepayId);
+    DataRet<String> updateOrderPrepayId(@RequestParam("id") Long id,
+                                        @RequestParam("prepayId") String prepayId);
 
     /**
      * 查询退款中的订单列表
@@ -104,7 +105,7 @@ public interface WxOrderClient {
      * @return
      */
     @GetMapping("/wx/order/findRefundingOrder")
-    DataRet<List<Order>> findRefundingOrder(String orderStatus);
+    DataRet<List<Order>> findRefundingOrder(@RequestParam("orderStatus") String orderStatus);
 
     /**
      * 查询未付款订单列表
@@ -113,5 +114,5 @@ public interface WxOrderClient {
      * @return
      */
     @GetMapping("/wx/order/findUnPayOrder")
-    DataRet<List<Order>> findUnPayOrder(String orderStatus);
+    DataRet<List<Order>> findUnPayOrder(@RequestParam("orderStatus") String orderStatus);
 }
