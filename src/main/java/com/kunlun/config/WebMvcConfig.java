@@ -6,14 +6,17 @@ import feign.Request;
 import feign.Retryer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.ManagementServerProperties;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.cloud.netflix.eureka.EurekaClientConfigBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import javax.servlet.MultipartConfigElement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +30,7 @@ import java.util.Map;
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Value("${eureka.client.service-url.defaultZone}")
     private String serviceUrl;
+
     @Bean
     Request.Options feignOptions() {
         return new Request.Options(/***connectTimeoutMills***/10 * 1000,/***readTimeoutMills***/10 * 1000);
@@ -78,18 +82,24 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
      * 禁用安全模式,springBoot1.4以后默认开启安全端点模式,需要配置禁止
      */
     @Bean
-    public void managementServerProperties(){
+    public void managementServerProperties() {
         new ManagementServerProperties().getSecurity().setEnabled(false);
     }
 
     @Bean
-    public EurekaClientConfigBean eurekaClientConfigBean(){
+    public EurekaClientConfigBean eurekaClientConfigBean() {
         EurekaClientConfigBean eurekaClientConfigBean = new EurekaClientConfigBean();
-        Map eurekaMap = new HashMap(2);
-        eurekaMap.put("defaultZone",serviceUrl);
+        HashMap<String, String> eurekaMap = new HashMap<>(2);
+        eurekaMap.put("defaultZone", serviceUrl);
         eurekaClientConfigBean.setServiceUrl(eurekaMap);
         return eurekaClientConfigBean;
     }
 
-
+//    @Bean
+//    MultipartConfigElement multipartConfigElement() {
+//        MultipartConfigFactory factory = new MultipartConfigFactory();
+//        factory.setMaxFileSize("10Mb");
+//        factory.setMaxRequestSize("10Mb");
+//        return factory.createMultipartConfig();
+//    }
 }

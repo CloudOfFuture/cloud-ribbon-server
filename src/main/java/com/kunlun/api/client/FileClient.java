@@ -4,10 +4,7 @@ import com.kunlun.api.hystrix.FileClientHystrix;
 import com.kunlun.config.FeignMultipartConfig;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
-import feign.codec.Encoder;
-import feign.form.spring.SpringFormEncoder;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,26 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 17-12-26下午2:00
  * @desc
  */
-@FeignClient(value = "cloud-service-common",
-        configuration = FeignMultipartConfig.class,
-        fallback = FileClientHystrix.class)
+@FeignClient(value = "cloud-service-common", fallback = FileClientHystrix.class)
 public interface FileClient {
-
-
-    /**
-     * 图片上传
-     *
-     * @param jsonContent String
-     * @param file        MultipartFile
-     * @return DataRet
-     */
-    @PostMapping(value = "/file/uploadImage",
-            produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},
-            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    DataRet uploadImage(@RequestPart("file") MultipartFile file,
-                        @RequestParam("jsonContent") String jsonContent);
-
-
 
     /**
      * 图片删除

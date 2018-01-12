@@ -1,13 +1,18 @@
 package com.kunlun.api.service.impl;
 
 import com.alibaba.druid.util.StringUtils;
+import com.alibaba.fastjson.JSON;
 import com.kunlun.api.client.FileClient;
+import com.kunlun.api.client.FileUploadClient;
 import com.kunlun.api.service.FileService;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
+import feign.Feign;
+import feign.form.spring.SpringFormEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.IOException;
 
@@ -24,11 +29,21 @@ public class FileServiceImpl implements FileService {
     private FileClient fileClient;
 
     @Override
-    public DataRet uploadImage(MultipartFile file, String jsonContent)   {
+    public DataRet uploadImage(MultipartFile file, String jsonContent) {
         if (file == null || StringUtils.isEmpty(jsonContent)) {
             return new DataRet("param_error", "参数有误");
         }
-        return fileClient.uploadImage(file, jsonContent);
+        jsonContent = jsonContent.replace("\r", "")
+                .replace("\n", "")
+                .replace("\t", "")
+                .replace(" ", "");
+        jsonContent = JSON.toJSONString(jsonContent);
+        System.out.println("http://localhost:7050/file/uploadImage?jsonContent=" + jsonContent);
+        FileUploadClient client = Feign
+                .builder()
+                .encoder(new SpringFormEncoder())
+                .target(FileUploadClient.class, "http://localhost:7050/file/uploadImage?jsonContent=" + jsonContent);
+        return client.uploadImage(file);
     }
 
     @Override

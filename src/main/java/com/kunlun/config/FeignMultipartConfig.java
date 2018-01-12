@@ -2,6 +2,7 @@ package com.kunlun.config;
 
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
+import org.springframework.cloud.netflix.feign.FeignClientsConfiguration;
 import org.springframework.context.annotation.Bean;
 
 /**
