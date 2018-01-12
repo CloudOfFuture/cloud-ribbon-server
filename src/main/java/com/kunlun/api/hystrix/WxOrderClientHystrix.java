@@ -6,6 +6,8 @@ import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * 微信订单接口  断路器
  *
@@ -53,13 +55,72 @@ public class WxOrderClientHystrix implements WxOrderClient {
         return new DataRet<>("ERROR", "订单详情接口异常");
     }
 
+    /**
+     * 确认收货
+     *
+     * @param orderId   订单id
+     * @param ipAddress 请求ip
+     * @return
+     */
     @Override
     public DataRet<String> confirmByGood(Long orderId, String ipAddress) {
         return new DataRet<>("ERROR", "接口异常");
     }
 
+    /**
+     * 取消订单
+     *
+     * @param orderId   订单id
+     * @param ipAddress 请求ip
+     * @return
+     */
     @Override
     public DataRet<String> cancelByOrder(Long orderId, String ipAddress) {
         return new DataRet<>("ERROR", "接口异常");
+    }
+
+    /**
+     * 新增订单
+     *
+     * @param order 订单
+     * @return
+     */
+    @Override
+    public DataRet<String> addOrder(Order order) {
+        return new DataRet<>("ERROR", "新增订单出错");
+    }
+
+    /**
+     * 修改订单预付款订单号
+     *
+     * @param id
+     * @param prepayId
+     * @return
+     */
+    @Override
+    public DataRet<String> updateOrderPrepayId(Long id, String prepayId) {
+        return new DataRet<>("ERROR", "修改订单预付款订单号失败");
+    }
+
+    /**
+     * 查询退款中的订单列表
+     *
+     * @param orderStatus
+     * @return
+     */
+    @Override
+    public DataRet<List<Order>> findRefundingOrder(String orderStatus) {
+        return new DataRet<>("ERROR", "查询退款中的订单列表失败");
+    }
+
+    /**
+     * 查询未付款订单列表
+     *
+     * @param orderStatus
+     * @return
+     */
+    @Override
+    public DataRet<List<Order>> findUnPayOrder(String orderStatus) {
+        return new DataRet<>("ERROR", "查询未付款订单列表失败");
     }
 }

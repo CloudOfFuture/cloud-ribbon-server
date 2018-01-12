@@ -6,13 +6,10 @@ import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
 import com.kunlun.utils.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 微信订单接口
@@ -94,5 +91,51 @@ public class WxOrderController {
                                          HttpServletRequest request) {
         String ipAddress = IpUtil.getIPAddress(request);
         return wxOrderService.cancelByOrder(orderId, ipAddress);
+    }
+
+    /**
+     * 新增订单
+     *
+     * @param order
+     * @return
+     */
+    @PostMapping("/addOrder")
+    public DataRet<String> addOrder(@RequestBody Order order) {
+        return wxOrderService.addOrder(order);
+    }
+
+    /**
+     * 修改订单预付款订单号
+     *
+     * @param id
+     * @param prepayId
+     * @return
+     */
+    @PostMapping("/updatePrepayId")
+    public DataRet<String> updateOrderPrepayId(@RequestParam(value = "id") Long id,
+                                               @RequestParam(value = "prepayId") String prepayId) {
+        return wxOrderService.updateOrderPrepayId(id, prepayId);
+    }
+
+    /**
+     * 查询退款中的订单列表
+     *
+     * @param orderStatus 订单状态
+     * @return
+     */
+    @GetMapping("/findRefundingOrder")
+    public DataRet<List<Order>> findRefundingOrder(@RequestParam(value = "orderStatus") String orderStatus) {
+        return wxOrderService.findRefundingOrder(orderStatus);
+    }
+
+    /**
+     * 查询未付款订单列表
+     *
+     * @param orderStatus
+     * @return
+     */
+    @GetMapping("/findUnPayOrder")
+    public DataRet<List<Order>> findUnPayOrder(@RequestParam(value = "orderStatus") String orderStatus) {
+        return wxOrderService.findUnPayOrder(orderStatus);
     }
 }
