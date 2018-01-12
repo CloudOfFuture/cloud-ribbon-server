@@ -9,6 +9,8 @@ import com.kunlun.result.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author by kunlun
  * @version <0.1>
@@ -57,10 +59,11 @@ public class WxOrderServiceImpl implements WxOrderService {
     public DataRet<Order> findById(Long orderId) {
         return wxOrderClient.findById(orderId);
     }
+
     /**
      * 取消订单
      *
-     * @param orderId 订单id
+     * @param orderId   订单id
      * @param ipAddress 请求ip
      * @return
      */
@@ -68,15 +71,61 @@ public class WxOrderServiceImpl implements WxOrderService {
     public DataRet<String> cancelByOrder(Long orderId, String ipAddress) {
         return wxOrderClient.cancelByOrder(orderId, ipAddress);
     }
+
     /**
      * 确认收货
      *
-     * @param orderId 订单id
+     * @param orderId   订单id
      * @param ipAddress 请求ip
      * @return
      */
     @Override
     public DataRet<String> confirmByGood(Long orderId, String ipAddress) {
         return wxOrderClient.confirmByGood(orderId, ipAddress);
+    }
+
+    /**
+     * 新增订单
+     *
+     * @param order
+     * @return
+     */
+    @Override
+    public DataRet<String> addOrder(Order order) {
+        return wxOrderClient.addOrder(order);
+    }
+
+    /**
+     * 修改订单预付款订单号
+     *
+     * @param id
+     * @param prepayId
+     * @return
+     */
+    @Override
+    public DataRet<String> updateOrderPrepayId(Long id, String prepayId) {
+        return wxOrderClient.updateOrderPrepayId(id, prepayId);
+    }
+
+    /**
+     * 查询退款中的订单列表
+     *
+     * @param orderStatus
+     * @return
+     */
+    @Override
+    public DataRet<List<Order>> findRefundingOrder(String orderStatus) {
+        return wxOrderClient.findRefundingOrder(orderStatus);
+    }
+
+    /**
+     * 查询未付款订单列表
+     *
+     * @param orderStatus
+     * @return
+     */
+    @Override
+    public DataRet<List<Order>> findUnPayOrder(String orderStatus) {
+        return wxOrderClient.findUnPayOrder(orderStatus);
     }
 }

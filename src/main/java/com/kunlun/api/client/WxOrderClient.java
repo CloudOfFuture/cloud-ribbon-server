@@ -7,7 +7,10 @@ import com.kunlun.result.PageResult;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @author by kunlun
@@ -62,7 +65,7 @@ public interface WxOrderClient {
      */
     @PostMapping("/wx/order/confirmByGood")
     DataRet<String> confirmByGood(@RequestParam("orderId") Long orderId,
-                                  @RequestParam("ipAddress") String ipAddress);
+                                  @RequestParam(value = "ipAddress", required = false) String ipAddress);
 
     /**
      * 取消订单
@@ -73,5 +76,43 @@ public interface WxOrderClient {
      */
     @PostMapping("/wx/order/cancelByOrder")
     DataRet<String> cancelByOrder(@RequestParam("orderId") Long orderId,
-                                  @RequestParam("ipAddress") String ipAddress);
+                                  @RequestParam(value = "ipAddress", required = false) String ipAddress);
+
+    /**
+     * 新增订单
+     *
+     * @param order 订单
+     * @return
+     */
+    @PostMapping("/wx/order/addOrder")
+    DataRet<String> addOrder(@RequestBody Order order);
+
+    /**
+     * 修改订单预付款订单号
+     *
+     * @param id
+     * @param prepayId
+     * @return
+     */
+    @PostMapping("/wx/order/updatePrepayId")
+    DataRet<String> updateOrderPrepayId(@RequestParam("id") Long id,
+                                        @RequestParam("prepayId") String prepayId);
+
+    /**
+     * 查询退款中的订单列表
+     *
+     * @param orderStatus
+     * @return
+     */
+    @GetMapping("/wx/order/findRefundingOrder")
+    DataRet<List<Order>> findRefundingOrder(@RequestParam("orderStatus") String orderStatus);
+
+    /**
+     * 查询未付款订单列表
+     *
+     * @param orderStatus
+     * @return
+     */
+    @GetMapping("/wx/order/findUnPayOrder")
+    DataRet<List<Order>> findUnPayOrder(@RequestParam("orderStatus") String orderStatus);
 }
