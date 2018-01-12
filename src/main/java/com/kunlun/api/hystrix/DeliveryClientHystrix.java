@@ -24,19 +24,21 @@ public class DeliveryClientHystrix implements DeliveryClient{
         return new DataRet("Error","收获地址无效");
     }
 
-
     /**
      * 用户收货地址分页
      *
      * @param wxCode
+     * @param userId
      * @param pageNo
      * @param pageSize
      * @return
      */
     @Override
-    public PageResult findByWxCode(String wxCode, Integer pageNo, Integer pageSize) {
+    public PageResult findByUserId(String wxCode, Long userId, Integer pageNo, Integer pageSize) {
         return new PageResult("ERROR","获取列表失败");
     }
+
+
 
 
     /**
@@ -70,7 +72,7 @@ public class DeliveryClientHystrix implements DeliveryClient{
      * @return
      */
     @Override
-    public DataRet<String> delete(Long id) {
+    public DataRet<String> deleteById(Long id) {
         return new DataRet<>("ERROR","删除收货地址失败");
     }
 
@@ -83,7 +85,7 @@ public class DeliveryClientHystrix implements DeliveryClient{
      * @return
      */
     @Override
-    public DataRet<String> defaultAddress(Long id, String wxCode) {
+    public DataRet<String> defaultAddress(Long id, String wxCode,Long userId) {
         return new DataRet<>("ERROR","设置默认地址失败");
     }
 
@@ -95,7 +97,7 @@ public class DeliveryClientHystrix implements DeliveryClient{
      * @return
      */
     @Override
-    public DataRet<Delivery> getDefault(String wxCode) {
+    public DataRet<Delivery> getDefault(String wxCode,Long userId) {
         return new DataRet<>("ERROR","获取默认地址失败");
     }
 
