@@ -16,8 +16,21 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 17-12-26下午2:00
  * @desc
  */
-@FeignClient(value = "cloud-service-common", fallback = FileClientHystrix.class)
+@FeignClient(value = "cloud-service-common", configuration = FeignMultipartConfig.class)
 public interface FileClient {
+    /**
+     * 图片上传
+     *
+     * @param jsonContent String
+     * @param file        MultipartFile
+     * @return DataRet
+     */
+    @PostMapping(value = "/file/uploadImage",
+            produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    DataRet uploadImage(@RequestPart("file") MultipartFile file,
+                        @RequestParam("jsonContent") String jsonContent);
+
 
     /**
      * 图片删除

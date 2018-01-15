@@ -1,18 +1,10 @@
 package com.kunlun.api.hystrix;
 
-import com.alibaba.druid.util.StringUtils;
 import com.kunlun.api.client.FileClient;
-import com.kunlun.api.client.FileUploadClient;
-import com.kunlun.api.client.OrderClient;
-import com.kunlun.api.service.FileService;
 import com.kunlun.result.DataRet;
 import com.kunlun.result.PageResult;
-import feign.Feign;
-import feign.form.spring.SpringFormEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 /**
  * @author JackSpeed
@@ -22,6 +14,11 @@ import java.io.IOException;
  */
 @Component
 public class FileClientHystrix implements FileClient {
+
+    @Override
+    public DataRet uploadImage(MultipartFile file, String jsonContent) {
+        return new DataRet("del_error", "请求失败");
+    }
 
     @Override
     public DataRet deleteByUrl(String url) {
